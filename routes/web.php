@@ -1,11 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
