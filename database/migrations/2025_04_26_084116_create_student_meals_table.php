@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('student_meals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('meal_id')->constrained('meals')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

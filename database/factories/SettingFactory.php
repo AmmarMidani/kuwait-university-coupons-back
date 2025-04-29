@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Survey>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Setting>
  */
-class SurveyFactory extends Factory
+class SettingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,9 @@ class SurveyFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->realText(50),
-            'description' => fake()->realText(150),
-            'is_active' => fake()->boolean(75),
+            'option_name' => fake()->name(),
+            'option_key' => fake()->name(),
+            'option_value' => fake()->name(),
         ];
     }
 }
