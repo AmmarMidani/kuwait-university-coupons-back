@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // hasMany relations
+    public function studentMeals()
+    {
+        return $this->hasMany(StudentMeal::class, 'user_id');
+    }
 }

@@ -9,4 +9,10 @@ class Meal extends Model
 {
     /** @use HasFactory<\Database\Factories\MealFactory> */
     use HasFactory;
+
+    // hasMany relations
+    public function studentMeals()
+    {
+        return $this->hasMany(StudentMeal::class, 'meal_id');
+    }
 }
