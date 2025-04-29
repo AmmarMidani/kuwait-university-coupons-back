@@ -35,4 +35,28 @@ return [
         ],
     ],
 
+    'passport' => [
+        'login_endpoint' => env('PASSPORT_LOGIN_ENDPOINT'),
+        'client_id' => env('PASSPORT_CLIENT_ID'),
+        'client_secret' => env('PASSPORT_CLIENT_SECRET'),
+    ],
+
+    'allowed_file_extensions' => [
+        'images' => env('ALLOWED_IMAGE_EXT', ''),
+        'files' => env('ALLOWED_FILE_EXT', ''),
+    ],
+
+    'exchange_rate' => [
+        'endpoint' => env('RATE_EXCHANGE_ENDPOINT', ''),
+        'version' => env('RATE_EXCHANGE_VERSION', ''),
+        'api_key' => env('RATE_EXCHANGE_API_KEY', ''),
+    ],
+
+    'google_map' => [
+        'key' => env('GOOGLE_MAP_API_KEY', ''),
+    ],
+
+    'mapbox' => [
+        'access_token' => env('MAPBOX_ACCESS_TOKEN', ''),
+    ],
 ];
