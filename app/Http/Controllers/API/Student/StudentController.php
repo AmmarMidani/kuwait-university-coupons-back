@@ -62,4 +62,23 @@ class StudentController extends Controller
         $surveys = $student->surveys()->orderByDesc('created_at')->paginate(10);
         return $this->paginatedResponse(200, 'api.public.done', 200, new SurveyCollection($surveys->items()), $surveys);
     }
+
+    public function todayUpcomingMeals(Request $request)
+    {
+        $now = Carbon::now()->format('H:i:s');
+
+        $meals = Meal::where('is_active', true)
+            ->where('time_from', '>', $now)
+            ->orderBy('time_from', 'asc')
+            ->get();
+
+        $results = [];
+        foreach ($meals as $meal) {
+            $results[] = [
+                'meal' => new ResourcesMeal($meal),
+                'merchants' => new MerchantCollection($meal->merchants),
+            ];
+        }
+        return $this->successResponse(200, 'api.public.done', 200, $results);
+    }
 }

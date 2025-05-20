@@ -24,5 +24,6 @@ Route::prefix('student')->namespace('API\Student')->group(function () {
 
         // meals Routes
         Route::get('past-meals', [StudentController::class, 'pastMeals']);
+        Route::get('today-upcoming-meals', [StudentController::class, 'todayUpcomingMeals']);
     });
 });
