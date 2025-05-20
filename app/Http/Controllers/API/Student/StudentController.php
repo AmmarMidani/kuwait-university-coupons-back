@@ -59,13 +59,7 @@ class StudentController extends Controller
     public function pastMeals(Request $request)
     {
         $student = $request->user();
-
-        $surveys = $student
-            ->surveys()
-            ->with('meal')
-            ->with('user')
-            ->orderByDesc('created_at')
-            ->get();
-        return $this->successResponse(200, trans('api.public.done'), 200, new SurveyCollection($surveys));
+        $surveys = $student->surveys()->orderByDesc('created_at')->paginate(10);
+        return $this->paginatedResponse(200, 'api.public.done', 200, new SurveyCollection($surveys->items()), $surveys);
     }
 }
