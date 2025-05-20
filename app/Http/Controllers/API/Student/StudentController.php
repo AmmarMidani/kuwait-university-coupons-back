@@ -37,7 +37,31 @@ class StudentController extends Controller
     public function profile(Request $request)
     {
         return $this->successResponse(200, trans('api.public.done'), 200, new ResourcesStudent($request->user()));
-        return response()->json();
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate(
+            [
+                'old_password' => 'required',
+                'new_password' => 'required|min:8|different:old_password',
+                'confirm_password' => 'required|same:new_password',
+            ],
+            [
+                'confirm_password.required' => 'The confirm password is required.',
+                'confirm_password.same' => 'The confirm password and new password must match.',
+            ]
+        );
+
+        $user = auth()->user();
+        if (!Hash::check($request->old_password, $user->password)) {
+            return $this->errorResponse(422, trans('api.auth.old_password_incorrect'), 422, []);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+        return $this->successResponse(200, trans('api.auth.password_updated'), 200, []);
     }
 
     public function logout(Request $request)
@@ -45,7 +69,4 @@ class StudentController extends Controller
         $request->user()->currentAccessToken()->delete();
         return $this->successResponse(200, trans('api.auth.loggedout'), 200, []);
     }
-
-    // forgetPassword
-    // resetPassword
 }
