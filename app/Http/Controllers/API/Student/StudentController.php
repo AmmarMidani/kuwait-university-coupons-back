@@ -23,7 +23,7 @@ class StudentController extends Controller
         $student = Student::where('student_number', $request->student_number)->first();
 
         if (! $student || ! Hash::check($request->password, $student->password)) {
-            return $this->errorResponse(401, trans('api.auth.enter_verify_code'), 401);
+            return $this->errorResponse(401, trans('api.auth.invalid_credentials'), 401);
         }
 
         $token = $student->createToken('student-token')->plainTextToken;
