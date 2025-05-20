@@ -11,8 +11,14 @@ class Meal extends Model
     use HasFactory;
 
     // hasMany relations
-    public function studentMeals()
+
+    public function mealPrices()
     {
-        return $this->hasMany(StudentMeal::class, 'meal_id');
+        return $this->hasMany(MealPrice::class, 'meal_id');
+    }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class, 'meal_id');
     }
 }

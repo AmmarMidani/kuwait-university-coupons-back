@@ -47,8 +47,14 @@ class User extends Authenticatable
     }
 
     // hasMany relations
-    public function studentMeals()
+
+    public function mealPrices()
     {
-        return $this->hasMany(StudentMeal::class, 'user_id');
+        return $this->hasMany(MealPrice::class, 'user_id');
+    }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class, 'user_id');
     }
 }

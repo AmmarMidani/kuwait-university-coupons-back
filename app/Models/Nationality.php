@@ -11,6 +11,7 @@ class Nationality extends Model
     use HasFactory;
 
     // hasMany relations
+
     public function students()
     {
         return $this->hasMany(Student::class, 'nationality_id');

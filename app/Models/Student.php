@@ -11,19 +11,16 @@ class Student extends Model
     use HasFactory;
 
     // belongsTo relations
+
     public function nationality()
     {
         return $this->belongsTo(Nationality::class, 'nationality_id');
     }
 
     // hasMany relations
-    public function studentMeals()
-    {
-        return $this->hasMany(StudentMeal::class, 'student_id');
-    }
 
-    public function surveyStudents()
+    public function surveys()
     {
-        return $this->hasMany(SurveyStudent::class, 'student_id');
+        return $this->hasMany(Survey::class, 'student_id');
     }
 }
