@@ -23,12 +23,12 @@ class AuthController extends Controller
         $student = Student::where('student_number', $request->student_number)->first();
 
         if (! $student || ! Hash::check($request->password, $student->password)) {
-            return $this->errorResponse(401, trans('api.auth.invalid_credentials'), 401);
+            return $this->errorResponse(401, 'api.auth.invalid_credentials', 401);
         }
 
         $token = $student->createToken('student-token')->plainTextToken;
 
-        return $this->successResponse(200, trans('api.auth.login'), 200, [
+        return $this->successResponse(200, 'api.auth.login', 200, [
             'token' => $token,
             'student' => $student,
         ]);
@@ -36,7 +36,7 @@ class AuthController extends Controller
 
     public function profile(Request $request)
     {
-        return $this->successResponse(200, trans('api.public.done'), 200, new ResourcesStudent($request->user()));
+        return $this->successResponse(200, 'api.public.done', 200, new ResourcesStudent($request->user()));
     }
 
     public function changePassword(Request $request)
@@ -55,18 +55,18 @@ class AuthController extends Controller
 
         $user = auth()->user();
         if (!Hash::check($request->old_password, $user->password)) {
-            return $this->errorResponse(422, trans('api.auth.old_password_incorrect'), 422, []);
+            return $this->errorResponse(422, 'api.auth.old_password_incorrect', 422, []);
         }
 
         $user->update([
             'password' => Hash::make($request->new_password),
         ]);
-        return $this->successResponse(200, trans('api.auth.password_updated'), 200, []);
+        return $this->successResponse(200, 'api.auth.password_updated', 200, []);
     }
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return $this->successResponse(200, trans('api.auth.loggedout'), 200, []);
+        return $this->successResponse(200, 'api.auth.loggedout', 200, []);
     }
 }

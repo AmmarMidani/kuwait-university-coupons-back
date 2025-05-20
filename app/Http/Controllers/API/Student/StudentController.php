@@ -21,7 +21,7 @@ class StudentController extends Controller
         $student = $request->user();
         $student->qr_code = (string) Str::uuid();
         $student->save();
-        return $this->successResponse(200, trans('api.public.done'), 200, $student->qr_code);
+        return $this->successResponse(200, 'api.public.done', 200, $student->qr_code);
     }
 
     public function nextUpcomingMeal(Request $request)
@@ -46,10 +46,10 @@ class StudentController extends Controller
         }
 
         if (!$meal) {
-            return $this->successResponse(200, trans('api.public.no_meals_available'), 200, null);
+            return $this->successResponse(200, 'api.public.no_meals_available', 200, null);
         }
 
-        return $this->successResponse(200, trans('api.public.done'), 200, [
+        return $this->successResponse(200, 'api.public.done', 200, [
             'status' => $status,
             'meal' => new ResourcesMeal($meal),
             'merchants' => new MerchantCollection($meal->merchants),
