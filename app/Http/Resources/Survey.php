@@ -14,6 +14,12 @@ class Survey extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        return [
+            'survey_id' => $this->id,
+            'is_answerd' => ($this->surveyAnswers->count()) ? true : false,
+            'meal' => Meal::make($this->meal),
+            'mearchant' => Merchant::make($this->user),
+        ];
         return parent::toArray($request);
     }
 }
