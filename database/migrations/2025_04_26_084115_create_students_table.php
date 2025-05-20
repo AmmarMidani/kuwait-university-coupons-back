@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('nationality_id')->constrained('nationalities')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('student_number')->unique();
+            $table->string('qr_code');
             $table->string('name');
             $table->tinyInteger('gender')->unsigned()->default(GenderType::Male);
             $table->date('date_from');
