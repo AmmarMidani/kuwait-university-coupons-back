@@ -20,5 +20,6 @@ Route::prefix('student')->namespace('API\Student')->group(function () {
 
         // home page Routes
         Route::get('generate-new-qr', [StudentController::class, 'generateNewQr']);
+        Route::get('next-upcoming-meal', [StudentController::class, 'nextUpcomingMeal']);
     });
 });
