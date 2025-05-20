@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Student;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Meal as ResourcesMeal;
 use App\Http\Resources\MerchantCollection;
+use App\Http\Resources\SurveyCollection;
 use App\Models\Meal;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
@@ -53,5 +54,18 @@ class StudentController extends Controller
             'meal' => new ResourcesMeal($meal),
             'merchants' => new MerchantCollection($meal->merchants),
         ]);
+    }
+
+    public function pastMeals(Request $request)
+    {
+        $student = $request->user();
+
+        $surveys = $student
+            ->surveys()
+            ->with('meal')
+            ->with('user')
+            ->orderByDesc('created_at')
+            ->get();
+        return $this->successResponse(200, trans('api.public.done'), 200, new SurveyCollection($surveys));
     }
 }
