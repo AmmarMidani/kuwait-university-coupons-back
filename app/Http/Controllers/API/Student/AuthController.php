@@ -9,7 +9,7 @@ use App\Models\Student;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Hash;
 
-class StudentController extends Controller
+class AuthController extends Controller
 {
     use ApiResponser;
 
