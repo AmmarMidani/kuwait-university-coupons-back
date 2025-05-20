@@ -2,7 +2,17 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\Student\StudentController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
+Route::prefix('student')->namespace('API\Student')->group(function () {
+    /**
+     * Auth Routes
+     */
+    Route::post('login', [StudentController::class, 'login']);
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::get('profile', [StudentController::class, 'profile']);
+        Route::get('logout', [StudentController::class, 'logout']);
+    });
+});

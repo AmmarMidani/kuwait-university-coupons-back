@@ -5,10 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class Student extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+    protected $fillable = [
+        'id',
+        'nationality_id',
+        'student_number',
+        'password',
+        'qr_code',
+        'name',
+        'gender',
+        'date_from',
+        'date_to',
+        'is_active',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
 
     // belongsTo relations
 
