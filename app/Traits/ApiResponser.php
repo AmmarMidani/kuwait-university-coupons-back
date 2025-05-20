@@ -4,28 +4,49 @@ namespace App\Traits;
 
 trait ApiResponser
 {
-    protected function errorResponse($code, $msg, $status)
+    protected function baseResponse(string $status, string $msg, int $code, array $payload = [], int $httpStatus = 200)
     {
         $response = [
-            'status' => 'failed',
+            'status' => $status,
             'message' => trans($msg),
             'code' => $code,
         ];
-        return response()->json($response, $status);
+
+        $response = array_merge($response, $payload);
+
+        return response()->json($response, $httpStatus);
     }
 
-    protected function successResponse($code, $msg, $status, $data = [])
+    protected function errorResponse(int $code, string $msg, int $httpStatus = 400)
     {
-        $response = [
-            'status' => 'success',
-            'message' => trans($msg),
-            'code' => $code,
-            'data' => $data,
-        ];
-        return response()->json($response, $status);
+        return $this->baseResponse('failed', $msg, $code, [], $httpStatus);
     }
 
-    protected function ajaxErrorResponse($msg, $data = null)
+    protected function successResponse(int $code, string $msg, int $httpStatus = 200, mixed $data = [])
+    {
+        return $this->baseResponse('success', $msg, $code, ['data' => $data], $httpStatus);
+    }
+
+    protected function paginatedResponse(int $code, string $msg, int $httpStatus, mixed $items, $paginator)
+    {
+        return $this->baseResponse('success', $msg, $code, [
+            'data' => $items,
+            'meta' => [
+                'current_page' => $paginator->currentPage(),
+                'last_page' => $paginator->lastPage(),
+                'per_page' => $paginator->perPage(),
+                'total' => $paginator->total(),
+            ],
+            'links' => [
+                'first' => $paginator->url(1),
+                'last' => $paginator->url($paginator->lastPage()),
+                'prev' => $paginator->previousPageUrl(),
+                'next' => $paginator->nextPageUrl(),
+            ],
+        ], $httpStatus);
+    }
+
+    protected function ajaxErrorResponse(string $msg, mixed $data = null)
     {
         return response()->json([
             'status' => false,
@@ -34,7 +55,7 @@ trait ApiResponser
         ], 400);
     }
 
-    protected function ajaxSuccessResponse($msg, $data = null)
+    protected function ajaxSuccessResponse(string $msg, mixed $data = null)
     {
         return response()->json([
             'status' => true,
