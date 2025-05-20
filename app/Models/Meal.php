@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Meal extends Model
 {
@@ -20,5 +21,16 @@ class Meal extends Model
     public function surveys()
     {
         return $this->hasMany(Survey::class, 'meal_id');
+    }
+
+    public function activeMerchants()
+    {
+        return $this->hasManyThrough(User::class, MealPrice::class, 'meal_id', 'id', 'id', 'user_id')
+            ->whereDate('meal_prices.effective_date', '<=', now());
+    }
+
+    public function getMerchantsAttribute(): Collection
+    {
+        return $this->activeMerchants->unique('id')->values();
     }
 }
