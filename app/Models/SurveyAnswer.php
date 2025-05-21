@@ -10,7 +10,7 @@ class SurveyAnswer extends Model
     /** @use HasFactory<\Database\Factories\SurveyAnswerFactory> */
     use HasFactory;
 
-    protected $fillable = ['id', 'survey_id', 'question_id', 'answer', 'created_at', 'updated_at'];
+    protected $fillable = ['answer', 'created_at', 'id', 'question_id', 'survey_id', 'updated_at'];
 
     // belongsTo relations
 

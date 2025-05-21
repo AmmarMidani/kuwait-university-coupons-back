@@ -10,6 +10,8 @@ class Question extends Model
     /** @use HasFactory<\Database\Factories\QuestionFactory> */
     use HasFactory;
 
+    protected $fillable = ['created_at', 'id', 'options', 'question_text', 'updated_at'];
+
     // hasMany relations
 
     public function surveyAnswers()

@@ -13,19 +13,20 @@ class Student extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasApiTokens, HasFactory, Notifiable;
+
     protected $fillable = [
-        'id',
-        'nationality_id',
-        'program_id',
-        'student_number',
-        'password',
-        'qr_code',
-        'name',
-        'gender',
+        'created_at',
         'date_from',
         'date_to',
+        'gender',
+        'id',
         'is_active',
-        'created_at',
+        'name',
+        'nationality_id',
+        'password',
+        'program_id',
+        'qr_code',
+        'student_number',
         'updated_at'
     ];
 
@@ -38,6 +39,11 @@ class Student extends Authenticatable
     public function nationality()
     {
         return $this->belongsTo(Nationality::class, 'nationality_id');
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id');
     }
 
     // hasMany relations

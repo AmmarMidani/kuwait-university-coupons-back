@@ -10,6 +10,8 @@ class Survey extends Model
     /** @use HasFactory<\Database\Factories\SurveyFactory> */
     use HasFactory;
 
+    protected $fillable = ['created_at', 'id', 'meal_id', 'student_id', 'updated_at', 'user_id'];
+
     public function getIsAnswerdAttribute(): bool
     {
         return ($this->surveyAnswers->count()) ? true : false;

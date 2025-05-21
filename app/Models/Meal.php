@@ -11,6 +11,8 @@ class Meal extends Model
     /** @use HasFactory<\Database\Factories\MealFactory> */
     use HasFactory;
 
+    protected $fillable = ['created_at', 'description', 'id', 'is_active', 'name', 'time_from', 'time_to', 'updated_at'];
+
     // hasMany relations
 
     public function mealPrices()
