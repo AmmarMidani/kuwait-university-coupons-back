@@ -30,6 +30,7 @@ class Student extends JsonResource
             'student_date_from' => $this->date_from,
             'student_date_to' => $this->date_to,
             'student_nationality' => Nationality::make($this->nationality),
+            'student_program' => Program::make($this->program),
             'student_created_at' => date('Y-m-d', strtotime($this->created_at)),
             'student_updated_at' => date('Y-m-d', strtotime($this->updated_at)),
         ];

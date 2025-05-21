@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\GenderType;
 use App\Models\Student;
 use App\Models\Nationality;
+use App\Models\Program;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -17,11 +18,13 @@ class StudentSeeder extends Seeder
     public function run(): void
     {
         $nationalityIds = Nationality::pluck('id')->toArray();
+        $programIds = Program::pluck('id')->toArray();
 
         $students = [];
         for ($i = 1; $i <= 100; $i++) {
             $students[] = [
                 'nationality_id' => fake()->randomElement($nationalityIds),
+                'program_id' => fake()->randomElement($programIds),
                 'student_number' => 'STU' . str_pad($i, 6, '0', STR_PAD_LEFT),
                 'qr_code' => (string) Str::uuid(),
                 'password' => Hash::make(Str::random(8) . rand(100, 999)),
