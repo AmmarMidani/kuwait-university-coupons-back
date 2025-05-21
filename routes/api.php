@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Student\AuthController;
 use App\Http\Controllers\API\Student\StudentController;
+use App\Http\Controllers\API\Student\SurvayController;
 
 
 Route::prefix('student')->namespace('API\Student')->group(function () {
@@ -25,5 +26,9 @@ Route::prefix('student')->namespace('API\Student')->group(function () {
         // meals Routes
         Route::get('past-meals', [StudentController::class, 'pastMeals']);
         Route::get('today-upcoming-meals', [StudentController::class, 'todayUpcomingMeals']);
+
+        // survay Routes
+        Route::get('survay/questions', [SurvayController::class, 'getQuestions']);
+        Route::post('survay/{survay}/submit', [SurvayController::class, 'submitSurvayAnswers']);
     });
 });
