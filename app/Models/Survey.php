@@ -10,6 +10,11 @@ class Survey extends Model
     /** @use HasFactory<\Database\Factories\SurveyFactory> */
     use HasFactory;
 
+    public function getIsAnswerdAttribute(): bool
+    {
+        return ($this->surveyAnswers->count()) ? true : false;
+    }
+
     // belongsTo relations
 
     public function meal()
