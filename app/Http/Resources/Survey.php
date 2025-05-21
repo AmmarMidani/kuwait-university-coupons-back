@@ -16,7 +16,7 @@ class Survey extends JsonResource
     {
         return [
             'survey_id' => $this->id,
-            'is_answerd' => ($this->surveyAnswers->count()) ? true : false,
+            'is_answerd' => $this->is_answerd,
             'meal' => Meal::make($this->meal),
             'mearchant' => Merchant::make($this->user),
         ];
