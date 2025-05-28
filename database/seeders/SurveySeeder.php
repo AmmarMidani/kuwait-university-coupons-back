@@ -49,7 +49,9 @@ class SurveySeeder extends Seeder
                             SurveyAnswer::create([
                                 'survey_id' => $survey->id,
                                 'question_id' => $value,
-                                'answer' => fake()->numberBetween(1, 5)
+                                'answer' => fake()->numberBetween(1, 5),
+                                'created_at' => $created_at,
+                                'updated_at' => $created_at
                             ]);
                         }
                     }
