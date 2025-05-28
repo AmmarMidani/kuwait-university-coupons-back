@@ -94,7 +94,7 @@ class HomeController extends Controller
             }
 
             $questionsChartData[] = [
-                'name' => $question->question_text,
+                'name' => substr($question->question_text, 0, 25) . '...',
                 'data' => $dailyData,
             ];
         }
