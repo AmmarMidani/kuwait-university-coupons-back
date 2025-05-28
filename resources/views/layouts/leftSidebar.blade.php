@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-group-line"></i>
                 <div>Users Management</div>
             </a>
@@ -39,25 +39,25 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('student.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-graduation-cap-line"></i>
                 <div>Student Management</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('meal.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-restaurant-2-line"></i>
                 <div>Meals Management</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('nationality.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-global-line"></i>
                 <div>Nationality Management</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('question.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-question-mark"></i>
                 <div>Questions Management</div>
             </a>
