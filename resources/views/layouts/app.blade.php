@@ -50,6 +50,20 @@
         href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet"
         href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}?v={{ config('app.version') }}" />
 
     <!-- Page CSS -->
@@ -127,14 +141,21 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
+    <script
+        src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}?v={{ config('app.version') }}">
+    </script>
+    <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}?v={{ config('app.version') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}?v={{ config('app.version') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}?v={{ config('app.version') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}?v={{ config('app.version') }}">
+    </script>
+    <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}?v={{ config('app.version') }}">
+    </script>
     <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}?v={{ config('app.version') }}"></script>
     <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}?v={{ config('app.version') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}?v={{ config('app.version') }}"></script>
-
-    <!-- Page JS -->
-    <script src="{{ asset('assets/js/dashboards-analytics.js') }}?v={{ config('app.version') }}"></script>
 
     @yield('js_plugin')
 
