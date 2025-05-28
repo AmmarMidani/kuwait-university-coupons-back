@@ -47,6 +47,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function scopeMerchants($query)
+    {
+        return $query->role('merchant');
+    }
+
     // hasMany relations
 
     public function mealPrices()
