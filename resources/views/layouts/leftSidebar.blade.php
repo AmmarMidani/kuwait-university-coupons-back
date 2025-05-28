@@ -20,10 +20,70 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+        <li class="menu-item {{ menuActive('home') }}">
+            <a href="{{ route('home') }}" class="menu-link">
+                <i class="menu-icon tf-icons ri-home-smile-line"></i>
+                <div>Dashboard</div>
+            </a>
+        </li>
         <li class="menu-item">
-            <a href="#" target="_blank" class="menu-link">
-                <i class="menu-icon tf-icons ri-article-line"></i>
-                <div data-i18n="Documentation">Documentation</div>
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-group-line"></i>
+                <div>Users Management</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-lock-2-line"></i>
+                <div>Roles & Permissions</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-graduation-cap-line"></i>
+                <div>Student Management</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-restaurant-2-line"></i>
+                <div>Meals Management</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-global-line"></i>
+                <div>Nationality Management</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-question-mark"></i>
+                <div>Questions Management</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-bar-chart-2-line"></i>
+                <div>Reports</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-insert-row-top"></i>
+                <div>Manual Meal Entries</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-safe-2-line"></i>
+                <div>Meal pricing</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ri-qr-scan-2-line"></i>
+                <div>QR code Scanner</div>
             </a>
         </li>
     </ul>
