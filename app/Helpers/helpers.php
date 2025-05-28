@@ -219,7 +219,7 @@ if (!function_exists('uploadFile')) {
      *
      * @author Ammar Midani <ammar.midani.1994@gmail.com>
      * @param string $folder_name folder name in storage folder
-     * @param mixed $file file in request EX: $request->file('image') 
+     * @param mixed $file file in request EX: $request->file('image')
      * @param string|null $old_file old file name to delete it from storage
      * @return string new file name with path in storage
      */
@@ -283,5 +283,12 @@ if (!function_exists('isReporter')) {
     function isReporter()
     {
         return auth()->user()->roles->pluck('name')->contains('reporter');
+    }
+}
+
+if (!function_exists('menuActive')) {
+    function menuActive($pattern)
+    {
+        return request()->routeIs($pattern) ? 'active' : '';
     }
 }
