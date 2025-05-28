@@ -26,61 +26,61 @@
                 <div>Dashboard</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('user.*') }}">
             <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-group-line"></i>
                 <div>Users Management</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ri-lock-2-line"></i>
                 <div>Roles & Permissions</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('student.*') }}">
             <a href="{{ route('student.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-graduation-cap-line"></i>
                 <div>Student Management</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('meal.*') }}">
             <a href="{{ route('meal.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-restaurant-2-line"></i>
                 <div>Meals Management</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('nationality.*') }}">
             <a href="{{ route('nationality.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-global-line"></i>
                 <div>Nationality Management</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('question.*') }}">
             <a href="{{ route('question.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-question-mark"></i>
                 <div>Questions Management</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ri-bar-chart-2-line"></i>
                 <div>Reports</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ri-insert-row-top"></i>
                 <div>Manual Meal Entries</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ri-safe-2-line"></i>
                 <div>Meal pricing</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
             <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ri-qr-scan-2-line"></i>
                 <div>QR code Scanner</div>
