@@ -43,7 +43,7 @@ class UserController extends Controller
                     'name' => $value->name,
                     'email' => $value->email,
                     'roles' => $value->roles->pluck('name'),
-                    'status' => ($value->is_active) ? 'Active' : 'Inactive',
+                    'status' => $value->is_active,
                     'status_text' => ($value->is_active) ? 'Active' : 'Inactive',
                     'created_at' => $value->created_at->diffForHumans(),
                 ];

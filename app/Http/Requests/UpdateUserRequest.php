@@ -26,6 +26,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|min:3',
             'password' => 'nullable|confirmed|min:8',
             'roles' => 'required|array|min:1',
+            'is_active' => 'required|boolean',
         ];
     }
 }

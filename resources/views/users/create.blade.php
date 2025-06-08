@@ -71,6 +71,14 @@ Users
                                 <label>Role</label>
                             </div>
                         </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-check form-switch mb-2">
+                                <input type="hidden" name="is_active" value="0">
+                                <input type="checkbox" class="form-check-input" value="1" name="is_active" checked
+                                    id="is_active">
+                                <label class="form-check-label" for="is_active">Active</label>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-success submit">Save</button>
                 </form>

@@ -44,7 +44,7 @@ class StudentController extends Controller
                     'show_url' => route('student.show', $value->id),
                     'id' => $value->id,
                     'name' => $value->name,
-                    'status' => ($value->is_active) ? 'Active' : 'Inactive',
+                    'status' => $value->is_active,
                     'status_text' => ($value->is_active) ? 'Active' : 'Inactive',
                     'created_at' => $value->created_at->diffForHumans(),
                 ];
