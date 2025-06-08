@@ -11,7 +11,7 @@ class StoreNationalityRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreNationalityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:3|unique:nationalities,name,' . $this->nationality->id,
+            'is_active' => 'required|boolean',
         ];
     }
 }
