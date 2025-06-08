@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Studetns
+Students
 @endsection
 
 @section('css_plugin')
