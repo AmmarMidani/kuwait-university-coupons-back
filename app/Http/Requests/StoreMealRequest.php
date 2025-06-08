@@ -11,7 +11,7 @@ class StoreMealRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreMealRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:3',
+            'description' => 'required|min:3',
+            'time_from' => 'required|date_format:H:i',
+            'time_to' => 'required|date_format:H:i|after:time_from',
+            'is_active' => 'required|boolean',
         ];
     }
 }
