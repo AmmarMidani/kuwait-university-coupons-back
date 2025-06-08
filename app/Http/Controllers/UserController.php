@@ -21,9 +21,10 @@ class UserController extends Controller
             $users = User::query();
 
             // search filter
-            if (!is_null($request->search['value'])) {
-                $users->whereRaw("LOWER(name) LIKE ?", ['%' . strtolower($request->search['value']) . '%'])
-                    ->orWhereRaw("LOWER(email) LIKE ?", ['%' . strtolower($request->search['value']) . '%']);
+            $searchValue = trim(strtolower(data_get($request, 'search.value', '')));
+            if ($searchValue) {
+                $users->whereRaw("LOWER(name) LIKE ?", ['%' . $searchValue . '%'])
+                    ->orWhereRaw("LOWER(email) LIKE ?", ['%' . $searchValue . '%']);
             }
 
             $recordsFiltered = $users->count();
@@ -136,7 +137,6 @@ class UserController extends Controller
             // assign new roles
             $user->syncRoles($request->roles);
             $user->update($request->all());
-            $user->save();
             return redirect(route('user.index'))->with('success', trans('pages.public.updated_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
