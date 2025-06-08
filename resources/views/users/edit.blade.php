@@ -30,9 +30,10 @@ Users
             </div>
             <div class="card-body">
 
-                <form id="my-form" action="{{ route('user.update', $user) }}" method="POST" enctype="multipart/form-data">
+                <form id="my-form" action="{{ route('user.update', $user) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
-					@method('put')
+                    @method('put')
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
@@ -63,11 +64,14 @@ Users
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
-                            {{ html()->multiselect('roles[]', $roles, $user->roles->pluck('name')->toArray())
-                            ->class('form-select select2')
-                            ->attribute('data-placeholder', 'Select Roles')
-                            ->attribute('multiple')
-                            }}
+                            <div class="form-floating form-floating-outline">
+                                {{ html()->multiselect('roles[]', $roles, $user->roles->pluck('name')->toArray())
+                                ->class('form-select select2')
+                                ->attribute('data-placeholder', 'Select Roles')
+                                ->attribute('multiple')
+                                }}
+                                <label>Role</label>
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success submit">Save</button>

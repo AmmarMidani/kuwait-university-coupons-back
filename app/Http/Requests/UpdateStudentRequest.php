@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\GenderType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateStudentRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,15 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'program_id' => 'required|exists:programs,id',
+            'nationality_id' => 'required|exists:nationalities,id',
+            'gender' => ['required', Rule::in(GenderType::getValues())],
+            'name' => 'required|min:3',
+            'student_number' => 'required|unique:students,student_number,' . $this->student->id,
+            'password' => 'nullable|confirmed|min:8',
+            'date_from' => 'required|date|date_format:Y-m-d',
+            'date_to' => 'required|date|date_format:Y-m-d|after_or_equal:date_from',
+            'is_active' => 'required|boolean',
         ];
     }
 }

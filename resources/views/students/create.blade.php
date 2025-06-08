@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Users
+Students
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Users
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Users</h4>
-        <p class="mb-0">Create new user</p>
+        <h4 class="mb-1">Students</h4>
+        <p class="mb-0">Create new student</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,13 +26,40 @@ Users
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">User information</h5>
+                <h5 class="card-tile mb-0">Student information</h5>
             </div>
             <div class="card-body">
 
-                <form id="my-form" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                <form id="my-form" action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                {{ html()
+                                ->select('program_id', $programs, old('program_id'))
+                                ->class('form-select select2')
+                                }}
+                                <label>Program</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                {{ html()
+                                ->select('gender', $genders, old('gender'))
+                                ->class('form-select select2')
+                                }}
+                                <label>Gender</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                {{ html()
+                                ->select('nationality_id', $nationalities, old('nationality_id'))
+                                ->class('form-select select2')
+                                }}
+                                <label>Nationality</label>
+                            </div>
+                        </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" name="name" class="form-control" placeholder="Enter Name"
@@ -42,9 +69,9 @@ Users
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="email" name="email" class="form-control" placeholder="Enter Email"
-                                    value="{{ old('email') }}">
-                                <label for="email">Email</label>
+                                <input type="text" name="student_number" class="form-control"
+                                    placeholder="Enter Student Number" value="{{ old('student_number') }}">
+                                <label for="student_number">Student Number</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -63,12 +90,23 @@ Users
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                {{ html()->multiselect('roles[]', $roles, old('roles'))
-                                ->class('form-select select2')
-                                ->attribute('data-placeholder', 'Select Roles')
-                                ->attribute('multiple')
-                                }}
-                                <label>Role</label>
+                                <input class="datepicker form-control" name="date_from"
+                                    value="{{ old('date_from') }}" />
+                                <label for="date_from">Date From</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="datepicker form-control" name="date_to" value="{{ old('date_to') }}" />
+                                <label for="date_to">Date To</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-check form-switch mb-2">
+                                <input type="hidden" name="is_active" value="0">
+                                <input type="checkbox" class="form-check-input" value="1" name="is_active" checked
+                                    id="is_active">
+                                <label class="form-check-label" for="is_active">Active</label>
                             </div>
                         </div>
                     </div>
@@ -91,6 +129,11 @@ Users
     $(document).ready(function () {
     $(".select2").select2();
 
+    const date = new Date();
+
+    $(".datepicker").flatpickr({
+    });
+
     $.validator.addMethod("regex",
         function (value, element, regexp) {
             var re = new RegExp(regexp);
@@ -101,10 +144,17 @@ Users
 
 	$("#my-form").validate({
 		rules: {
-			email: {
+            program_id: {
 				required: true,
-				minlength: 3,
-				email: true
+			},
+            gender: {
+				required: true,
+			},
+            nationality_id: {
+				required: true,
+			},
+            student_number: {
+				required: true,
 			},
             name: {
 				required: true,
@@ -119,9 +169,12 @@ Users
 				minlength: 8,
                 equalTo: $('input[name="password"]'),
             },
-            "roles[]": {
-                required: true
-            }
+            date_from: {
+				required: true,
+			},
+            date_to: {
+				required: true,
+			},
 		},
 		messages: {
 			// name: {
