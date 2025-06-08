@@ -11,7 +11,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => 'required|email|unique:users,email,' . $this->user->id,
+            'name' => 'required|min:3',
+            'password' => 'nullable|confirmed|min:8',
+            'roles' => 'required|array|min:1',
         ];
     }
 }
