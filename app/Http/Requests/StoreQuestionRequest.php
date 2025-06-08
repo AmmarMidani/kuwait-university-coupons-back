@@ -11,7 +11,7 @@ class StoreQuestionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreQuestionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'question_text' => 'required|min:3',
         ];
     }
 }
