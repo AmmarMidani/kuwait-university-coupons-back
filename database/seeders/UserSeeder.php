@@ -29,16 +29,16 @@ class UserSeeder extends Seeder
         User::find(1)->assignRole('admin');
 
         User::find(2)->update([
-            'name' => 'KFC',
-            'email' => 'kfc@test.com',
-            'password' => Hash::make('KFCPass123!'),
+            'name' => 'Cafeteria 1',
+            'email' => 'caf1@test.com',
+            'password' => Hash::make('Caf1Pass123!'),
         ]);
         User::find(2)->assignRole('merchant');
 
         User::find(3)->update([
-            'name' => 'Tazaj',
-            'email' => 'tazaj@test.com',
-            'password' => Hash::make('TazajPass123!'),
+            'name' => 'Cafeteria 1',
+            'email' => 'caf2@test.com',
+            'password' => Hash::make('Caf2Pass123!'),
         ]);
         User::find(3)->assignRole('merchant');
     }
