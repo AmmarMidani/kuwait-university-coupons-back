@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meal;
+use App\Models\Question;
 use App\Models\Survey;
+use App\Models\SurveyAnswer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -14,9 +16,170 @@ class ReportController extends Controller
         return view('reports.transaction');
     }
 
-    public function survey()
+    public function survey(Request $request)
     {
-        return view('reports.survey');
+        $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
+        $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
+
+        $question_id = data_get($request, 'question_id', null);
+        $meal_id = data_get($request, 'meal_id', null);
+
+        // Step 1: Generate month categories
+        $months = collect();
+        $start = Carbon::parse($date_from)->startOfMonth();
+        $end = Carbon::parse($date_to)->endOfMonth();
+        while ($start <= $end) {
+            $months->push($start->format('Y-m'));
+            $start->addMonth();
+        }
+
+        #region 1. Survey Participation Overview
+
+        // Total surveys per month
+        $totalSurveys = Survey::where('meal_id', $meal_id)
+            ->whereBetween('updated_at', [$date_from, $date_to])
+            ->selectRaw('DATE_FORMAT(updated_at, "%Y-%m") as ym, COUNT(*) as total')
+            ->groupBy('ym')
+            ->get()
+            ->keyBy('ym');
+
+        // Answered surveys per month (optionally filtered by question)
+        $answeredQuery = SurveyAnswer::whereHas('survey', function ($q) use ($meal_id, $date_from, $date_to) {
+            $q->where('meal_id', $meal_id)->whereBetween('updated_at', [$date_from, $date_to]);
+        });
+        if ($question_id) {
+            $answeredQuery->where('question_id', $question_id);
+        }
+
+        $answeredSurveys = $answeredQuery
+            ->join('surveys', 'survey_answers.survey_id', '=', 'surveys.id')
+            ->selectRaw('DATE_FORMAT(surveys.updated_at, "%Y-%m") as ym, COUNT(DISTINCT surveys.id) as answered')
+            ->groupBy('ym')
+            ->get()
+            ->keyBy('ym');
+
+        $answeredData = [];
+        $unansweredData = [];
+
+        foreach ($months as $month) {
+            $answered = (int) ($answeredSurveys[$month]->answered ?? 0);
+            $total = (int) ($totalSurveys[$month]->total ?? 0);
+            $unanswered = max($total - $answered, 0);
+
+            $answeredData[] = $answered;
+            $unansweredData[] = $unanswered;
+        }
+
+        $survey_participation_overview_chart = [
+            'categories' => $months->toArray(),
+            'series' => [
+                ['name' => 'Answered Students', 'data' => $answeredData],
+                ['name' => 'Unanswered Students', 'data' => $unansweredData],
+            ]
+        ];
+
+        #endregion
+
+        #region 2. Student Satisfaction by Question
+        // Questions to include
+        $questions = $question_id
+            ? Question::where('id', $question_id)->pluck('question_text', 'id')
+            : Question::all()->pluck('question_text', 'id');
+
+        // Average answers per question per month
+        $query = SurveyAnswer::query()
+            ->whereHas('survey', function ($q) use ($meal_id, $date_from, $date_to) {
+                $q->where('meal_id', $meal_id)->whereBetween('updated_at', [$date_from, $date_to]);
+            });
+
+        if ($question_id) {
+            $query->where('question_id', $question_id);
+        }
+
+        $avgData = $query
+            ->join('surveys', 'survey_answers.survey_id', '=', 'surveys.id')
+            ->selectRaw('survey_answers.question_id, DATE_FORMAT(surveys.updated_at, "%Y-%m") as ym, AVG(answer) as avg')
+            ->groupBy('survey_answers.question_id', 'ym')
+            ->get()
+            ->groupBy('question_id');
+
+        // Format chart series
+        $student_satisfaction_by_question_series = [];
+
+        foreach ($questions as $qid => $qtext) {
+            $data = $months->map(function ($month) use ($avgData, $qid) {
+                return round((float) $avgData->get($qid)?->firstWhere('ym', $month)?->avg ?? 0, 2);
+            })->toArray();
+
+            $student_satisfaction_by_question_series[] = [
+                'name' => $qtext,
+                'data' => $data,
+            ];
+        }
+        $student_satisfaction_by_question_categories = $months->toArray();
+
+        #endregion
+
+        // Overall Satisfaction
+        $overallSatisfaction = SurveyAnswer::whereHas('survey', function ($q) use ($meal_id, $date_from, $date_to) {
+            $q->where('meal_id', $meal_id)->whereBetween('updated_at', [$date_from, $date_to]);
+        })
+            ->when($question_id, fn($q) => $q->where('question_id', $question_id))
+            ->avg('answer');
+        $overallSatisfaction = $overallSatisfaction ? round($overallSatisfaction, 2) : '-';
+
+        $totalResponses = SurveyAnswer::whereHas('survey', function ($q) use ($meal_id, $date_from, $date_to) {
+            $q->where('meal_id', $meal_id)->whereBetween('updated_at', [$date_from, $date_to]);
+        })
+            ->when($question_id, fn($q) => $q->where('question_id', $question_id))
+            ->count();
+
+        // Total Responses
+        $totalSurveys = Survey::where('meal_id', $meal_id)
+            ->whereBetween('updated_at', [$date_from, $date_to])
+            ->count();
+
+        // Completion Rate
+        $answeredSurveys = SurveyAnswer::whereHas('survey', function ($q) use ($meal_id, $date_from, $date_to) {
+            $q->where('meal_id', $meal_id)->whereBetween('updated_at', [$date_from, $date_to]);
+        })
+            ->when($question_id, fn($q) => $q->where('question_id', $question_id))
+            ->distinct('survey_id')
+            ->count('survey_id');
+
+        $completionRate = $totalSurveys > 0
+            ? round(($answeredSurveys / $totalSurveys) * 100, 1) . '%'
+            : '-';
+
+        $counts = [
+            'overallSatisfaction' => $overallSatisfaction,
+            'totalResponses' => $totalResponses,
+            'completionRate' => $completionRate,
+        ];
+
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('partials.survey-report', compact(
+                    'counts',
+                    'survey_participation_overview_chart',
+                    'student_satisfaction_by_question_series',
+                    'student_satisfaction_by_question_categories',
+                ))->render()
+            ]);
+        }
+
+        $questions = Question::all()->pluck('question_text', 'id');
+        $questions->prepend('- All Questions -', null);
+        $meals = Meal::all()->pluck('name', 'id');
+
+        return view('reports.survey', compact(
+            'date_from',
+            'date_to',
+            'question_id',
+            'meal_id',
+            'questions',
+            'meals',
+        ));
     }
 
     public function meal(Request $request)
