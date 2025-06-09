@@ -3,3 +3,4 @@
 @section('title', __('Page Expired'))
 @section('code', '419')
 @section('message', __('Page Expired'))
+@section('details', "Your session has expired. Please refresh or log in again.")
