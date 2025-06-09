@@ -32,8 +32,8 @@
                 <div>Users Management</div>
             </a>
         </li>
-        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
-            <a href="#" class="menu-link">
+        <li class="menu-item {{ menuActive('roles.*') }}">
+            <a href="{{ route('role.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-lock-2-line"></i>
                 <div>Roles & Permissions</div>
             </a>
@@ -62,23 +62,23 @@
                 <div>Questions Management</div>
             </a>
         </li>
-        <li class="menu-item {{ menuActive('report.*') }}">
+        <li class="menu-item {{ menuActive('report.*', 'open') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ri-bar-chart-2-line"></i>
                 <div>Reports</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ menuActive('report.transaction') }}">
                     <a href="{{ route('report.transaction') }}" class="menu-link">
                         <div>Transactions</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ menuActive('report.survey') }}">
                     <a href="{{ route('report.survey') }}" class="menu-link">
                         <div>Survey</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ menuActive('report.meal') }}">
                     <a href="{{ route('report.meal') }}" class="menu-link">
                         <div>Meals</div>
                     </a>

@@ -287,8 +287,8 @@ if (!function_exists('isReporter')) {
 }
 
 if (!function_exists('menuActive')) {
-    function menuActive($pattern)
+    function menuActive($pattern, $custom_classes = '')
     {
-        return request()->routeIs($pattern) ? 'active' : '';
+        return request()->routeIs($pattern) ? 'active ' . $custom_classes : '';
     }
 }
