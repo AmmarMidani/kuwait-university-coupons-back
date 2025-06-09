@@ -4,16 +4,106 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use App\Models\Question;
+use App\Models\Student;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    public function transaction()
+    public function transaction(Request $request)
     {
-        return view('reports.transaction');
+        $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
+        $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
+
+        $meals = Meal::all()->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        });
+        $meals->prepend('- All Meals -', null);
+
+        $students = Student::all()->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        });
+        $students->prepend('- All Students -', null);
+
+        $users = User::all()->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        });
+        $users->prepend('- All Users -', null);
+
+        if ($request->ajax()) {
+            $recordsFiltered = 0;
+            $surveys = Survey::query();
+
+            // search filter
+            if ($request->date_from and $request->date_to) {
+                $surveys->whereBetween('created_at', [$request->date_from, $request->date_to]);
+            }
+            if ($request->meal_id) {
+                $surveys->where('meal_id', $request->meal_id);
+            }
+            if ($request->student_id) {
+                $surveys->where('student_id', $request->student_id);
+            }
+            if ($request->user_id) {
+                $surveys->where('user_id', $request->user_id);
+            }
+
+            $searchValue = trim(strtolower(data_get($request, 'search.value', '')));
+            if ($searchValue) {
+                $surveys->whereHas("meal", function ($query) use ($searchValue) {
+                    return $query->whereRaw("LOWER(name) LIKE ?", ['%' . $searchValue . '%']);
+                })
+                    ->orWhereHas("user", function ($query) use ($searchValue) {
+                        return $query->whereRaw("LOWER(name) LIKE ?", ['%' . $searchValue . '%']);
+                    })
+                    ->orWhereHas("student", function ($query) use ($searchValue) {
+                        return $query->whereRaw("LOWER(name) LIKE ?", ['%' . $searchValue . '%'])
+                            ->orWhereRaw("LOWER(student_number) LIKE ?", ['%' . $searchValue . '%']);
+                    });
+            }
+
+            $recordsFiltered = $surveys->count();
+            if ($request->length != -1) {
+                $surveys = $surveys->skip($request->start)->take($request->length)->get();
+            } else {
+                $surveys = $surveys->get();
+            }
+
+            $data = [];
+            foreach ($surveys as $key => $value) {
+                $data[] = [
+                    'student_show_url' => route('student.show', $value->student->id),
+                    'user_show_url' => route('user.show', $value->user->id),
+                    'transaction_id' => $value->id,
+                    'student_number' => $value->student->student_number,
+                    'student_name' => $value->student->name,
+                    'meal_type' => $value->meal->name,
+                    'staff_name' => $value->user->name,
+                    'is_answerd' => $value->is_answerd,
+                    'created_at' => $value->created_at->format('Y-m-d H:i:s'),
+                ];
+            }
+
+            // order rows
+            $order_by = $request->columns[$request->order[0]['column']]['name'];
+            $order_dir = $request->order[0]['dir'];
+
+            $data = collect($data)->sortBy($order_by);
+            if ($order_dir == 'desc') {
+                $data = $data->reverse();
+            }
+
+            return [
+                'draw' => $request->draw,
+                'recordsTotal' => Survey::count(),
+                'recordsFiltered' => $recordsFiltered,
+                'data' => array_values($data->toArray()),
+            ];
+        }
+        return view('reports.transaction', compact('meals', 'students', 'users', 'date_from', 'date_to'));
     }
 
     public function survey(Request $request)
