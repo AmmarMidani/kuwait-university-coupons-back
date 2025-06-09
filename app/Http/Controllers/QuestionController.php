@@ -21,7 +21,7 @@ class QuestionController extends Controller
             // search filter
             $searchValue = trim(strtolower(data_get($request, 'search.value', '')));
             if ($searchValue) {
-                $questions->whereRaw("LOWER(name) LIKE ?", ['%' . $searchValue . '%']);
+                $questions->whereRaw("LOWER(question_text) LIKE ?", ['%' . $searchValue . '%']);
             }
 
             $recordsFiltered = $questions->count();
