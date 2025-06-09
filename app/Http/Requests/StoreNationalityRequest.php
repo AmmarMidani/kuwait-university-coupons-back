@@ -22,7 +22,7 @@ class StoreNationalityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|unique:nationalities,name,' . $this->nationality->id,
+            'name' => 'required|min:3|unique:nationalities,name',
             'is_active' => 'required|boolean',
         ];
     }
