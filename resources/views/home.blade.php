@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Dashboard
+{{ trans('website.dashboard') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Dashboard
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Dashboard</h4>
-        <p class="mb-0">Monitor key metrics and stay informed with real-time insights into student meals, surveys, and merchant engagement.</p>
+        <h4 class="mb-1">{{ trans('website.dashboard') }}</h4>
+        <p class="mb-0">{{ trans('website.dashboard_title_details') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
