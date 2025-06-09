@@ -63,6 +63,10 @@
     <link rel="stylesheet"
         href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet"
         href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}?v={{ config('app.version') }}" />
@@ -147,6 +151,12 @@
     </script>
     <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}?v={{ config('app.version') }}"></script>
     <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}?v={{ config('app.version') }}"></script>
+    <script
+        src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}?v={{ config('app.version') }}">
+    </script>
+    <script
+        src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}?v={{ config('app.version') }}">
+    </script>
     <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}?v={{ config('app.version') }}"></script>
     <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}?v={{ config('app.version') }}">
     </script>
