@@ -7,6 +7,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('meal', MealController::class)->name('*', 'meal');
     Route::resource('nationality', NationalityController::class)->name('*', 'nationality');
     Route::resource('question', QuestionController::class)->name('*', 'question');
+
+    // ROLES
+    Route::resource('role', AdminRoleController::class)->name('*', 'role');
 
     Route::prefix('report')->controller(ReportController::class)->name('report.')->group(function () {
         Route::get('transaction', 'transaction')->name('transaction');
