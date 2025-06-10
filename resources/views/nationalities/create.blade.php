@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Nationalities
+{{ __('website.nationalities') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Nationalities
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Nationalities</h4>
-        <p class="mb-0">Create new nationality</p>
+        <h4 class="mb-1">{{ __('website.nationalities') }}</h4>
+        <p class="mb-0">{{ __('website.create_new_nationality') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,7 +26,7 @@ Nationalities
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Nationality information</h5>
+                <h5 class="card-tile mb-0">{{ __('website.nationality_information') }}</h5>
             </div>
             <div class="card-body">
 
@@ -36,9 +36,9 @@ Nationalities
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="Enter Name"
+                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
                                     value="{{ old('name') }}">
-                                <label for="name">Name</label>
+                                <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -46,11 +46,11 @@ Nationalities
                                 <input type="hidden" name="is_active" value="0">
                                 <input type="checkbox" class="form-check-input" value="1" name="is_active" checked
                                     id="is_active">
-                                <label class="form-check-label" for="is_active">Active</label>
+                                <label class="form-check-label" for="is_active">{{ __('website.active') }}</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
                 </form>
 
             </div>

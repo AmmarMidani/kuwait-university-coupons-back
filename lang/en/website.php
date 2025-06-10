@@ -39,4 +39,11 @@ return [
     'status' => 'Status',
     'active' => 'Active',
     'inactive' => 'Inactive',
+    
+    // Nationalities Language Keys
+    'nationalities' => 'Nationalities',
+    'view_and_manage_nationalities' => 'View and manage nationalities',
+    'create_new_nationality' => 'Create new nationality',
+    'update_nationality_details' => 'Update nationality details',
+    'nationality_information' => 'Nationality information',
 ];
