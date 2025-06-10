@@ -70,6 +70,7 @@
         href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}?v={{ config('app.version') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}?v={{ config('app.version') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}?v={{ config('app.version') }}" />
 
     <!-- Page CSS -->
     <link rel="stylesheet"
@@ -165,6 +166,7 @@
     <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}?v={{ config('app.version') }}"></script>
     <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}?v={{ config('app.version') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}?v={{ config('app.version') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}?v={{ config('app.version') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}?v={{ config('app.version') }}"></script>
