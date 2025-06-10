@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Survey Report
+{{ __('website.survey_report') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Survey Report
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Survey Report</h4>
-        <p class="mb-0">Analyze feedback from students about food service</p>
+        <h4 class="mb-1">{{ __('website.survey_report') }}</h4>
+        <p class="mb-0">{{ __('website.analyze_feedback_from_students_about_food_service') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -27,11 +27,11 @@ Survey Report
         <h5 class="card-header">
             <div class="row">
                 <div class="col-md-6 col-12">
-                    Report Filters
+                    {{ __('website.report_filters') }}
                 </div>
                 <div class="col-md-6 col-12 d-flex align-items-end justify-content-end">
                     <button id="apply-filter-btn" type="button"
-                        class="btn btn-sm btn-outline-secondary waves-effect">Apply Filter</button>
+                        class="btn btn-sm btn-outline-secondary waves-effect">{{ __('website.apply_filter') }}</button>
                 </div>
             </div>
         </h5>
@@ -40,7 +40,7 @@ Survey Report
                 <div class="col-md-4 col-12">
                     <div class="form-floating form-floating-outline">
                         <input type="text" id="bs-rangepicker-basic" class="form-control" />
-                        <label for="bs-rangepicker-basic">Date Range</label>
+                        <label for="bs-rangepicker-basic">{{ __('website.date_range') }}</label>
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
@@ -49,7 +49,7 @@ Survey Report
                         ->select('question_id', $questions, $question_id)
                         ->class('form-select select2')
                         }}
-                        <label>Questions</label>
+                        <label>{{ __('website.questions') }}</label>
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
@@ -58,7 +58,7 @@ Survey Report
                         ->select('meal_id', $meals, $meal_id)
                         ->class('form-select select2')
                         }}
-                        <label>Meals</label>
+                        <label>{{ __('website.meals') }}</label>
                     </div>
                 </div>
             </div>
@@ -92,13 +92,13 @@ Survey Report
                 meal_id: $('#meal_id').val(),
             },
             beforeSend: function () {
-                $('#report-content').html('<div class="text-center p-4">Loading...</div>');
+                $('#report-content').html('<div class="text-center p-4">{{ __("website.loading") }}</div>');
             },
             success: function (response) {
                 $('#report-content').html(response.view);
             },
             error: function () {
-                $('#report-content').html('<div class="text-danger p-4">Failed to load data.</div>');
+                $('#report-content').html('<div class="text-danger p-4">{{ __("website.failed_to_load_data") }}</div>');
             }
         });
     });

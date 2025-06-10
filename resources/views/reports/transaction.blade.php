@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Transaction Report
+{{ __('website.transaction_report') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Transaction Report
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Transaction Report</h4>
-        <p class="mb-0">View and search student meal transactions</p>
+        <h4 class="mb-1">{{ __('website.transaction_report') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_search_student_meal_transactions') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -29,7 +29,7 @@ Transaction Report
             <div class="col-3 px-2">
                 <div class="form-floating form-floating-outline">
                     <input type="text" id="bs-rangepicker-basic" class="form-control" />
-                    <label for="bs-rangepicker-basic">Date Range</label>
+                    <label for="bs-rangepicker-basic">{{ __('website.date_range') }}</label>
                 </div>
             </div>
             <div class="col-3 px-2">
@@ -38,7 +38,7 @@ Transaction Report
                     ->select('meal_id', $meals, null)
                     ->class('form-select select2')
                     }}
-                    <label>Meals</label>
+                    <label>{{ __('website.meals') }}</label>
                 </div>
             </div>
             <div class="col-3 px-2">
@@ -47,7 +47,7 @@ Transaction Report
                     ->select('student_id', $students, null)
                     ->class('form-select select2')
                     }}
-                    <label>Students</label>
+                    <label>{{ __('website.students') }}</label>
                 </div>
             </div>
             <div class="col-3 px-2">
@@ -56,7 +56,7 @@ Transaction Report
                     ->select('user_id', $users, null)
                     ->class('form-select select2')
                     }}
-                    <label>Users</label>
+                    <label>{{ __('website.users') }}</label>
                 </div>
             </div>
         </div>
@@ -142,13 +142,13 @@ Transaction Report
         ],
         columns: [
             {
-                title: "transaction id",
+                title: "{{ __('website.transaction_id') }}",
                 render: function (data, type, row) {
                     return `#${row.transaction_id}`;
                 },
             },
             {
-                title: "student id",
+                title: "{{ __('website.student_id') }}",
                 render: function (data, type, row) {
                     return `#${row.student_number}
                         <a href="${row.student_show_url}" target="blank">
@@ -157,19 +157,19 @@ Transaction Report
                 },
             },
             {
-                title: "student name",
+                title: "{{ __('website.student_name') }}",
                 render: function (data, type, row) {
                     return `${row.student_name}`;
                 },
             },
             {
-                title: "meal type",
+                title: "{{ __('website.meal_type') }}",
                 render: function (data, type, row) {
                     return `<span class="badge rounded-pill bg-label-primary">${row.meal_type}</span>`;
                 },
             },
             {
-                title: "staff name",
+                title: "{{ __('website.staff_name') }}",
                 render: function (data, type, row) {
                     return `#${row.staff_name}
                         <a href="${row.user_show_url}" target="blank">
@@ -178,7 +178,7 @@ Transaction Report
                 },
             },
             {
-                title: "Do the survay",
+                title: "{{ __('website.do_the_survey') }}",
                 render: function (data, type, row) {
                     if (row.is_answerd) {
                         return `<i class="ri-check-double-line text-success"></i>`;
@@ -188,7 +188,7 @@ Transaction Report
                 },
             },
             {
-                title: "created at",
+                title: "{{ __('website.created_at') }}",
                 render: function (data, type, row) {
                     return `${row.created_at}`;
                 },
@@ -199,7 +199,7 @@ Transaction Report
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
-        search_input.attr('placeholder', 'Search');
+        search_input.attr('placeholder', '{{ __("website.search") }}');
         // LENGTH - Inline-Form control
         var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
         length_sel.removeClass('form-control-sm');
