@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         User::find(2)->assignRole('merchant');
 
         User::find(3)->update([
-            'name' => 'Cafeteria 1',
+            'name' => 'Cafeteria 2',
             'email' => 'caf2@test.com',
             'password' => Hash::make('Caf2Pass123!'),
         ]);
