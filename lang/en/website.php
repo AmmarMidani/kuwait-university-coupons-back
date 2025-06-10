@@ -72,4 +72,14 @@ return [
     'survey_participation_overview_desc' => 'Shows the number of answered and unanswered surveys by month.',
     'student_satisfaction_by_question_over_time' => 'Student Satisfaction by Question Over Time',
     'student_satisfaction_by_question_over_time_desc' => 'Tracks average student ratings per question over time.',
+    
+    // Questions Language Keys
+    'questions' => 'Questions',
+    'view_and_manage_questions' => 'View and manage questions',
+    'create_new_question' => 'Create new question',
+    'update_question_details' => 'Update question details',
+    'question_information' => 'Question information',
+    'question_text' => 'Question Text',
+    'enter_question_text' => 'Enter Question Text',
+    'question' => 'Question',
 ];

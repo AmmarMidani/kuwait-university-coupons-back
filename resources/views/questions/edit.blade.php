@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Questions
+{{ __('website.questions') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Questions
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Questions</h4>
-        <p class="mb-0">Update question details </p>
+        <h4 class="mb-1">{{ __('website.questions') }}</h4>
+        <p class="mb-0">{{ __('website.update_question_details') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,7 +26,7 @@ Questions
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Question information</h5>
+                <h5 class="card-tile mb-0">{{ __('website.question_information') }}</h5>
             </div>
             <div class="card-body">
 
@@ -38,12 +38,12 @@ Questions
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" name="question_text" class="form-control"
-                                    placeholder="Enter Question Text" value="{{ $question->question_text }}">
-                                <label for="question_text">Question Text</label>
+                                    placeholder="{{ __('website.enter_question_text') }}" value="{{ $question->question_text }}">
+                                <label for="question_text">{{ __('website.question_text') }}</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
                 </form>
 
             </div>

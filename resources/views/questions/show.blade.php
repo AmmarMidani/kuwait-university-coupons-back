@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Questions
+{{ __('website.questions') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Questions
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Questions</h4>
-        <p class="mb-0">View and manage questions</p>
+        <h4 class="mb-1">{{ __('website.questions') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_questions') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -43,11 +43,11 @@ Questions
         <div class="info-container">
             <ul class="list-unstyled mb-6">
                 <li class="mb-2">
-                    <span class="h6 me-1">ID:</span>
+                    <span class="h6 me-1">{{ __('website.id') }}:</span>
                     <span>#{{ $question->id }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Question:</span>
+                    <span class="h6 me-1">{{ __('website.question') }}:</span>
                     <span>{{ $question->question_text }}</span>
                 </li>
             </ul>
