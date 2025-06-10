@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Meal Prices
+{{ __('website.meal_prices') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Meal Prices
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Meal Prices</h4>
-        <p class="mb-0">View and manage meal prices</p>
+        <h4 class="mb-1">{{ __('website.meal_prices') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_meal_prices') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -43,23 +43,23 @@ Meal Prices
         <div class="info-container">
             <ul class="list-unstyled mb-6">
                 <li class="mb-2">
-                    <span class="h6 me-1">ID:</span>
+                    <span class="h6 me-1">{{ __('website.id') }}:</span>
                     <span>#{{ $meal_price->id }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Meal:</span>
+                    <span class="h6 me-1">{{ __('website.meal') }}:</span>
                     <span>{{ $meal_price->meal->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Merchant:</span>
+                    <span class="h6 me-1">{{ __('website.merchant') }}:</span>
                     <span>{{ $meal_price->user->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Price:</span>
+                    <span class="h6 me-1">{{ __('website.price') }}:</span>
                     <span>{{ $meal_price->price }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Effective Date:</span>
+                    <span class="h6 me-1">{{ __('website.effective_date') }}:</span>
                     <span>{{ $meal_price->effective_date }}</span>
                 </li>
             </ul>

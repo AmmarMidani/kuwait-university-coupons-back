@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Meal Prices
+{{ __('website.meal_prices') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Meal Prices
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Meal Prices</h4>
-        <p class="mb-0">Update new meal details</p>
+        <h4 class="mb-1">{{ __('website.meal_prices') }}</h4>
+        <p class="mb-0">{{ __('website.update_new_meal_details') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,7 +26,7 @@ Meal Prices
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Meal Price information</h5>
+                <h5 class="card-tile mb-0">{{ __('website.meal_price_information') }}</h5>
             </div>
             <div class="card-body">
                 <form id="my-form" action="{{ route('meal-price.update', $meal_price) }}" method="POST"
@@ -40,7 +40,7 @@ Meal Prices
                                 ->select('meal_id', $meals, $meal_price->meal_id)
                                 ->class('form-select select2')
                                 }}
-                                <label>Meal</label>
+                                <label>{{ __('website.meal') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -49,25 +49,25 @@ Meal Prices
                                 ->select('user_id', $users, $meal_price->user_id)
                                 ->class('form-select select2')
                                 }}
-                                <label>User</label>
+                                <label>{{ __('website.user') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input class="datepicker form-control" name="effective_date"
                                     value="{{ $meal_price->effective_date }}" />
-                                <label for="effective_date">Effective Date</label>
+                                <label for="effective_date">{{ __('website.effective_date') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="price" class="form-control touchSpin" placeholder="Enter Price"
+                                <input type="text" name="price" class="form-control touchSpin" placeholder="{{ __('website.enter_price') }}"
                                     value="{{ $meal_price->price }}">
-                                <label for="price"></label>
+                                <label for="price">{{ __('website.price') }}</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
                 </form>
 
             </div>

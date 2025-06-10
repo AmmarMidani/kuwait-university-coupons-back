@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Meal Prices
+{{ __('website.meal_prices') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Meal Prices
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Meal Prices</h4>
-        <p class="mb-0">View and manage meal prices</p>
+        <h4 class="mb-1">{{ __('website.meal_prices') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_meal_prices') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -32,7 +32,7 @@ Meal Prices
             <div class="col-lg-6 text-end">
                 <a href="{{ route('meal-price.create') }}" class="btn btn-inverse-primary btn-sm btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus"></i>
-                    Add New Item
+                    {{ __('website.add_new_item') }}
                 </a>
             </div>
         </div>
@@ -80,7 +80,7 @@ Meal Prices
         ],
         columns: [
             {
-                title: "meal",
+                title: "{{ __('website.meal') }}",
                 render: function (data, type, row) {
                     return `${row.meal_name}
                         <a href="${row.meal_show_url}" target="blank">
@@ -89,7 +89,7 @@ Meal Prices
                 },
             },
             {
-                title: "merchant",
+                title: "{{ __('website.merchant') }}",
                 render: function (data, type, row) {
                     return `${row.user_name}
                         <a href="${row.user_show_url}" target="blank">
@@ -98,19 +98,19 @@ Meal Prices
                 },
             },
             {
-                title: "price",
+                title: "{{ __('website.price') }}",
                 render: function (data, type, row) {
                     return `${row.price}`;
                 },
             },
             {
-                title: "effective_date",
+                title: "{{ __('website.effective_date') }}",
                 render: function (data, type, row) {
                     return `${row.effective_date}`;
                 },
             },
             {
-                title: "created at",
+                title: "{{ __('website.created_at') }}",
                 render: function (data, type, row) {
                     return `${row.created_at}`;
                 },
@@ -120,7 +120,7 @@ Meal Prices
                 targets: -1,
                 orderable: false,
                 searchable: false,
-                title: "Actions",
+                title: "{{ __('website.actions') }}",
                 class: "text-end",
                 render: function (data, type, row) {
                     return `
@@ -135,7 +135,7 @@ Meal Prices
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
-        search_input.attr('placeholder', 'Search');
+        search_input.attr('placeholder', '{{ __("website.search") }}');
         // LENGTH - Inline-Form control
         var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
         length_sel.removeClass('form-control-sm');
