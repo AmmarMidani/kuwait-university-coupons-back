@@ -85,8 +85,8 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
-            <a href="#" class="menu-link">
+        <li class="menu-item {{ menuActive('manual-meal-entry.index') }}">
+            <a href="{{ route('manual-meal-entry.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-insert-row-top"></i>
                 <div>Manual Meal Entries</div>
             </a>

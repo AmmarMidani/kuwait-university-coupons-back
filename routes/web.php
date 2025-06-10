@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminRoleController;
+use App\Http\Controllers\ManualMealEntryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('meal-price', MealPriceController::class)->name('*', 'meal_price');
     Route::resource('nationality', NationalityController::class)->name('*', 'nationality');
     Route::resource('question', QuestionController::class)->name('*', 'question');
+    Route::get('manual-meal-entry', [ManualMealEntryController::class, 'index'])->name('manual-meal-entry.index');
+    Route::post('manual-meal-entry', [ManualMealEntryController::class, 'store'])->name('manual-meal-entry.store');
+    Route::post('manual-meal-entry/verify', [ManualMealEntryController::class, 'verify'])->name('manual-meal-entry.verify');
 
     // ROLES
     Route::resource('role', AdminRoleController::class)->name('*', 'role');
