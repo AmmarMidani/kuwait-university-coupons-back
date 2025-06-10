@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Roles & Permissions
+{{ __('website.roles_permissions') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Roles & Permissions
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Roles & Permissions</h4>
-        <p class="mb-0">View and manage roles & permissions</p>
+        <h4 class="mb-1">{{ __('website.roles_permissions') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_roles_permissions') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -42,11 +42,11 @@ Roles & Permissions
         <div class="info-container">
             <ul class="list-unstyled mb-0">
                 <li class="mb-2">
-                    <span class="h6 me-1">Name:</span>
+                    <span class="h6 me-1">{{ __('website.name') }}:</span>
                     <span>{{ $role->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Description:</span>
+                    <span class="h6 me-1">{{ __('website.description') }}:</span>
                     <span>{{ $role->description }}</span>
                 </li>
             </ul>

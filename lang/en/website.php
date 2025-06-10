@@ -103,4 +103,21 @@ return [
     'do_the_survey' => 'Do the Survey',
     'loading' => 'Loading...',
     'failed_to_load_data' => 'Failed to load data.',
+    
+    // Roles & Permissions Language Keys
+    'roles_permissions' => 'Roles & Permissions',
+    'view_and_manage_roles_permissions' => 'View and manage roles & permissions',
+    'create_new_roles_permissions' => 'Create new Roles & Permissions',
+    'update_roles_permissions_details' => 'Update Roles & Permissions details',
+    'roles_permissions_information' => 'Roles & Permissions information',
+    'enter_description' => 'Enter Description',
+    'select_all' => 'Select All',
+    'select_none' => 'Select None',
+    'all' => 'All',
+    'none' => 'None',
+    'assigned_to' => 'Assigned to',
+    'delete_confirmation' => 'Delete Confirmation',
+    'are_you_sure_you_want_to_delete_this_item' => 'Are you sure you want to delete this item?',
+    'close' => 'Close',
+    'delete' => 'Delete',
 ];

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Roles & Permissions
+{{ __('website.roles_permissions') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Roles & Permissions
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Roles & Permissions</h4>
-        <p class="mb-0">Update Roles & Permissions details</p>
+        <h4 class="mb-1">{{ __('website.roles_permissions') }}</h4>
+        <p class="mb-0">{{ __('website.update_roles_permissions_details') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -29,33 +29,33 @@ Roles & Permissions
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-tile mb-0">Roles & Permissions information</h5>
+                    <h5 class="card-tile mb-0">{{ __('website.roles_permissions_information') }}</h5>
                 </div>
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="Enter Name"
+                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
                                     value="{{ $role->name }}">
-                                <label for="name">Name</label>
+                                <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" name="description" class="form-control"
-                                    placeholder="Enter Description" value="{{ $role->description }}">
-                                <label for="description">Description</label>
+                                    placeholder="{{ __('website.enter_description') }}" value="{{ $role->description }}">
+                                <label for="description">{{ __('website.description') }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="row text-end">
                         <div class="col-sm-12 mb-3">
-                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">Select All</a> /
-                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">Select None</a>
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">{{ __('website.select_all') }}</a> /
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">{{ __('website.select_none') }}</a>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
 
                 </div>
             </div>
@@ -73,9 +73,9 @@ Roles & Permissions
                         </div>
                         <div class="d-flex align-items-center flex-wrap text-nowrap">
                             <a href="javascript:void(0);" data-table="{{ $group }}"
-                                class="fw-medium ms-2 btn_cm_select_all">All</a>
+                                class="fw-medium ms-2 btn_cm_select_all">{{ __('website.all') }}</a>
                             <a href="javascript:void(0);" data-table="{{ $group }}"
-                                class="fw-medium ms-2 btn_cm_select_none">None</a>
+                                class="fw-medium ms-2 btn_cm_select_none">{{ __('website.none') }}</a>
                         </div>
                     </div>
 
