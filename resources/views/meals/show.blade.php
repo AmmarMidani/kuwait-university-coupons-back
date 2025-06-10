@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Meals
+{{ __('website.meals') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Meals
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Meals</h4>
-        <p class="mb-0">View and manage meals</p>
+        <h4 class="mb-1">{{ __('website.meals') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_meals') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -43,27 +43,27 @@ Meals
         <div class="info-container">
             <ul class="list-unstyled mb-6">
                 <li class="mb-2">
-                    <span class="h6 me-1">ID:</span>
+                    <span class="h6 me-1">{{ __('website.id') }}:</span>
                     <span>#{{ $meal->id }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Name:</span>
+                    <span class="h6 me-1">{{ __('website.name') }}:</span>
                     <span>{{ $meal->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Description:</span>
+                    <span class="h6 me-1">{{ __('website.description') }}:</span>
                     <span>{{ $meal->description }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Time:</span>
+                    <span class="h6 me-1">{{ __('website.time') }}:</span>
                     <span>{{ $meal->time_from }} -> {{ $meal->time_to }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Status:</span>
+                    <span class="h6 me-1">{{ __('website.status') }}:</span>
                     @if ($meal->is_active)
-                    <span class="badge bg-label-success rounded-pill">Active</span>
+                    <span class="badge bg-label-success rounded-pill">{{ __('website.active') }}</span>
                     @else
-                    <span class="badge bg-label-danger rounded-pill">Inactive</span>
+                    <span class="badge bg-label-danger rounded-pill">{{ __('website.inactive') }}</span>
                     @endif
                 </li>
             </ul>

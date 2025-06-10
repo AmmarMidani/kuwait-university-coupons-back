@@ -22,4 +22,21 @@ return [
     'created_at' => 'Created at',
     'id' => 'ID',
     'search' => 'Search',
+    
+    // Meals Language Keys
+    'meals' => 'Meals',
+    'view_and_manage_meals' => 'View and manage meals',
+    'create_new_meal' => 'Create new meal',
+    'update_meal_details' => 'Update meal details',
+    'meal_information' => 'Meal information',
+    'name' => 'Name',
+    'enter_name' => 'Enter Name',
+    'description' => 'Description',
+    'enter_description' => 'Enter Description',
+    'time_from' => 'Time From',
+    'time_to' => 'Time To',
+    'time' => 'Time',
+    'status' => 'Status',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
 ];

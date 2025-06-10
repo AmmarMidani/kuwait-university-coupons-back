@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Meals
+{{ __('website.meals') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Meals
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Meals</h4>
-        <p class="mb-0">Update meal details </p>
+        <h4 class="mb-1">{{ __('website.meals') }}</h4>
+        <p class="mb-0">{{ __('website.update_meal_details') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,7 +26,7 @@ Meals
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Meal information</h5>
+                <h5 class="card-tile mb-0">{{ __('website.meal_information') }}</h5>
             </div>
             <div class="card-body">
 
@@ -37,9 +37,9 @@ Meals
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="Enter Name"
+                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
                                     value="{{ $meal->name }}">
-                                <label for="name">Name</label>
+                                <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -47,32 +47,32 @@ Meals
                                 <input type="hidden" name="is_active" value="0">
                                 <input type="checkbox" class="form-check-input" value="1" name="is_active" checked
                                     id="is_active">
-                                <label class="form-check-label" for="is_active">Active</label>
+                                <label class="form-check-label" for="is_active">{{ __('website.active') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-12 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <textarea type="text" name="description" class="form-control h-px-100"
-                                    placeholder="Enter Description">{{ $meal->description }}</textarea>
-                                <label for="description">Description</label>
+                                    placeholder="{{ __('website.enter_description') }}">{{ $meal->description }}</textarea>
+                                <label for="description">{{ __('website.description') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input class="datetimepicker form-control" name="time_from"
                                     value="{{ $meal->time_from }}" />
-                                <label for="time_from">Time From</label>
+                                <label for="time_from">{{ __('website.time_from') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input class="datetimepicker form-control" name="time_to"
                                     value="{{ $meal->time_to }}" />
-                                <label for="time_to">Time To</label>
+                                <label for="time_to">{{ __('website.time_to') }}</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
                 </form>
 
             </div>
