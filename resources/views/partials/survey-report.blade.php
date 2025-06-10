@@ -10,10 +10,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['overallSatisfaction'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Overall Satisfaction</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.overall_satisfaction') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        The average score across all answers (range: 1–5)
+                        {{ __('website.overall_satisfaction_desc') }}
                     </small>
                 </p>
             </div>
@@ -30,10 +30,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['totalResponses'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Total Responses</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.total_responses') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        Total number of answers submitted
+                        {{ __('website.total_responses_desc') }}
                     </small>
                 </p>
             </div>
@@ -50,10 +50,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['completionRate'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Completion Rate</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.completion_rate') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        Percentage of surveys that received at least one answer
+                        {{ __('website.completion_rate_desc') }}
                     </small>
                 </p>
             </div>
@@ -66,8 +66,8 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-md-center align-items-start">
                 <div>
-                    <h5 class="card-title mb-0">Survey Participation Overview</h5>
-                    <small class="text-muted">Shows the number of answered and unanswered surveys by month.</small>
+                    <h5 class="card-title mb-0">{{ __('website.survey_participation_overview') }}</h5>
+                    <small class="text-muted">{{ __('website.survey_participation_overview_desc') }}</small>
                 </div>
             </div>
             <div class="card-body">
@@ -80,9 +80,9 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-md-center align-items-start">
                 <div>
-                    <h5 class="card-title mb-0">Student Satisfaction by Question Over Time</h5>
+                    <h5 class="card-title mb-0">{{ __('website.student_satisfaction_by_question_over_time') }}</h5>
                     <small class="text-muted">
-                        Tracks average student ratings per question over time.
+                        {{ __('website.student_satisfaction_by_question_over_time_desc') }}
                     </small>
                 </div>
             </div>

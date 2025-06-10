@@ -10,10 +10,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['totalMealsServed'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Total Meals Served</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.total_meals_served') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        The total number of meals distributed during the selected period.
+                        {{ __('website.total_meals_served_desc') }}
                     </small>
                 </p>
             </div>
@@ -30,10 +30,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['averageDailyMeals'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Average Daily Meals</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.average_daily_meals') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        The average number of meals served per day within the selected date range.
+                        {{ __('website.average_daily_meals_desc') }}
                     </small>
                 </p>
             </div>
@@ -50,10 +50,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['studentsServed'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Students Served</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.students_served') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        The number of unique students who received at least one meal.
+                        {{ __('website.students_served_desc') }}
                     </small>
                 </p>
             </div>
@@ -70,10 +70,10 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['averageMealTime'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Average Meal Time</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.average_meal_time') }}</h6>
                 <p class="mb-0">
                     <small class="text-muted">
-                        The typical hour when most meals are taken, based on recorded activity.
+                        {{ __('website.average_meal_time_desc') }}
                     </small>
                 </p>
             </div>
@@ -86,9 +86,9 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-md-center align-items-start">
                 <div>
-                    <h5 class="card-title mb-0">Monthly Meal Distribution</h5>
+                    <h5 class="card-title mb-0">{{ __('website.monthly_meal_distribution') }}</h5>
                     <small class="text-muted">
-                        Shows the total number of meals served each month within the selected date range.
+                        {{ __('website.monthly_meal_distribution_desc') }}
                     </small>
                 </div>
             </div>
@@ -102,10 +102,9 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div>
-                    <h5 class="card-title mb-0">Weekday Distribution</h5>
+                    <h5 class="card-title mb-0">{{ __('website.weekday_distribution') }}</h5>
                     <small class="text-muted">
-                        Displays how meal service is distributed across days of the week, helping identify peak service
-                        days.
+                        {{ __('website.weekday_distribution_desc') }}
                     </small>
                 </div>
             </div>
@@ -119,9 +118,9 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div>
-                    <h5 class="card-title mb-0">Meal Type Distribution</h5>
+                    <h5 class="card-title mb-0">{{ __('website.meal_type_distribution') }}</h5>
                     <small class="text-muted">
-                        Breaks down meals by type to highlight preferences or service trends.
+                        {{ __('website.meal_type_distribution_desc') }}
                     </small>
                 </div>
             </div>
