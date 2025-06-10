@@ -44,17 +44,17 @@
                                     src="{{ asset('assets/img/favicon/favicon.png') }}?v={{ config('app.version') }}"
                                     alt="Logo">
                             </a>
-                            Kuwait University Food Hub
+                            {{ __('website.kuwait_university_food_hub') }}
                         </h1>
                     </div>
                     <ul class="footer-links list-reset top-right links">
                         @auth
                         <li>
-                            <a href="{{ route('home') }}">Dashboard</a>
+                            <a href="{{ route('home') }}">{{ __('website.dashboard') }}</a>
                         </li>
                         @else
                         <li>
-                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('login') }}">{{ __('website.login') }}</a>
                         </li>
                         @endauth
                     </ul>
@@ -67,11 +67,10 @@
                 <div class="container">
                     <div class="hero-inner">
                         <div class="hero-copy">
-                            <h1 class="hero-title mt-0">Landing template for startups</h1>
-                            <p class="hero-paragraph">Our landing page template works on all devices, so you only have
-                                to set it up once, and get beautiful results forever.</p>
-                            <div class="hero-cta"><a class="button button-primary" href="#">Pre order now</a><a
-                                    class="button" href="#">Get in touch</a></div>
+                            <h1 class="hero-title mt-0">{{ __('website.landing_template_for_startups') }}</h1>
+                            <p class="hero-paragraph">{{ __('website.landing_page_description') }}</p>
+                            <div class="hero-cta"><a class="button button-primary" href="#">{{ __('website.pre_order_now') }}</a><a
+                                    class="button" href="#">{{ __('website.get_in_touch') }}</a></div>
                         </div>
                         <div class="hero-figure anime-element">
                             <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
@@ -126,16 +125,16 @@
                     </div>
                     <ul class="footer-links list-reset">
                         <li>
-                            <a href="#">Contact</a>
+                            <a href="#">{{ __('website.contact') }}</a>
                         </li>
                         <li>
-                            <a href="#">About us</a>
+                            <a href="#">{{ __('website.about_us') }}</a>
                         </li>
                         <li>
-                            <a href="#">FAQ's</a>
+                            <a href="#">{{ __('website.faqs') }}</a>
                         </li>
                         <li>
-                            <a href="#">Support</a>
+                            <a href="#">{{ __('website.support') }}</a>
                         </li>
                     </ul>
                     <ul class="footer-social-links list-reset">
@@ -170,7 +169,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="footer-copyright">&copy; 2025 Welcome, all rights reserved</div>
+                    <div class="footer-copyright">&copy; 2025 {{ __('website.kuwait_university_food_hub') }}, {{ __('website.all_rights_reserved') }}</div>
                 </div>
             </div>
         </footer>

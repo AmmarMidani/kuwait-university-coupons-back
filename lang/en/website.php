@@ -149,4 +149,28 @@ return [
     'role' => 'Role',
     'roles' => 'Roles',
     'select_roles' => 'Select Roles',
+    
+    // Dashboard Language Keys
+    'merchants' => 'Merchants',
+    'total_in_system' => 'Total in system',
+    'meals_provided' => 'Meals provided',
+    'meal_than_last_week' => 'meal than last week',
+    'completed_surveys' => 'Completed surveys',
+    'survey_than_last_week' => 'survey than last week',
+    'daily_breakdown_of_meals_provided' => 'Daily breakdown of meals provided',
+    'student_satisfaction_index' => 'Student Satisfaction Index',
+    'weekly_survey_results' => 'Weekly Survey Results',
+    
+    // Welcome Page Language Keys
+    'kuwait_university_food_hub' => 'Kuwait University Food Hub',
+    'login' => 'Login',
+    'landing_template_for_startups' => 'Landing template for startups',
+    'landing_page_description' => 'Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.',
+    'pre_order_now' => 'Pre order now',
+    'get_in_touch' => 'Get in touch',
+    'contact' => 'Contact',
+    'about_us' => 'About us',
+    'faqs' => 'FAQ\'s',
+    'support' => 'Support',
+    'all_rights_reserved' => 'all rights reserved',
 ];

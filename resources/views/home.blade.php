@@ -34,9 +34,9 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['merchants'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Merchants</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.merchants') }}</h6>
                 <p class="mb-0">
-                    <small class="text-muted">Total in system</small>
+                    <small class="text-muted">{{ __('website.total_in_system') }}</small>
                 </p>
             </div>
         </div>
@@ -52,9 +52,9 @@
                     </div>
                     <h4 class="mb-0">{{ $counts['students'] }}</h4>
                 </div>
-                <h6 class="mb-0 fw-normal">Students</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.students') }}</h6>
                 <p class="mb-0">
-                    <small class="text-muted">Total in system</small>
+                    <small class="text-muted">{{ __('website.total_in_system') }}</small>
                 </p>
             </div>
         </div>
@@ -80,10 +80,10 @@
                     </div>
 
                 </div>
-                <h6 class="mb-0 fw-normal">Meals provided</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.meals_provided') }}</h6>
                 <p class="mb-0">
                     <span class="me-1 fw-medium">{{ $counts['meals_diff'] }}</span>
-                    <small class="text-muted">meal than last week</small>
+                    <small class="text-muted">{{ __('website.meal_than_last_week') }}</small>
                 </p>
             </div>
         </div>
@@ -109,10 +109,10 @@
                     </div>
 
                 </div>
-                <h6 class="mb-0 fw-normal">Completed surveys</h6>
+                <h6 class="mb-0 fw-normal">{{ __('website.completed_surveys') }}</h6>
                 <p class="mb-0">
                     <span class="me-1 fw-medium">{{ $counts['survey_diff'] }}</span>
-                    <small class="text-muted">survey than last week</small>
+                    <small class="text-muted">{{ __('website.survey_than_last_week') }}</small>
                 </p>
             </div>
         </div>
@@ -124,8 +124,8 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-md-center align-items-start">
                 <div>
-                    <h5 class="card-title mb-0">Meals Provided</h5>
-                    <small class="text-muted">Daily breakdown of meals provided</small>
+                    <h5 class="card-title mb-0">{{ __('website.meals_provided') }}</h5>
+                    <small class="text-muted">{{ __('website.daily_breakdown_of_meals_provided') }}</small>
                 </div>
                 <a href="#" class="btn btn-icon btn-outline-primary waves-effect">
                     <i class="ri-external-link-line"></i>
@@ -141,8 +141,8 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div>
-                    <h5 class="card-title mb-0">Student Satisfaction Index</h5>
-                    <small class="text-muted">Weekly Survey Results</small>
+                    <h5 class="card-title mb-0">{{ __('website.student_satisfaction_index') }}</h5>
+                    <small class="text-muted">{{ __('website.weekly_survey_results') }}</small>
                 </div>
                 <a href="#" class="btn btn-icon btn-outline-primary waves-effect">
                     <i class="ri-external-link-line"></i>
