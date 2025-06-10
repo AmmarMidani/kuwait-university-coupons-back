@@ -91,8 +91,8 @@
                 <div>Manual Meal Entries</div>
             </a>
         </li>
-        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
-            <a href="#" class="menu-link">
+        <li class="menu-item {{ menuActive('meal-price.*') }}">
+            <a href="{{ route('meal-price.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-safe-2-line"></i>
                 <div>Meal pricing</div>
             </a>

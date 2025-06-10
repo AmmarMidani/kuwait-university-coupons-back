@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\MealPriceController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StudentController;
@@ -21,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user', UserController::class)->name('*', 'user');
     Route::resource('student', StudentController::class)->name('*', 'student');
     Route::resource('meal', MealController::class)->name('*', 'meal');
+    Route::resource('meal-price', MealPriceController::class)->name('*', 'meal_price');
     Route::resource('nationality', NationalityController::class)->name('*', 'nationality');
     Route::resource('question', QuestionController::class)->name('*', 'question');
 

@@ -11,7 +11,7 @@ class StoreMealPriceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreMealPriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'meal_id' => 'required|exists:meals,id',
+            'user_id' => 'required|exists:users,id',
+            'effective_date' => 'required|date|date_format:Y-m-d',
+            'price' => 'required|numeric|min:0',
         ];
     }
 }
