@@ -32,7 +32,7 @@
                 <div>Users Management</div>
             </a>
         </li>
-        <li class="menu-item {{ menuActive('roles.*') }}">
+        <li class="menu-item {{ menuActive('role.*') }}">
             <a href="{{ route('role.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-lock-2-line"></i>
                 <div>Roles & Permissions</div>
