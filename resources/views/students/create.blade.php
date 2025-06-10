@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Students
+{{ __('website.students') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Students
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Students</h4>
-        <p class="mb-0">Create new student</p>
+        <h4 class="mb-1">{{ __('website.students') }}</h4>
+        <p class="mb-0">{{ __('website.create_new_student') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,7 +26,7 @@ Students
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Student information</h5>
+                <h5 class="card-tile mb-0">{{ __('website.student_information') }}</h5>
             </div>
             <div class="card-body">
 
@@ -39,7 +39,7 @@ Students
                                 ->select('program_id', $programs, old('program_id'))
                                 ->class('form-select select2')
                                 }}
-                                <label>Program</label>
+                                <label>{{ __('website.program') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-4 mb-3">
@@ -48,7 +48,7 @@ Students
                                 ->select('gender', $genders, old('gender'))
                                 ->class('form-select select2')
                                 }}
-                                <label>Gender</label>
+                                <label>{{ __('website.gender') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-4 mb-3">
@@ -57,48 +57,48 @@ Students
                                 ->select('nationality_id', $nationalities, old('nationality_id'))
                                 ->class('form-select select2')
                                 }}
-                                <label>Nationality</label>
+                                <label>{{ __('website.nationality') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="Enter Name"
+                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
                                     value="{{ old('name') }}">
-                                <label for="name">Name</label>
+                                <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" name="student_number" class="form-control"
-                                    placeholder="Enter Student Number" value="{{ old('student_number') }}">
-                                <label for="student_number">Student Number</label>
+                                    placeholder="{{ __('website.enter_student_number') }}" value="{{ old('student_number') }}">
+                                <label for="student_number">{{ __('website.student_number') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="password" name="password" class="form-control"
-                                    placeholder="Enter Password">
-                                <label for="password">Password</label>
+                                    placeholder="{{ __('website.enter_password') }}">
+                                <label for="password">{{ __('website.password') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="password" name="password_confirmation" class="form-control"
-                                    placeholder="Enter Password Confirmation">
-                                <label for="password_confirmation">Password Confirmation</label>
+                                    placeholder="{{ __('website.enter_password_confirmation') }}">
+                                <label for="password_confirmation">{{ __('website.password_confirmation') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input class="datepicker form-control" name="date_from"
                                     value="{{ old('date_from') }}" />
-                                <label for="date_from">Date From</label>
+                                <label for="date_from">{{ __('website.date_from') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input class="datepicker form-control" name="date_to" value="{{ old('date_to') }}" />
-                                <label for="date_to">Date To</label>
+                                <label for="date_to">{{ __('website.date_to') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -106,11 +106,11 @@ Students
                                 <input type="hidden" name="is_active" value="0">
                                 <input type="checkbox" class="form-check-input" value="1" name="is_active" checked
                                     id="is_active">
-                                <label class="form-check-label" for="is_active">Active</label>
+                                <label class="form-check-label" for="is_active">{{ __('website.active') }}</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
                 </form>
 
             </div>

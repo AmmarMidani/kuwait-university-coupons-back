@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Students
+{{ __('website.students') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Students
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Students</h4>
-        <p class="mb-0">View and manage students</p>
+        <h4 class="mb-1">{{ __('website.students') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_students') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -43,35 +43,35 @@ Students
         <div class="info-container">
             <ul class="list-unstyled mb-6">
                 <li class="mb-2">
-                    <span class="h6 me-1">ID:</span>
+                    <span class="h6 me-1">{{ __('website.id') }}:</span>
                     <span>#{{ $student->student_number }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Nationality:</span>
+                    <span class="h6 me-1">{{ __('website.nationality') }}:</span>
                     <span>{{ $student->nationality->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Program:</span>
+                    <span class="h6 me-1">{{ __('website.program') }}:</span>
                     <span>{{ $student->program->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Name:</span>
+                    <span class="h6 me-1">{{ __('website.name') }}:</span>
                     <span>{{ $student->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Registration date:</span>
+                    <span class="h6 me-1">{{ __('website.registration_date') }}:</span>
                     <span>{{ $student->date_from }} -> {{ $student->date_to }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Gender:</span>
+                    <span class="h6 me-1">{{ __('website.gender') }}:</span>
                     <span class="badge bg-label-info rounded-pill">{{ $student->gender_text }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Status:</span>
+                    <span class="h6 me-1">{{ __('website.status') }}:</span>
                     @if ($student->is_active)
-                    <span class="badge bg-label-success rounded-pill">Active</span>
+                    <span class="badge bg-label-success rounded-pill">{{ __('website.active') }}</span>
                     @else
-                    <span class="badge bg-label-danger rounded-pill">Inactive</span>
+                    <span class="badge bg-label-danger rounded-pill">{{ __('website.inactive') }}</span>
                     @endif
                 </li>
             </ul>

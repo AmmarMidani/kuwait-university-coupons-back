@@ -120,4 +120,22 @@ return [
     'are_you_sure_you_want_to_delete_this_item' => 'Are you sure you want to delete this item?',
     'close' => 'Close',
     'delete' => 'Delete',
+    
+    // Students Language Keys
+    'view_and_manage_students' => 'View and manage students',
+    'create_new_student' => 'Create new student',
+    'update_student_details' => 'Update student details',
+    'student_information' => 'Student information',
+    'program' => 'Program',
+    'gender' => 'Gender',
+    'nationality' => 'Nationality',
+    'student_number' => 'Student Number',
+    'enter_student_number' => 'Enter Student Number',
+    'password' => 'Password',
+    'enter_password' => 'Enter Password',
+    'password_confirmation' => 'Password Confirmation',
+    'enter_password_confirmation' => 'Enter Password Confirmation',
+    'date_from' => 'Date From',
+    'date_to' => 'Date To',
+    'registration_date' => 'Registration date',
 ];
