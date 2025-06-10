@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Users
+{{ __('website.users') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Users
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Users</h4>
-        <p class="mb-0">View and manage users</p>
+        <h4 class="mb-1">{{ __('website.users') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_users') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -32,7 +32,7 @@ Users
             <div class="col-lg-6 text-end">
                 <a href="{{ route('user.create') }}" class="btn btn-inverse-primary btn-sm btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus"></i>
-                    Add New Item
+                    {{ __('website.add_new_item') }}
                 </a>
             </div>
         </div>
@@ -80,25 +80,25 @@ Users
         ],
         columns: [
             {
-                title: "name",
+                title: "{{ __('website.name') }}",
                 render: function (data, type, row) {
                     return `${row.name}`;
                 },
             },
             {
-                title: "email",
+                title: "{{ __('website.email') }}",
                 render: function (data, type, row) {
                     return `${row.email}`;
                 },
             },
             {
-                title: "roles",
+                title: "{{ __('website.roles') }}",
                 render: function (data, type, row) {
                     return row.roles.map(role => `<span class="badge rounded-pill bg-label-primary">${role}</span>`).join(' ');
                 },
             },
             {
-                title: "status",
+                title: "{{ __('website.status') }}",
                 render: function (data, type, row) {
                     if (row.status) {
                         return `<span class="badge rounded-pill bg-label-success">${row.status_text}</span>`;
@@ -108,7 +108,7 @@ Users
                 },
             },
             {
-                title: "created at",
+                title: "{{ __('website.created_at') }}",
                 render: function (data, type, row) {
                     return `${row.created_at}`;
                 },
@@ -118,7 +118,7 @@ Users
                 targets: -1,
                 orderable: false,
                 searchable: false,
-                title: "Actions",
+                title: "{{ __('website.actions') }}",
                 class: "text-end",
                 render: function (data, type, row) {
                     return `
@@ -133,7 +133,7 @@ Users
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
-        search_input.attr('placeholder', 'Search');
+        search_input.attr('placeholder', '{{ __("website.search") }}');
         // LENGTH - Inline-Form control
         var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
         length_sel.removeClass('form-control-sm');

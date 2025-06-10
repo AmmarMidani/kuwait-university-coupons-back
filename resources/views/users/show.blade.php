@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Users
+{{ __('website.users') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Users
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Users</h4>
-        <p class="mb-0">View and manage users</p>
+        <h4 class="mb-1">{{ __('website.users') }}</h4>
+        <p class="mb-0">{{ __('website.view_and_manage_users') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -43,27 +43,27 @@ Users
         <div class="info-container">
             <ul class="list-unstyled mb-6">
                 <li class="mb-2">
-                    <span class="h6 me-1">ID:</span>
+                    <span class="h6 me-1">{{ __('website.id') }}:</span>
                     <span>#{{ $user->id }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Name:</span>
+                    <span class="h6 me-1">{{ __('website.name') }}:</span>
                     <span>{{ $user->name }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Email:</span>
+                    <span class="h6 me-1">{{ __('website.email') }}:</span>
                     <span>{{ $user->email }}</span>
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Status:</span>
+                    <span class="h6 me-1">{{ __('website.status') }}:</span>
                     @if ($user->is_active)
-                    <span class="badge bg-label-success rounded-pill">Active</span>
+                    <span class="badge bg-label-success rounded-pill">{{ __('website.active') }}</span>
                     @else
-                    <span class="badge bg-label-danger rounded-pill">Inactive</span>
+                    <span class="badge bg-label-danger rounded-pill">{{ __('website.inactive') }}</span>
                     @endif
                 </li>
                 <li class="mb-2">
-                    <span class="h6 me-1">Roles:</span>
+                    <span class="h6 me-1">{{ __('website.roles') }}:</span>
                     <span>
                         @foreach ($user->roles as $item)
                         <span class="badge rounded-pill bg-label-primary text-capitalize me-2">

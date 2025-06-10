@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Users
+{{ __('website.users') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Users
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Users</h4>
-        <p class="mb-0">Create new user</p>
+        <h4 class="mb-1">{{ __('website.users') }}</h4>
+        <p class="mb-0">{{ __('website.create_new_user') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,7 +26,7 @@ Users
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-tile mb-0">User information</h5>
+                <h5 class="card-tile mb-0">{{ __('website.user_information') }}</h5>
             </div>
             <div class="card-body">
 
@@ -35,40 +35,40 @@ Users
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="Enter Name"
+                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
                                     value="{{ old('name') }}">
-                                <label for="name">Name</label>
+                                <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="email" name="email" class="form-control" placeholder="Enter Email"
+                                <input type="email" name="email" class="form-control" placeholder="{{ __('website.enter_email') }}"
                                     value="{{ old('email') }}">
-                                <label for="email">Email</label>
+                                <label for="email">{{ __('website.email') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="password" name="password" class="form-control"
-                                    placeholder="Enter Password">
-                                <label for="password">Password</label>
+                                    placeholder="{{ __('website.enter_password') }}">
+                                <label for="password">{{ __('website.password') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="password" name="password_confirmation" class="form-control"
-                                    placeholder="Enter Password Confirmation">
-                                <label for="password_confirmation">Password Confirmation</label>
+                                    placeholder="{{ __('website.enter_password_confirmation') }}">
+                                <label for="password_confirmation">{{ __('website.password_confirmation') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 {{ html()->multiselect('roles[]', $roles, old('roles'))
                                 ->class('form-select select2')
-                                ->attribute('data-placeholder', 'Select Roles')
+                                ->attribute('data-placeholder', __('website.select_roles'))
                                 ->attribute('multiple')
                                 }}
-                                <label>Role</label>
+                                <label>{{ __('website.role') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -76,11 +76,11 @@ Users
                                 <input type="hidden" name="is_active" value="0">
                                 <input type="checkbox" class="form-check-input" value="1" name="is_active" checked
                                     id="is_active">
-                                <label class="form-check-label" for="is_active">Active</label>
+                                <label class="form-check-label" for="is_active">{{ __('website.active') }}</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success submit">Save</button>
+                    <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
                 </form>
 
             </div>
@@ -185,4 +185,4 @@ Users
 	});
 });
 </script>
-@endsection
+@endsect

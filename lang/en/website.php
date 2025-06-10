@@ -138,4 +138,15 @@ return [
     'date_from' => 'Date From',
     'date_to' => 'Date To',
     'registration_date' => 'Registration date',
+    
+    // Users Language Keys
+    'view_and_manage_users' => 'View and manage users',
+    'create_new_user' => 'Create new user',
+    'update_user_details' => 'Update user details',
+    'user_information' => 'User information',
+    'email' => 'Email',
+    'enter_email' => 'Enter Email',
+    'role' => 'Role',
+    'roles' => 'Roles',
+    'select_roles' => 'Select Roles',
 ];
