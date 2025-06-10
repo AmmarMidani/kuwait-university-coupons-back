@@ -35,23 +35,28 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
-                                    value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="{{ __('website.enter_name') }}" value="{{ old('name') }}">
                                 <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" name="description" class="form-control"
-                                    placeholder="{{ __('website.enter_description') }}" value="{{ old('description') }}">
+                                    placeholder="{{ __('website.enter_description') }}"
+                                    value="{{ old('description') }}">
                                 <label for="description">{{ __('website.description') }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="row text-end">
                         <div class="col-sm-12 mb-3">
-                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">{{ __('website.select_all') }}</a> /
-                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">{{ __('website.select_none') }}</a>
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">
+                                {{ __('website.select_all') }}
+                            </a> /
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">
+                                {{ __('website.select_none') }}
+                            </a>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>

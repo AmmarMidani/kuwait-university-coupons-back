@@ -35,15 +35,15 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
-                                    value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="{{ __('website.enter_name') }}" value="{{ old('name') }}">
                                 <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="email" name="email" class="form-control" placeholder="{{ __('website.enter_email') }}"
-                                    value="{{ old('email') }}">
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="{{ __('website.enter_email') }}" value="{{ old('email') }}">
                                 <label for="email">{{ __('website.email') }}</label>
                             </div>
                         </div>
@@ -185,4 +185,4 @@
 	});
 });
 </script>
-@endsect
+@endsection
