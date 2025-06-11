@@ -4,6 +4,44 @@ return [
     'dashboard' => 'لوحة التحكم',
     'dashboard_title_details' => 'راقب المقاييس الرئيسية وابق مطلعاً مع الرؤى الفورية حول وجبات الطلاب والاستطلاعات ومشاركة التجار.',
     
+    // Application Branding
+    'food_hub' => 'مركز الطعام',
+    'kuwait_university' => 'جامعة الكويت',
+    
+    // Navigation Menu Items
+    'users_management' => 'إدارة المستخدمين',
+    'roles_permissions' => 'الأدوار والصلاحيات',
+    'student_management' => 'إدارة الطلاب',
+    'meals_management' => 'إدارة الوجبات',
+    'nationality_management' => 'إدارة الجنسيات',
+    'questions_management' => 'إدارة الأسئلة',
+    'reports' => 'التقارير',
+    'transactions' => 'المعاملات',
+    'survey' => 'الاستطلاع',
+    'meals' => 'الوجبات',
+    'manual_meal_entries' => 'الإدخالات اليدوية للوجبات',
+    'meal_pricing' => 'تسعير الوجبات',
+    'qr_code_scanner' => 'ماسح رمز QR',
+    
+    // User Profile & Authentication
+    'my_profile' => 'ملفي الشخصي',
+    'settings' => 'الإعدادات',
+    'logout' => 'تسجيل الخروج',
+    'language' => 'اللغة',
+    'english' => 'الإنجليزية',
+    'arabic' => 'العربية',
+    
+    // Footer
+    'copyright' => 'حقوق النشر',
+    'all_rights_reserved' => 'جميع الحقوق محفوظة',
+    'version' => 'الإصدار',
+    
+    // Alert Messages
+    'success' => 'نجح',
+    'error' => 'خطأ',
+    'warning' => 'تحذير',
+    'info' => 'معلومات',
+    
     // Meal Prices Language Keys
     'meal_prices' => 'أسعار الوجبات',
     'create_new_meal_price' => 'إنشاء سعر وجبة جديد',
@@ -24,7 +62,6 @@ return [
     'search' => 'بحث',
     
     // Meals Language Keys
-    'meals' => 'الوجبات',
     'view_and_manage_meals' => 'عرض وإدارة الوجبات',
     'create_new_meal' => 'إنشاء وجبة جديدة',
     'update_meal_details' => 'تحديث تفاصيل الوجبة',
@@ -105,12 +142,10 @@ return [
     'failed_to_load_data' => 'فشل تحميل البيانات.',
     
     // Roles & Permissions Language Keys
-    'roles_permissions' => 'الأدوار والصلاحيات',
     'view_and_manage_roles_permissions' => 'عرض وإدارة الأدوار والصلاحيات',
     'create_new_roles_permissions' => 'إنشاء أدوار وصلاحيات جديدة',
     'update_roles_permissions_details' => 'تحديث تفاصيل الأدوار والصلاحيات',
     'roles_permissions_information' => 'معلومات الأدوار والصلاحيات',
-    'enter_description' => 'أدخل الوصف',
     'select_all' => 'تحديد الكل',
     'select_none' => 'عدم تحديد أي',
     'all' => 'الكل',
@@ -164,7 +199,7 @@ return [
     // Welcome Page Language Keys
     'kuwait_university_food_hub' => 'مركز طعام جامعة الكويت',
     'login' => 'تسجيل الدخول',
-    'landing_template_for_startups' => 'قالب الصفحة الرئيسية ',
+    'landing_template_for_startups' => 'قالب الصفحة الرئيسية للشركات الناشئة',
     'landing_page_description' => 'قالب صفحتنا الرئيسية يعمل على جميع الأجهزة، لذا عليك إعداده مرة واحدة فقط، والحصول على نتائج جميلة إلى الأبد.',
     'pre_order_now' => 'اطلب مسبقاً الآن',
     'get_in_touch' => 'تواصل معنا',
@@ -172,21 +207,18 @@ return [
     'about_us' => 'من نحن',
     'faqs' => 'الأسئلة الشائعة',
     'support' => 'الدعم',
-    'all_rights_reserved' => 'جميع الحقوق محفوظة',
     
     // QR Code Scanner Language Keys
-    'qr_code_scanner' => 'ماسح رمز QR',
     'meal_distribution_and_qr_code_scanning' => 'توزيع الوجبات ومسح رمز QR',
     'qr_code_reader' => 'قارئ رمز QR',
     'click_the_icon_to_start_scan' => 'انقر على الأيقونة لبدء المسح',
     'something_went_wrong_try_again_later' => 'حدث خطأ ما. حاول مرة أخرى لاحقاً.',
-    'error' => 'خطأ',
     'failed_to_record_meal' => 'فشل في تسجيل الوجبة.',
     
     // Bulk Meals Manual Entry Language Keys
     'bulk_meals_manual_entry' => 'الإدخال اليدوي للوجبات',
     'add_a_meal_entry_if_the_internet_connection_is_down' => 'أضف إدخال وجبة إذا كان الاتصال بالإنترنت معطل',
-    'add_single_row' => 'إضافة صف واحدة',
+    'add_single_row' => 'إضافة صف واحد',
     'add_entry_for_single_student' => 'إضافة إدخال لطالب واحد',
     'bulk_add' => 'إضافة مجموعة',
     'add_entry_for_multiple_students' => 'إضافة إدخال لعدة طلاب',
@@ -196,11 +228,31 @@ return [
     'check_and_add_to_list' => 'فحص وإضافة إلى القائمة',
     'waiting_list_inputs' => 'مدخلات قائمة الانتظار',
     'data_will_stored_when_you_click_on_save' => 'سيتم حفظ البيانات عند النقر على حفظ',
-    'student_number' => 'رقم الطالب',
     'action' => 'الإجراء',
     'something_went_wrong_please_try_again' => 'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
     'no_entries' => 'لا توجد إدخالات',
-    'please_add_some_verified_entries_before_saving' => 'يرجى إضافة بعض الإدخالات قبل الحفظ',
+    'please_add_some_verified_entries_before_saving' => 'يرجى إضافة بعض الإدخالات المؤكدة قبل الحفظ',
     'saved' => 'تم الحفظ!',
     'data_has_been_saved_successfully' => 'تم حفظ البيانات بنجاح.',
+    
+    // Authentication Language Keys
+    'welcome_to' => 'أهلاً بك في',
+    'welcome_emoji' => '👋',
+    'please_sign_in_to_your_account' => 'يرجى تسجيل الدخول إلى حسابك',
+    'enter_your_email' => 'أدخل بريدك الإلكتروني',
+    'email_address' => 'عنوان البريد الإلكتروني',
+    'sign_in' => 'تسجيل الدخول',
+    'register' => 'التسجيل',
+    'confirm_password' => 'تأكيد كلمة المرور',
+    'verify_your_email_address' => 'تأكيد عنوان بريدك الإلكتروني',
+    'fresh_verification_link_sent' => 'تم إرسال رابط تأكيد جديد إلى عنوان بريدك الإلكتروني.',
+    'before_proceeding_check_email' => 'قبل المتابعة، يرجى التحقق من بريدك الإلكتروني للحصول على رابط التأكيد.',
+    'if_you_did_not_receive_email' => 'إذا لم تستلم البريد الإلكتروني',
+    'click_here_to_request_another' => 'انقر هنا لطلب آخر',
+    
+    // Password Reset Language Keys
+    'reset_password' => 'إعادة تعيين كلمة المرور',
+    'send_password_reset_link' => 'إرسال رابط إعادة تعيين كلمة المرور',
+    'please_confirm_your_password_before_continuing' => 'يرجى تأكيد كلمة المرور قبل المتابعة.',
+    'forgot_your_password' => 'نسيت كلمة المرور؟',
 ];
