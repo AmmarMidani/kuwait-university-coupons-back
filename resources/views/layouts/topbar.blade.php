@@ -16,15 +16,13 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="en"
-                            data-text-direction="ltr">
-                            <span class="align-middle">{{ __('website.english') }}</span>
+                        <a class="dropdown-item" href="{{ route('lang.switch', 'en') }}" data-text-direction="ltr">
+                            <span class="align-middle">English</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="ar"
-                            data-text-direction="rtl">
-                            <span class="align-middle">{{ __('website.arabic') }}</span>
+                        <a class="dropdown-item" href="{{ route('lang.switch', 'ar') }}" data-text-direction="rtl">
+                            <span class="align-middle">العربية</span>
                         </a>
                     </li>
                 </ul>
