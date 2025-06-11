@@ -173,4 +173,13 @@ return [
     'faqs' => 'FAQ\'s',
     'support' => 'Support',
     'all_rights_reserved' => 'all rights reserved',
+    
+    // QR Code Scanner Language Keys
+    'qr_code_scanner' => 'Qr Code Scanner',
+    'meal_distribution_and_qr_code_scanning' => 'Meal distribution and QR Code scanning',
+    'qr_code_reader' => 'QR Code Reader',
+    'click_the_icon_to_start_scan' => 'Click the icon to start scan',
+    'something_went_wrong_try_again_later' => 'Something went wrong. Try again later.',
+    'error' => 'Error',
+    'failed_to_record_meal' => 'Failed to record meal.',
 ];

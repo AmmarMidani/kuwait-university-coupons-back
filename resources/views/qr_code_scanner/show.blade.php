@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Qr Code Scanner
+{{ __('website.qr_code_scanner') }}
 @endsection
 
 @section('css_plugin')
@@ -29,8 +29,8 @@ Qr Code Scanner
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Qr Code Scanner</h4>
-        <p class="mb-0">Meal distribution and QR Code scanning</p>
+        <h4 class="mb-1">{{ __('website.qr_code_scanner') }}</h4>
+        <p class="mb-0">{{ __('website.meal_distribution_and_qr_code_scanning') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -41,14 +41,14 @@ Qr Code Scanner
     <div class="col-6">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="card-tile mb-0">QR Code Reader</h5>
+                <h5 class="card-tile mb-0">{{ __('website.qr_code_reader') }}</h5>
             </div>
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <div id="qr-box" class="d-flex align-items-center justify-content-center mb-3 qr-code-scan">
                     <i class="ri-qr-code-line" style=" font-size: 240px;"></i>
                 </div>
 
-                <p class="text-muted">Click the icon to start scan</p>
+                <p class="text-muted">{{ __('website.click_the_icon_to_start_scan') }}</p>
                 <input type="text" id="qr-input" class="form-control qr-input-hiddent" autocomplete="off">
             </div>
         </div>
@@ -83,7 +83,7 @@ Qr Code Scanner
                 $('#student-details').html(response.html);
             },
             error: function () {
-                $('#student-details').html('<p class="text-danger">Something went wrong. Try again later.</p>');
+                $('#student-details').html('<p class="text-danger">{{ __("website.something_went_wrong_try_again_later") }}</p>');
             },
         });
     }
@@ -119,7 +119,7 @@ Qr Code Scanner
                 $('#student-details').html(response.html);
             },
             error: function () {
-                Swal.fire('Error', 'Failed to record meal.', 'error');
+                Swal.fire('{{ __("website.error") }}', '{{ __("website.failed_to_record_meal") }}', 'error');
             }
         });
     });
