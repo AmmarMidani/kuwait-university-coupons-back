@@ -97,8 +97,8 @@
                 <div>Meal pricing</div>
             </a>
         </li>
-        <li class="menu-item {{ menuActive('xxxxxxxx') }}">
-            <a href="#" class="menu-link">
+        <li class="menu-item {{ menuActive('qr-code-scanner.index') }}">
+            <a href="{{ route('qr-code-scanner.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-qr-scan-2-line"></i>
                 <div>QR code Scanner</div>
             </a>
