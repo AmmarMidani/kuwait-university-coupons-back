@@ -41,6 +41,7 @@ class AdminRoleController extends Controller
                     'show_url' => route('role.show', $value->id),
                     'id' => $value->id,
                     'name' => $value->name,
+                    'description' => $value->description ?? '',
                     'user_count' => $value->users_count,
                     'editable' => in_array($value->name, $this->roles_to_block) ? false : true,
                     'created_at' => $value->created_at->diffForHumans(),
@@ -128,7 +129,7 @@ class AdminRoleController extends Controller
             $role->description = trim($request->description);
             $role->save();
             $role->syncPermissions($request->permissions);
-            return redirect(route('role.index'))->with('success', trans('pages.public.added_successfully'));
+            return redirect(route('role.index'))->with('success', trans('pages.public.updated_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
             return redirect()->back()->with('error', $bug);
@@ -149,7 +150,7 @@ class AdminRoleController extends Controller
                 $value->removeRole($role->name);
             }
             $role->delete();
-            return redirect(route('role.index'))->with('success', trans('pages.public.added_successfully'));
+            return redirect(route('role.index'))->with('success', trans('pages.public.deleted_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
             return redirect()->back()->with('error', $bug);

@@ -223,8 +223,16 @@ class RolesTableSeeder extends Seeder
             ]);
         }
 
-        $role1 = Role::create(['name' => 'admin']);
-        $role2 = Role::create(['name' => 'merchant']);
+        $role1 = Role::create([
+            'name' => 'admin',
+            'description' => 'Full access to all system features, including managing users, meals, surveys, and reports.'
+        ]);
+
+        $role2 = Role::create([
+            'name' => 'merchant',
+            'description' => 'Limited access to meal-related features only for scanning QR codes'
+        ]);
+
         $role1->givePermissionTo(Permission::where('group_name', '!=', 'qr_code_scanner')->get());
         $role2->givePermissionTo(Permission::where('group_name', 'qr_code_scanner')->get());
     }

@@ -57,7 +57,8 @@
                     {{ __('website.are_you_sure_you_want_to_delete_this_item') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{ __('website.close') }}</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{
+                        __('website.close') }}</button>
                     <button type="submit" class="btn btn-danger">{{ __('website.delete') }}</button>
                 </div>
             </form>
@@ -115,6 +116,12 @@
                 },
             },
             {
+                title: "{{ __('website.description') }}",
+                render: function (data, type, row) {
+                    return `${row.description}`;
+                },
+            },
+            {
                 title: "{{ __('website.assigned_to') }}",
                 render: function (data, type, row) {
                     return `${row.user_count}`;
@@ -134,16 +141,14 @@
                 title: "{{ __('website.actions') }}",
                 class: "text-end",
                 render: function (data, type, row) {
+                    let actions = `<a href="${row.show_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-eye-line"></i></a>`;
                     if (row.editable) {
-                        return `
+                        actions +=`
                             <a href="${row.edit_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-edit-box-line"></i></a>
-                            <a href="${row.show_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-eye-line"></i></a>
                             <button class="btn btn-sm btn-text-danger rounded-pill btn-icon item-edit cm-delete-row" data-id="${row.id}"><i class="ri-delete-bin-line"></i></button>
                         `;
-                    } else {
-                        return '';
                     }
-
+                    return actions;
                 }
             }
         ]
