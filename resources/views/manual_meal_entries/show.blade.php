@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pagename')
-Bulk Meals Manual Entry
+{{ __('website.bulk_meals_manual_entry') }}
 @endsection
 
 @section('css_plugin')
@@ -14,8 +14,8 @@ Bulk Meals Manual Entry
 <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
     <div class="d-flex flex-column justify-content-center">
-        <h4 class="mb-1">Bulk Meals Manual Entry</h4>
-        <p class="mb-0">Add a meal entry if the internet connection is down</p>
+        <h4 class="mb-1">{{ __('website.bulk_meals_manual_entry') }}</h4>
+        <p class="mb-0">{{ __('website.add_a_meal_entry_if_the_internet_connection_is_down') }}</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-4">
         <!-- action buttons -->
@@ -26,8 +26,8 @@ Bulk Meals Manual Entry
     <div class="col-6">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Add single row</h5>
-                <p class="text-muted">Add entry for single student</p>
+                <h5 class="card-tile mb-0">{{ __('website.add_single_row') }}</h5>
+                <p class="text-muted">{{ __('website.add_entry_for_single_student') }}</p>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -37,7 +37,7 @@ Bulk Meals Manual Entry
                             ->select('user_id_single', $users, null)
                             ->class('form-select select2')
                             }}
-                            <label>Merchant</label>
+                            <label>{{ __('website.merchant') }}</label>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
@@ -46,14 +46,14 @@ Bulk Meals Manual Entry
                             ->select('meal_id_single', $meals, null)
                             ->class('form-select select2')
                             }}
-                            <label>Meal</label>
+                            <label>{{ __('website.meal') }}</label>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="form-floating form-floating-outline">
                             <input class="datepicker form-control" name="effective_date_single"
                                 id="effective_date_single" />
-                            <label for="effective_date_single">Date</label>
+                            <label for="effective_date_single">{{ __('website.date') }}</label>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
@@ -62,13 +62,13 @@ Bulk Meals Manual Entry
                             ->select('student_id_single', $students, null)
                             ->class('form-select select2')
                             }}
-                            <label>Student</label>
+                            <label>{{ __('website.student') }}</label>
                         </div>
                     </div>
                     <div class="col-12">
                         <button id="add-single-entry-btn" type="button"
                             class="btn btn-sm btn-outline-info waves-effect">
-                            Check and add to list
+                            {{ __('website.check_and_add_to_list') }}
                         </button>
                     </div>
                 </div>
@@ -78,8 +78,8 @@ Bulk Meals Manual Entry
     <div class="col-6">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="card-tile mb-0">Bulk add</h5>
-                <p class="text-muted">Add entry for multiple students</p>
+                <h5 class="card-tile mb-0">{{ __('website.bulk_add') }}</h5>
+                <p class="text-muted">{{ __('website.add_entry_for_multiple_students') }}</p>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -89,7 +89,7 @@ Bulk Meals Manual Entry
                             ->select('user_id_bulk', $users, null)
                             ->class('form-select select2')
                             }}
-                            <label>Merchant</label>
+                            <label>{{ __('website.merchant') }}</label>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
@@ -98,29 +98,29 @@ Bulk Meals Manual Entry
                             ->select('meal_id_bulk', $meals, null)
                             ->class('form-select select2')
                             }}
-                            <label>Meal</label>
+                            <label>{{ __('website.meal') }}</label>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="form-floating form-floating-outline">
                             <input class="datepicker form-control" name="effective_date_bulk"
                                 id="effective_date_bulk" />
-                            <label for="effective_date_bulk">Date</label>
+                            <label for="effective_date_bulk">{{ __('website.date') }}</label>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="form-floating form-floating-outline">
                             <textarea type="text" name="student_numbers" class="form-control h-px-100"
-                                placeholder="Student Numbers" aria-describedby="student_numbers_help"></textarea>
-                            <label for="student_numbers">Student Numbers</label>
+                                placeholder="{{ __('website.student_numbers') }}" aria-describedby="student_numbers_help"></textarea>
+                            <label for="student_numbers">{{ __('website.student_numbers') }}</label>
                             <div id="student_numbers_help" class="form-text">
-                                Student numbers (only single number for each row)
+                                {{ __('website.student_numbers_help') }}
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
                         <button id="add-bulk-entry-btn" type="button" class="btn btn-sm btn-outline-info waves-effect">
-                            Check and add to list
+                            {{ __('website.check_and_add_to_list') }}
                         </button>
                     </div>
                 </div>
@@ -135,12 +135,12 @@ Bulk Meals Manual Entry
             <div
                 class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-0">
                 <div class="d-flex flex-column justify-content-center">
-                    <h5 class="card-tile mb-0">Waiting list inputs</h5>
-                    <p class="text-muted">Data will stored when you click on save</p>
+                    <h5 class="card-tile mb-0">{{ __('website.waiting_list_inputs') }}</h5>
+                    <p class="text-muted">{{ __('website.data_will_stored_when_you_click_on_save') }}</p>
                 </div>
                 <div class="d-flex align-content-center flex-wrap gap-4">
                     <button id="save-verified-btn" type="button" class="btn btn-sm btn-outline-success waves-effect">
-                        Save
+                        {{ __('website.save') }}
                     </button>
                 </div>
             </div>
@@ -148,12 +148,12 @@ Bulk Meals Manual Entry
                 <table class="table table-sm table-hover table-striped table-borderless" id="meal-entries-table">
                     <thead>
                         <tr>
-                            <th>Student Number</th>
-                            <th>Student Name</th>
-                            <th>Meal</th>
-                            <th>Merchant</th>
-                            <th>Date</th>
-                            <th>Action</th>
+                            <th>{{ __('website.student_number') }}</th>
+                            <th>{{ __('website.student_name') }}</th>
+                            <th>{{ __('website.meal') }}</th>
+                            <th>{{ __('website.merchant') }}</th>
+                            <th>{{ __('website.date') }}</th>
+                            <th>{{ __('website.action') }}</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -177,7 +177,7 @@ Bulk Meals Manual Entry
     const insertedHashes = new Set();
 
     function handle_error(xhr) {
-        let message = 'Something went wrong. Please try again.';
+        let message = '{{ __("website.something_went_wrong_please_try_again") }}';
 
         if (xhr.responseJSON?.message) {
             message = xhr.responseJSON.message;
@@ -186,7 +186,7 @@ Bulk Meals Manual Entry
             message = Object.values(errors).flat().join('<br>');
         }
         Swal.fire({
-            title: 'Error!',
+            title: '{{ __("website.error") }}!',
             text: message,
             icon: 'error',
             customClass: {
@@ -299,8 +299,8 @@ Bulk Meals Manual Entry
         const rows = $('#meal-entries-table tbody tr');
         if (rows.length === 0) {
             Swal.fire({
-                title: 'No entries',
-                text: 'Please add some verified entries before saving',
+                title: '{{ __("website.no_entries") }}',
+                text: '{{ __("website.please_add_some_verified_entries_before_saving") }}',
                 icon: 'warning',
                 customClass: {
                     confirmButton: 'btn btn-primary waves-effect waves-light'
@@ -330,8 +330,8 @@ Bulk Meals Manual Entry
             },
             success: function (response) {
                 Swal.fire({
-                    title: 'Saved!',
-                    text: response.message || 'Data has been saved successfully.',
+                    title: '{{ __("website.saved") }}',
+                    text: response.message || '{{ __("website.data_has_been_saved_successfully") }}',
                     icon: 'success',
                     customClass: {
                         confirmButton: 'btn btn-primary waves-effect waves-light'
