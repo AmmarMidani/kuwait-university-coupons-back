@@ -20,88 +20,116 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+        @can('dashboard')
         <li class="menu-item {{ menuActive('home') }}">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-home-smile-line"></i>
                 <div>{{ __('website.dashboard') }}</div>
             </a>
         </li>
+        @endcan
+        @can('user_browse')
         <li class="menu-item {{ menuActive('user.*') }}">
             <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-group-line"></i>
                 <div>{{ __('website.users_management') }}</div>
             </a>
         </li>
+        @endcan
+        @can('role_browse')
         <li class="menu-item {{ menuActive('role.*') }}">
             <a href="{{ route('role.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-lock-2-line"></i>
                 <div>{{ __('website.roles_permissions') }}</div>
             </a>
         </li>
+        @endcan
+        @can('student_browse')
         <li class="menu-item {{ menuActive('student.*') }}">
             <a href="{{ route('student.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-graduation-cap-line"></i>
                 <div>{{ __('website.student_management') }}</div>
             </a>
         </li>
+        @endcan
+        @can('meal_browse')
         <li class="menu-item {{ menuActive('meal.*') }}">
             <a href="{{ route('meal.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-restaurant-2-line"></i>
                 <div>{{ __('website.meals_management') }}</div>
             </a>
         </li>
+        @endcan
+        @can('nationality_browse')
         <li class="menu-item {{ menuActive('nationality.*') }}">
             <a href="{{ route('nationality.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-global-line"></i>
                 <div>{{ __('website.nationality_management') }}</div>
             </a>
         </li>
+        @endcan
+        @can('question_browse')
         <li class="menu-item {{ menuActive('question.*') }}">
             <a href="{{ route('question.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-question-mark"></i>
                 <div>{{ __('website.questions_management') }}</div>
             </a>
         </li>
+        @endcan
+        @canany(['report_transaction', 'report_survey', 'report_meal'])
         <li class="menu-item {{ menuActive('report.*', 'open') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ri-bar-chart-2-line"></i>
                 <div>{{ __('website.reports') }}</div>
             </a>
             <ul class="menu-sub">
+                @can('report_transaction')
                 <li class="menu-item {{ menuActive('report.transaction') }}">
                     <a href="{{ route('report.transaction') }}" class="menu-link">
                         <div>{{ __('website.transactions') }}</div>
                     </a>
                 </li>
+                @endcan
+                @can('report_survey')
                 <li class="menu-item {{ menuActive('report.survey') }}">
                     <a href="{{ route('report.survey') }}" class="menu-link">
                         <div>{{ __('website.survey') }}</div>
                     </a>
                 </li>
+                @endcan
+                @can('report_meal')
                 <li class="menu-item {{ menuActive('report.meal') }}">
                     <a href="{{ route('report.meal') }}" class="menu-link">
                         <div>{{ __('website.meals') }}</div>
                     </a>
                 </li>
+                @endcan
             </ul>
         </li>
+        @endcanany
+        @can('manual_meal_entry_browse')
         <li class="menu-item {{ menuActive('manual-meal-entry.index') }}">
             <a href="{{ route('manual-meal-entry.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-insert-row-top"></i>
                 <div>{{ __('website.manual_meal_entries') }}</div>
             </a>
         </li>
+        @endcan
+        @can('meal_price_browse')
         <li class="menu-item {{ menuActive('meal-price.*') }}">
             <a href="{{ route('meal-price.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-safe-2-line"></i>
                 <div>{{ __('website.meal_pricing') }}</div>
             </a>
         </li>
+        @endcan
+        @can('qr_code_scanner_browse')
         <li class="menu-item {{ menuActive('qr-code-scanner.index') }}">
             <a href="{{ route('qr-code-scanner.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-qr-scan-2-line"></i>
                 <div>{{ __('website.qr_code_scanner') }}</div>
             </a>
         </li>
+        @endcan
     </ul>
 </aside>

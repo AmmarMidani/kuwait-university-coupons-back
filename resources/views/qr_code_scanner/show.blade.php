@@ -53,9 +53,17 @@
             </div>
         </div>
     </div>
+    @can('qr_code_scanner_add')
     <div class="col-6" id="student-details">
         {!! $init_card !!}
     </div>
+    @else
+    <div class="col-6">
+        <div class="text-danger text-center">
+            {{ __('website.need_permission') }}
+        </div>
+    </div>
+    @endcan
 </div>
 @endsection
 

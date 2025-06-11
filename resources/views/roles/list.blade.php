@@ -30,10 +30,12 @@
                 <h6 class="card-title"></h6>
             </div>
             <div class="col-lg-6 text-end">
+                @can('role_add')
                 <a href="{{ route('role.create') }}" class="btn btn-inverse-primary btn-sm btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus"></i>
                     {{ __('website.add_new_item') }}
                 </a>
+                @endcan
             </div>
         </div>
 
@@ -141,11 +143,19 @@
                 title: "{{ __('website.actions') }}",
                 class: "text-end",
                 render: function (data, type, row) {
-                    let actions = `<a href="${row.show_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-eye-line"></i></a>`;
+                    let actions = `
+                        @can('role_read')
+                        <a href="${row.show_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-eye-line"></i></a>
+                        @endcan
+                    `;
                     if (row.editable) {
                         actions +=`
+                            @can('role_edit')
                             <a href="${row.edit_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-edit-box-line"></i></a>
+                            @endcan
+                            @can('role_delete')
                             <button class="btn btn-sm btn-text-danger rounded-pill btn-icon item-edit cm-delete-row" data-id="${row.id}"><i class="ri-delete-bin-line"></i></button>
+                            @endcan
                         `;
                     }
                     return actions;

@@ -20,7 +20,7 @@
     <!-- /Logo -->
 
     <div class="card-body mt-1">
-        <h4 class="mb-1">{{ __('website.welcome_to') }} {{ config('app.name', 'Laravel') }}! {{ __('website.welcome_emoji') }}</h4>
+        <h4 class="mb-1">{{ __('website.welcome_to') }} {{ config('app.name', 'Laravel') }}! 👋</h4>
         <p class="mb-5">{{ __('website.please_sign_in_to_your_account') }}</p>
 
         <form id="formAuthentication" class="mb-5" action="{{ route('login') }}" method="POST">

@@ -25,6 +25,7 @@
                 </li>
             </ul>
         </div>
+        @can('qr_code_scanner_add')
         <div class="d-flex justify-content-center">
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-success me-4 waves-effect waves-light"
@@ -33,5 +34,10 @@
                     id="btn-reject-meal">Reject</button>
             </div>
         </div>
+        @else
+        <div class="text-danger text-center">
+            {{ __('website.need_permission') }}
+        </div>
+        @endcan
     </div>
 </div>

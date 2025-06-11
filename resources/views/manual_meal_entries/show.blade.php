@@ -111,7 +111,8 @@
                     <div class="col-12 mb-4">
                         <div class="form-floating form-floating-outline">
                             <textarea type="text" name="student_numbers" class="form-control h-px-100"
-                                placeholder="{{ __('website.student_numbers') }}" aria-describedby="student_numbers_help"></textarea>
+                                placeholder="{{ __('website.student_numbers') }}"
+                                aria-describedby="student_numbers_help"></textarea>
                             <label for="student_numbers">{{ __('website.student_numbers') }}</label>
                             <div id="student_numbers_help" class="form-text">
                                 {{ __('website.student_numbers_help') }}
@@ -129,6 +130,7 @@
     </div>
 </div>
 
+@can('manual_meal_entry_add')
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -163,6 +165,11 @@
         </div>
     </div>
 </div>
+@else
+<div class="text-danger text-center">
+    {{ __('website.need_permission') }}
+</div>
+@endcan
 
 @endsection
 

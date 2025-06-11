@@ -30,10 +30,12 @@
                 <h6 class="card-title"></h6>
             </div>
             <div class="col-lg-6 text-end">
+                @can('nationality_add')
                 <a href="{{ route('nationality.create') }}" class="btn btn-inverse-primary btn-sm btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus"></i>
                     {{ __('website.add_new_item') }}
                 </a>
+                @endcan
             </div>
         </div>
 
@@ -108,8 +110,12 @@
                 class: "text-end",
                 render: function (data, type, row) {
                     return `
+                        @can('nationality_edit')
                         <a href="${row.edit_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-edit-box-line"></i></a>
+                        @endcan
+                        @can('nationality_read')
                         <a href="${row.show_url}" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ri-eye-line"></i></a>
+                        @endcan
                     `;
                 }
             }
