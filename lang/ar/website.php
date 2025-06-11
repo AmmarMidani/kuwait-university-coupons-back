@@ -3,11 +3,11 @@
 return [
     'dashboard' => 'لوحة التحكم',
     'dashboard_title_details' => 'راقب المقاييس الرئيسية وابق مطلعاً مع الرؤى الفورية حول وجبات الطلاب والاستطلاعات ومشاركة التجار.',
-    
+
     // Application Branding
     'food_hub' => 'مركز الطعام',
     'kuwait_university' => 'جامعة الكويت',
-    
+
     // Navigation Menu Items
     'users_management' => 'إدارة المستخدمين',
     'roles_permissions' => 'الأدوار والصلاحيات',
@@ -22,7 +22,7 @@ return [
     'manual_meal_entries' => 'الإدخالات اليدوية للوجبات',
     'meal_pricing' => 'تسعير الوجبات',
     'qr_code_scanner' => 'ماسح رمز QR',
-    
+
     // User Profile & Authentication
     'my_profile' => 'ملفي الشخصي',
     'settings' => 'الإعدادات',
@@ -30,18 +30,18 @@ return [
     'language' => 'اللغة',
     'english' => 'الإنجليزية',
     'arabic' => 'العربية',
-    
+
     // Footer
     'copyright' => 'حقوق النشر',
     'all_rights_reserved' => 'جميع الحقوق محفوظة',
     'version' => 'الإصدار',
-    
+
     // Alert Messages
     'success' => 'نجح',
     'error' => 'خطأ',
     'warning' => 'تحذير',
     'info' => 'معلومات',
-    
+
     // Meal Prices Language Keys
     'meal_prices' => 'أسعار الوجبات',
     'create_new_meal_price' => 'إنشاء سعر وجبة جديد',
@@ -60,7 +60,7 @@ return [
     'created_at' => 'تم الإنشاء في',
     'id' => 'المعرف',
     'search' => 'بحث',
-    
+
     // Meals Language Keys
     'view_and_manage_meals' => 'عرض وإدارة الوجبات',
     'create_new_meal' => 'إنشاء وجبة جديدة',
@@ -76,14 +76,14 @@ return [
     'status' => 'الحالة',
     'active' => 'نشط',
     'inactive' => 'غير نشط',
-    
+
     // Nationalities Language Keys
     'nationalities' => 'الجنسيات',
     'view_and_manage_nationalities' => 'عرض وإدارة الجنسيات',
     'create_new_nationality' => 'إنشاء جنسية جديدة',
     'update_nationality_details' => 'تحديث تفاصيل الجنسية',
     'nationality_information' => 'معلومات الجنسية',
-    
+
     // Reports Language Keys
     'total_meals_served' => 'إجمالي الوجبات المقدمة',
     'total_meals_served_desc' => 'العدد الإجمالي للوجبات الموزعة خلال الفترة المحددة.',
@@ -109,7 +109,7 @@ return [
     'survey_participation_overview_desc' => 'يُظهر عدد الاستطلاعات المجابة وغير المجابة حسب الشهر.',
     'student_satisfaction_by_question_over_time' => 'رضا الطلاب حسب السؤال عبر الزمن',
     'student_satisfaction_by_question_over_time_desc' => 'يتتبع متوسط تقييمات الطلاب لكل سؤال عبر الزمن.',
-    
+
     // Questions Language Keys
     'questions' => 'الأسئلة',
     'view_and_manage_questions' => 'عرض وإدارة الأسئلة',
@@ -119,7 +119,7 @@ return [
     'question_text' => 'نص السؤال',
     'enter_question_text' => 'أدخل نص السؤال',
     'question' => 'السؤال',
-    
+
     // Report Pages Language Keys
     'meals_report' => 'تقرير الوجبات',
     'analyze_meal_consumption_data' => 'تحليل بيانات استهلاك الوجبات',
@@ -140,7 +140,7 @@ return [
     'do_the_survey' => 'قم بالاستطلاع',
     'loading' => 'جاري التحميل...',
     'failed_to_load_data' => 'فشل تحميل البيانات.',
-    
+
     // Roles & Permissions Language Keys
     'view_and_manage_roles_permissions' => 'عرض وإدارة الأدوار والصلاحيات',
     'create_new_roles_permissions' => 'إنشاء أدوار وصلاحيات جديدة',
@@ -155,7 +155,7 @@ return [
     'are_you_sure_you_want_to_delete_this_item' => 'هل أنت متأكد من أنك تريد حذف هذا العنصر؟',
     'close' => 'إغلاق',
     'delete' => 'حذف',
-    
+
     // Students Language Keys
     'view_and_manage_students' => 'عرض وإدارة الطلاب',
     'create_new_student' => 'إنشاء طالب جديد',
@@ -173,7 +173,7 @@ return [
     'date_from' => 'التاريخ من',
     'date_to' => 'التاريخ إلى',
     'registration_date' => 'تاريخ التسجيل',
-    
+
     // Users Language Keys
     'view_and_manage_users' => 'عرض وإدارة المستخدمين',
     'create_new_user' => 'إنشاء مستخدم جديد',
@@ -184,7 +184,7 @@ return [
     'role' => 'الدور',
     'roles' => 'الأدوار',
     'select_roles' => 'اختر الأدوار',
-    
+
     // Dashboard Language Keys
     'merchants' => 'التجار',
     'total_in_system' => 'الإجمالي في النظام',
@@ -195,7 +195,7 @@ return [
     'daily_breakdown_of_meals_provided' => 'التفصيل اليومي للوجبات المقدمة',
     'student_satisfaction_index' => 'مؤشر رضا الطلاب',
     'weekly_survey_results' => 'نتائج الاستطلاع الأسبوعي',
-    
+
     // Welcome Page Language Keys
     'kuwait_university_food_hub' => 'مركز طعام جامعة الكويت',
     'login' => 'تسجيل الدخول',
@@ -207,14 +207,14 @@ return [
     'about_us' => 'من نحن',
     'faqs' => 'الأسئلة الشائعة',
     'support' => 'الدعم',
-    
+
     // QR Code Scanner Language Keys
     'meal_distribution_and_qr_code_scanning' => 'توزيع الوجبات ومسح رمز QR',
     'qr_code_reader' => 'قارئ رمز QR',
     'click_the_icon_to_start_scan' => 'انقر على الأيقونة لبدء المسح',
     'something_went_wrong_try_again_later' => 'حدث خطأ ما. حاول مرة أخرى لاحقاً.',
     'failed_to_record_meal' => 'فشل في تسجيل الوجبة.',
-    
+
     // Bulk Meals Manual Entry Language Keys
     'bulk_meals_manual_entry' => 'الإدخال اليدوي للوجبات',
     'add_a_meal_entry_if_the_internet_connection_is_down' => 'أضف إدخال وجبة إذا كان الاتصال بالإنترنت معطل',
@@ -234,10 +234,10 @@ return [
     'please_add_some_verified_entries_before_saving' => 'يرجى إضافة بعض الإدخالات المؤكدة قبل الحفظ',
     'saved' => 'تم الحفظ!',
     'data_has_been_saved_successfully' => 'تم حفظ البيانات بنجاح.',
-    
+    'need_permission' => 'ليس لدك الصلاحيات الكافية لعملية الإضافة. الرجاء مراجعة الإدارة',
+
     // Authentication Language Keys
     'welcome_to' => 'أهلاً بك في',
-    'welcome_emoji' => '👋',
     'please_sign_in_to_your_account' => 'يرجى تسجيل الدخول إلى حسابك',
     'enter_your_email' => 'أدخل بريدك الإلكتروني',
     'email_address' => 'عنوان البريد الإلكتروني',
@@ -249,7 +249,7 @@ return [
     'before_proceeding_check_email' => 'قبل المتابعة، يرجى التحقق من بريدك الإلكتروني للحصول على رابط التأكيد.',
     'if_you_did_not_receive_email' => 'إذا لم تستلم البريد الإلكتروني',
     'click_here_to_request_another' => 'انقر هنا لطلب آخر',
-    
+
     // Password Reset Language Keys
     'reset_password' => 'إعادة تعيين كلمة المرور',
     'send_password_reset_link' => 'إرسال رابط إعادة تعيين كلمة المرور',

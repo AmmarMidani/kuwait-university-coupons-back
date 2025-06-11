@@ -3,11 +3,11 @@
 return [
     'dashboard' => 'Dashboard',
     'dashboard_title_details' => 'Monitor key metrics and stay informed with real-time insights into student meals, surveys, and merchant engagement.',
-    
+
     // Application Branding
     'food_hub' => 'Food Hub',
     'kuwait_university' => 'Kuwait University',
-    
+
     // Navigation Menu Items
     'users_management' => 'Users Management',
     'roles_permissions' => 'Roles & Permissions',
@@ -22,7 +22,7 @@ return [
     'manual_meal_entries' => 'Manual Meal Entries',
     'meal_pricing' => 'Meal pricing',
     'qr_code_scanner' => 'QR code Scanner',
-    
+
     // User Profile & Authentication
     'my_profile' => 'My Profile',
     'settings' => 'Settings',
@@ -30,18 +30,18 @@ return [
     'language' => 'Language',
     'english' => 'English',
     'arabic' => 'Arabic',
-    
+
     // Footer
     'copyright' => 'Copyright',
     'all_rights_reserved' => 'all rights reserved',
     'version' => 'Ver.',
-    
+
     // Alert Messages
     'success' => 'Success',
     'error' => 'Error',
     'warning' => 'Warning',
     'info' => 'Information',
-    
+
     // Meal Prices Language Keys
     'meal_prices' => 'Meal Prices',
     'create_new_meal_price' => 'Create new meal price',
@@ -60,7 +60,7 @@ return [
     'created_at' => 'Created at',
     'id' => 'ID',
     'search' => 'Search',
-    
+
     // Meals Language Keys
     'view_and_manage_meals' => 'View and manage meals',
     'create_new_meal' => 'Create new meal',
@@ -76,14 +76,14 @@ return [
     'status' => 'Status',
     'active' => 'Active',
     'inactive' => 'Inactive',
-    
+
     // Nationalities Language Keys
     'nationalities' => 'Nationalities',
     'view_and_manage_nationalities' => 'View and manage nationalities',
     'create_new_nationality' => 'Create new nationality',
     'update_nationality_details' => 'Update nationality details',
     'nationality_information' => 'Nationality information',
-    
+
     // Reports Language Keys
     'total_meals_served' => 'Total Meals Served',
     'total_meals_served_desc' => 'The total number of meals distributed during the selected period.',
@@ -109,7 +109,7 @@ return [
     'survey_participation_overview_desc' => 'Shows the number of answered and unanswered surveys by month.',
     'student_satisfaction_by_question_over_time' => 'Student Satisfaction by Question Over Time',
     'student_satisfaction_by_question_over_time_desc' => 'Tracks average student ratings per question over time.',
-    
+
     // Questions Language Keys
     'questions' => 'Questions',
     'view_and_manage_questions' => 'View and manage questions',
@@ -119,7 +119,7 @@ return [
     'question_text' => 'Question Text',
     'enter_question_text' => 'Enter Question Text',
     'question' => 'Question',
-    
+
     // Report Pages Language Keys
     'meals_report' => 'Meals Report',
     'analyze_meal_consumption_data' => 'Analyze meal consumption data',
@@ -140,7 +140,7 @@ return [
     'do_the_survey' => 'Do the Survey',
     'loading' => 'Loading...',
     'failed_to_load_data' => 'Failed to load data.',
-    
+
     // Roles & Permissions Language Keys
     'view_and_manage_roles_permissions' => 'View and manage roles & permissions',
     'create_new_roles_permissions' => 'Create new Roles & Permissions',
@@ -155,7 +155,7 @@ return [
     'are_you_sure_you_want_to_delete_this_item' => 'Are you sure you want to delete this item?',
     'close' => 'Close',
     'delete' => 'Delete',
-    
+
     // Students Language Keys
     'view_and_manage_students' => 'View and manage students',
     'create_new_student' => 'Create new student',
@@ -173,7 +173,7 @@ return [
     'date_from' => 'Date From',
     'date_to' => 'Date To',
     'registration_date' => 'Registration date',
-    
+
     // Users Language Keys
     'view_and_manage_users' => 'View and manage users',
     'create_new_user' => 'Create new user',
@@ -184,7 +184,7 @@ return [
     'role' => 'Role',
     'roles' => 'Roles',
     'select_roles' => 'Select Roles',
-    
+
     // Dashboard Language Keys
     'merchants' => 'Merchants',
     'total_in_system' => 'Total in system',
@@ -195,7 +195,7 @@ return [
     'daily_breakdown_of_meals_provided' => 'Daily breakdown of meals provided',
     'student_satisfaction_index' => 'Student Satisfaction Index',
     'weekly_survey_results' => 'Weekly Survey Results',
-    
+
     // Welcome Page Language Keys
     'kuwait_university_food_hub' => 'Kuwait University Food Hub',
     'login' => 'Login',
@@ -207,14 +207,14 @@ return [
     'about_us' => 'About us',
     'faqs' => 'FAQ\'s',
     'support' => 'Support',
-    
+
     // QR Code Scanner Language Keys
     'meal_distribution_and_qr_code_scanning' => 'Meal distribution and QR Code scanning',
     'qr_code_reader' => 'QR Code Reader',
     'click_the_icon_to_start_scan' => 'Click the icon to start scan',
     'something_went_wrong_try_again_later' => 'Something went wrong. Try again later.',
     'failed_to_record_meal' => 'Failed to record meal.',
-    
+
     // Bulk Meals Manual Entry Language Keys
     'bulk_meals_manual_entry' => 'Bulk Meals Manual Entry',
     'add_a_meal_entry_if_the_internet_connection_is_down' => 'Add a meal entry if the internet connection is down',
@@ -234,10 +234,10 @@ return [
     'please_add_some_verified_entries_before_saving' => 'Please add some verified entries before saving',
     'saved' => 'Saved!',
     'data_has_been_saved_successfully' => 'Data has been saved successfully.',
-    
+    'need_permission' => 'You do not have permission to add data. Please contact your administrator.',
+
     // Authentication Language Keys
     'welcome_to' => 'Welcome to',
-    'welcome_emoji' => '👋',
     'please_sign_in_to_your_account' => 'Please sign-in to your account',
     'enter_your_email' => 'Enter your email',
     'email_address' => 'Email Address',
@@ -249,7 +249,7 @@ return [
     'before_proceeding_check_email' => 'Before proceeding, please check your email for a verification link.',
     'if_you_did_not_receive_email' => 'If you did not receive the email',
     'click_here_to_request_another' => 'click here to request another',
-    
+
     // Password Reset Language Keys
     'reset_password' => 'Reset Password',
     'send_password_reset_link' => 'Send Password Reset Link',
