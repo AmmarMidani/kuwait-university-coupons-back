@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminRoleController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ManualMealEntryController;
 use App\Http\Controllers\QrCodeScannerController;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+
+Route::get('/lang/{locale}', [LanguageController::class, 'index'])->name('lang.switch');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
