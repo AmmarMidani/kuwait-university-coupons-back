@@ -18,33 +18,32 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-
 Route::get('/lang/{locale}', [LanguageController::class, 'index'])->name('lang.switch');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->middleware('permission:dashboard')->name('home');
 
-    Route::resource('user', UserController::class)->name('*', 'user');
-    Route::resource('student', StudentController::class)->name('*', 'student');
-    Route::resource('meal', MealController::class)->name('*', 'meal');
-    Route::resource('meal-price', MealPriceController::class)->name('*', 'meal_price');
-    Route::resource('nationality', NationalityController::class)->name('*', 'nationality');
-    Route::resource('question', QuestionController::class)->name('*', 'question');
+    Route::resource('user', UserController::class)->middleware('permission:user_browse')->name('*', 'user');
+    Route::resource('student', StudentController::class)->middleware('permission:student_browse')->name('*', 'student');
+    Route::resource('meal', MealController::class)->middleware('permission:meal_browse')->name('*', 'meal');
+    Route::resource('meal-price', MealPriceController::class)->middleware('permission:meal_price_browse')->name('*', 'meal_price');
+    Route::resource('nationality', NationalityController::class)->middleware('permission:nationality_browse')->name('*', 'nationality');
+    Route::resource('question', QuestionController::class)->middleware('permission:question_browse')->name('*', 'question');
 
-    Route::get('manual-meal-entry', [ManualMealEntryController::class, 'index'])->name('manual-meal-entry.index');
-    Route::post('manual-meal-entry', [ManualMealEntryController::class, 'store'])->name('manual-meal-entry.store');
-    Route::post('manual-meal-entry/verify', [ManualMealEntryController::class, 'verify'])->name('manual-meal-entry.verify');
+    Route::get('manual-meal-entry', [ManualMealEntryController::class, 'index'])->middleware('permission:manual_meal_entry_browse')->name('manual-meal-entry.index');
+    Route::post('manual-meal-entry', [ManualMealEntryController::class, 'store'])->middleware('permission:manual_meal_entry_add')->name('manual-meal-entry.store');
+    Route::post('manual-meal-entry/verify', [ManualMealEntryController::class, 'verify'])->middleware('permission:manual_meal_entry_browse')->name('manual-meal-entry.verify');
 
-    Route::get('qr-code-scanner', [QrCodeScannerController::class, 'index'])->name('qr-code-scanner.index');
-    Route::post('qr-code-scanner', [QrCodeScannerController::class, 'store'])->name('qr-code-scanner.store');
-    Route::post('qr-code-scanner/verify', [QrCodeScannerController::class, 'verify'])->name('qr-code-scanner.verify');
+    Route::get('qr-code-scanner', [QrCodeScannerController::class, 'index'])->middleware('permission:qr_code_scanner_browse')->name('qr-code-scanner.index');
+    Route::post('qr-code-scanner', [QrCodeScannerController::class, 'store'])->middleware('permission:qr_code_scanner_add')->name('qr-code-scanner.store');
+    Route::post('qr-code-scanner/verify', [QrCodeScannerController::class, 'verify'])->middleware('permission:qr_code_scanner_browse')->name('qr-code-scanner.verify');
 
     // ROLES
-    Route::resource('role', AdminRoleController::class)->name('*', 'role');
+    Route::resource('role', AdminRoleController::class)->middleware('permission:role_browse')->name('*', 'role');
 
     Route::prefix('report')->controller(ReportController::class)->name('report.')->group(function () {
-        Route::get('transaction', 'transaction')->name('transaction');
-        Route::get('survey', 'survey')->name('survey');
-        Route::get('meal', 'meal')->name('meal');
+        Route::get('transaction', 'transaction')->middleware('permission:report_transaction')->name('transaction');
+        Route::get('survey', 'survey')->middleware('permission:report_survey')->name('survey');
+        Route::get('meal', 'meal')->middleware('permission:report_meal')->name('meal');
     });
 });
