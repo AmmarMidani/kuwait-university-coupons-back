@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class AdminRoleController extends Controller
 {
@@ -86,6 +87,7 @@ class AdminRoleController extends Controller
                 'name' => trim($request->name),
             ]);
             $role->syncPermissions($request->permissions);
+            app()[PermissionRegistrar::class]->forgetCachedPermissions();
             return redirect(route('role.index'))->with('success', trans('pages.public.added_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
@@ -129,6 +131,7 @@ class AdminRoleController extends Controller
             $role->description = trim($request->description);
             $role->save();
             $role->syncPermissions($request->permissions);
+            app()[PermissionRegistrar::class]->forgetCachedPermissions();
             return redirect(route('role.index'))->with('success', trans('pages.public.updated_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
@@ -150,6 +153,7 @@ class AdminRoleController extends Controller
                 $value->removeRole($role->name);
             }
             $role->delete();
+            app()[PermissionRegistrar::class]->forgetCachedPermissions();
             return redirect(route('role.index'))->with('success', trans('pages.public.deleted_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();

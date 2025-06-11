@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\PermissionRegistrar;
 
 class UserController extends Controller
 {
@@ -95,6 +96,7 @@ class UserController extends Controller
             if ($request->roles) {
                 $user->syncRoles($request->roles);
             }
+            app()[PermissionRegistrar::class]->forgetCachedPermissions();
             return redirect(route('user.index'))->with('success', trans('pages.public.added_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
@@ -137,6 +139,7 @@ class UserController extends Controller
             // assign new roles
             $user->syncRoles($request->roles);
             $user->update($request->all());
+            app()[PermissionRegistrar::class]->forgetCachedPermissions();
             return redirect(route('user.index'))->with('success', trans('pages.public.updated_successfully'));
         } catch (\Exception $e) {
             $bug = $e->getMessage();
