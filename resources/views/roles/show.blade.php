@@ -59,7 +59,9 @@
     <div class="col-md-4 mb-4">
         <div class="card h-100">
             <div class="card-body">
-                <h6 class="text-primary fw-bold mb-3 capitalize-text">{{ $group }}</h6>
+                <h6 class="text-primary fw-bold mb-3">
+                    {{ ucwords(str_replace('_', ' ', $group)) }}
+                </h6>
                 @foreach ($items as $permission)
                 <div class="form-check mb-2">
                     <input type="checkbox" {{ $selected_roles->contains($permission->name) ? 'checked' : '' }}

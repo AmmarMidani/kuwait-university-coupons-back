@@ -36,23 +36,26 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
-                                    value="{{ $role->name }}">
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="{{ __('website.enter_name') }}" value="{{ $role->name }}">
                                 <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" name="description" class="form-control"
-                                    placeholder="{{ __('website.enter_description') }}" value="{{ $role->description }}">
+                                    placeholder="{{ __('website.enter_description') }}"
+                                    value="{{ $role->description }}">
                                 <label for="description">{{ __('website.description') }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="row text-end">
                         <div class="col-sm-12 mb-3">
-                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">{{ __('website.select_all') }}</a> /
-                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">{{ __('website.select_none') }}</a>
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">{{
+                                __('website.select_all') }}</a> /
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">{{
+                                __('website.select_none') }}</a>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success submit">{{ __('website.save') }}</button>
@@ -69,7 +72,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center flex-wrap ">
                         <div>
-                            <h6 class="text-primary fw-bold mb-3 capitalize-text">{{ $group }}</h6>
+                            <h6 class="text-primary fw-bold mb-3">
+                                {{ ucwords(str_replace('_', ' ', $group)) }}
+                            </h6>
                         </div>
                         <div class="d-flex align-items-center flex-wrap text-nowrap">
                             <a href="javascript:void(0);" data-table="{{ $group }}"

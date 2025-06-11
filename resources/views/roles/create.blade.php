@@ -73,7 +73,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center flex-wrap ">
                         <div>
-                            <h6 class="text-primary fw-bold mb-3 capitalize-text">{{ $group }}</h6>
+                            <h6 class="text-primary fw-bold mb-3">
+                                {{ ucwords(str_replace('_', ' ', $group)) }}
+                            </h6>
                         </div>
                         <div class="d-flex align-items-center flex-wrap text-nowrap">
                             <a href="javascript:void(0);" data-table="{{ $group }}"
