@@ -234,4 +234,25 @@ return [
     'please_add_some_verified_entries_before_saving' => 'Please add some verified entries before saving',
     'saved' => 'Saved!',
     'data_has_been_saved_successfully' => 'Data has been saved successfully.',
+    
+    // Authentication Language Keys
+    'welcome_to' => 'Welcome to',
+    'welcome_emoji' => '👋',
+    'please_sign_in_to_your_account' => 'Please sign-in to your account',
+    'enter_your_email' => 'Enter your email',
+    'email_address' => 'Email Address',
+    'sign_in' => 'Sign in',
+    'register' => 'Register',
+    'confirm_password' => 'Confirm Password',
+    'verify_your_email_address' => 'Verify Your Email Address',
+    'fresh_verification_link_sent' => 'A fresh verification link has been sent to your email address.',
+    'before_proceeding_check_email' => 'Before proceeding, please check your email for a verification link.',
+    'if_you_did_not_receive_email' => 'If you did not receive the email',
+    'click_here_to_request_another' => 'click here to request another',
+    
+    // Password Reset Language Keys
+    'reset_password' => 'Reset Password',
+    'send_password_reset_link' => 'Send Password Reset Link',
+    'please_confirm_your_password_before_continuing' => 'Please confirm your password before continuing.',
+    'forgot_your_password' => 'Forgot Your Password?',
 ];

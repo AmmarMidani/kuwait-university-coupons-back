@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('pagename')
-Login
+{{ __('website.login') }}
 @endsection
 
 @section('css')
@@ -14,21 +14,21 @@ Login
     <div class="app-brand justify-content-center mt-5">
         <a href="{{route('welcome')}}" class="app-brand-link gap-2">
             <img src="{{ asset('assets/img/favicon/favicon.ico') }}?v={{ config('app.version') }}" alt="">
-            <span class="app-brand-text demo text-heading fw-semibold">Kuwait University</span>
+            <span class="app-brand-text demo text-heading fw-semibold">{{ __('website.kuwait_university') }}</span>
         </a>
     </div>
     <!-- /Logo -->
 
     <div class="card-body mt-1">
-        <h4 class="mb-1">Welcome to {{ config('app.name', 'Laravel') }}! 👋</h4>
-        <p class="mb-5">Please sign-in to your account</p>
+        <h4 class="mb-1">{{ __('website.welcome_to') }} {{ config('app.name', 'Laravel') }}! {{ __('website.welcome_emoji') }}</h4>
+        <p class="mb-5">{{ __('website.please_sign_in_to_your_account') }}</p>
 
         <form id="formAuthentication" class="mb-5" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-floating form-floating-outline mb-5">
                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                    autocomplete="email" required value="{{ old('email') }}" placeholder="Enter your email" autofocus />
-                <label for="email">Email</label>
+                    autocomplete="email" required value="{{ old('email') }}" placeholder="{{ __('website.enter_your_email') }}" autofocus />
+                <label for="email">{{ __('website.email') }}</label>
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -41,9 +41,9 @@ Login
                         <div class="form-floating form-floating-outline">
                             <input type="password" id="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password"
-                                placeholder="Password" autocomplete="current-password" required
+                                placeholder="{{ __('website.password') }}" autocomplete="current-password" required
                                 aria-describedby="password" />
-                            <label for="password">Password</label>
+                            <label for="password">{{ __('website.password') }}</label>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@ Login
                 </div>
             </div>
             <div class="mb-5">
-                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                <button class="btn btn-primary d-grid w-100" type="submit">{{ __('website.sign_in') }}</button>
             </div>
         </form>
     </div>
