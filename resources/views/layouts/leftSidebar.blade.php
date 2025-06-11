@@ -2,7 +2,7 @@
     <div class="app-brand demo">
         <a href="{{ route('home') }}" class="app-brand-link">
             <img src="{{ asset('assets/img/favicon/favicon.ico') }}?v={{ config('app.version') }}" alt="">
-            <span class="app-brand-text demo menu-text fw-semibold ms-2">Food Hub</span>
+            <span class="app-brand-text demo menu-text fw-semibold ms-2">{{ __('website.food_hub') }}</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -23,64 +23,64 @@
         <li class="menu-item {{ menuActive('home') }}">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-home-smile-line"></i>
-                <div>Dashboard</div>
+                <div>{{ __('website.dashboard') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('user.*') }}">
             <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-group-line"></i>
-                <div>Users Management</div>
+                <div>{{ __('website.users_management') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('role.*') }}">
             <a href="{{ route('role.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-lock-2-line"></i>
-                <div>Roles & Permissions</div>
+                <div>{{ __('website.roles_permissions') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('student.*') }}">
             <a href="{{ route('student.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-graduation-cap-line"></i>
-                <div>Student Management</div>
+                <div>{{ __('website.student_management') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('meal.*') }}">
             <a href="{{ route('meal.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-restaurant-2-line"></i>
-                <div>Meals Management</div>
+                <div>{{ __('website.meals_management') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('nationality.*') }}">
             <a href="{{ route('nationality.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-global-line"></i>
-                <div>Nationality Management</div>
+                <div>{{ __('website.nationality_management') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('question.*') }}">
             <a href="{{ route('question.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-question-mark"></i>
-                <div>Questions Management</div>
+                <div>{{ __('website.questions_management') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('report.*', 'open') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ri-bar-chart-2-line"></i>
-                <div>Reports</div>
+                <div>{{ __('website.reports') }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ menuActive('report.transaction') }}">
                     <a href="{{ route('report.transaction') }}" class="menu-link">
-                        <div>Transactions</div>
+                        <div>{{ __('website.transactions') }}</div>
                     </a>
                 </li>
                 <li class="menu-item {{ menuActive('report.survey') }}">
                     <a href="{{ route('report.survey') }}" class="menu-link">
-                        <div>Survey</div>
+                        <div>{{ __('website.survey') }}</div>
                     </a>
                 </li>
                 <li class="menu-item {{ menuActive('report.meal') }}">
                     <a href="{{ route('report.meal') }}" class="menu-link">
-                        <div>Meals</div>
+                        <div>{{ __('website.meals') }}</div>
                     </a>
                 </li>
             </ul>
@@ -88,19 +88,19 @@
         <li class="menu-item {{ menuActive('manual-meal-entry.index') }}">
             <a href="{{ route('manual-meal-entry.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-insert-row-top"></i>
-                <div>Manual Meal Entries</div>
+                <div>{{ __('website.manual_meal_entries') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('meal-price.*') }}">
             <a href="{{ route('meal-price.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-safe-2-line"></i>
-                <div>Meal pricing</div>
+                <div>{{ __('website.meal_pricing') }}</div>
             </a>
         </li>
         <li class="menu-item {{ menuActive('qr-code-scanner.index') }}">
             <a href="{{ route('qr-code-scanner.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ri-qr-scan-2-line"></i>
-                <div>QR code Scanner</div>
+                <div>{{ __('website.qr_code_scanner') }}</div>
             </a>
         </li>
     </ul>

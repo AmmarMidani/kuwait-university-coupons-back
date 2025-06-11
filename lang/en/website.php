@@ -4,6 +4,44 @@ return [
     'dashboard' => 'Dashboard',
     'dashboard_title_details' => 'Monitor key metrics and stay informed with real-time insights into student meals, surveys, and merchant engagement.',
     
+    // Application Branding
+    'food_hub' => 'Food Hub',
+    'kuwait_university' => 'Kuwait University',
+    
+    // Navigation Menu Items
+    'users_management' => 'Users Management',
+    'roles_permissions' => 'Roles & Permissions',
+    'student_management' => 'Student Management',
+    'meals_management' => 'Meals Management',
+    'nationality_management' => 'Nationality Management',
+    'questions_management' => 'Questions Management',
+    'reports' => 'Reports',
+    'transactions' => 'Transactions',
+    'survey' => 'Survey',
+    'meals' => 'Meals',
+    'manual_meal_entries' => 'Manual Meal Entries',
+    'meal_pricing' => 'Meal pricing',
+    'qr_code_scanner' => 'QR code Scanner',
+    
+    // User Profile & Authentication
+    'my_profile' => 'My Profile',
+    'settings' => 'Settings',
+    'logout' => 'Logout',
+    'language' => 'Language',
+    'english' => 'English',
+    'arabic' => 'Arabic',
+    
+    // Footer
+    'copyright' => 'Copyright',
+    'all_rights_reserved' => 'all rights reserved',
+    'version' => 'Ver.',
+    
+    // Alert Messages
+    'success' => 'Success',
+    'error' => 'Error',
+    'warning' => 'Warning',
+    'info' => 'Information',
+    
     // Meal Prices Language Keys
     'meal_prices' => 'Meal Prices',
     'create_new_meal_price' => 'Create new meal price',
@@ -24,7 +62,6 @@ return [
     'search' => 'Search',
     
     // Meals Language Keys
-    'meals' => 'Meals',
     'view_and_manage_meals' => 'View and manage meals',
     'create_new_meal' => 'Create new meal',
     'update_meal_details' => 'Update meal details',
@@ -105,12 +142,10 @@ return [
     'failed_to_load_data' => 'Failed to load data.',
     
     // Roles & Permissions Language Keys
-    'roles_permissions' => 'Roles & Permissions',
     'view_and_manage_roles_permissions' => 'View and manage roles & permissions',
     'create_new_roles_permissions' => 'Create new Roles & Permissions',
     'update_roles_permissions_details' => 'Update Roles & Permissions details',
     'roles_permissions_information' => 'Roles & Permissions information',
-    'enter_description' => 'Enter Description',
     'select_all' => 'Select All',
     'select_none' => 'Select None',
     'all' => 'All',
@@ -172,15 +207,12 @@ return [
     'about_us' => 'About us',
     'faqs' => 'FAQ\'s',
     'support' => 'Support',
-    'all_rights_reserved' => 'all rights reserved',
     
     // QR Code Scanner Language Keys
-    'qr_code_scanner' => 'Qr Code Scanner',
     'meal_distribution_and_qr_code_scanning' => 'Meal distribution and QR Code scanning',
     'qr_code_reader' => 'QR Code Reader',
     'click_the_icon_to_start_scan' => 'Click the icon to start scan',
     'something_went_wrong_try_again_later' => 'Something went wrong. Try again later.',
-    'error' => 'Error',
     'failed_to_record_meal' => 'Failed to record meal.',
     
     // Bulk Meals Manual Entry Language Keys
@@ -196,11 +228,31 @@ return [
     'check_and_add_to_list' => 'Check and add to list',
     'waiting_list_inputs' => 'Waiting list inputs',
     'data_will_stored_when_you_click_on_save' => 'Data will stored when you click on save',
-    'student_number' => 'Student Number',
     'action' => 'Action',
     'something_went_wrong_please_try_again' => 'Something went wrong. Please try again.',
     'no_entries' => 'No entries',
     'please_add_some_verified_entries_before_saving' => 'Please add some verified entries before saving',
     'saved' => 'Saved!',
     'data_has_been_saved_successfully' => 'Data has been saved successfully.',
+    
+    // Authentication Language Keys
+    'welcome_to' => 'Welcome to',
+    'welcome_emoji' => '👋',
+    'please_sign_in_to_your_account' => 'Please sign-in to your account',
+    'enter_your_email' => 'Enter your email',
+    'email_address' => 'Email Address',
+    'sign_in' => 'Sign in',
+    'register' => 'Register',
+    'confirm_password' => 'Confirm Password',
+    'verify_your_email_address' => 'Verify Your Email Address',
+    'fresh_verification_link_sent' => 'A fresh verification link has been sent to your email address.',
+    'before_proceeding_check_email' => 'Before proceeding, please check your email for a verification link.',
+    'if_you_did_not_receive_email' => 'If you did not receive the email',
+    'click_here_to_request_another' => 'click here to request another',
+    
+    // Password Reset Language Keys
+    'reset_password' => 'Reset Password',
+    'send_password_reset_link' => 'Send Password Reset Link',
+    'please_confirm_your_password_before_continuing' => 'Please confirm your password before continuing.',
+    'forgot_your_password' => 'Forgot Your Password?',
 ];
