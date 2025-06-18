@@ -5,7 +5,7 @@ return [
     'dashboard_title_details' => 'Monitor key metrics and stay informed with real-time insights into student meals, surveys, and merchant engagement.',
 
     // Application Branding
-    'food_hub' => 'Food Hub',
+    'food_hub' => 'Administration of Catering',
     'kuwait_university' => 'Kuwait University',
 
     // Navigation Menu Items
@@ -197,7 +197,7 @@ return [
     'weekly_survey_results' => 'Weekly Survey Results',
 
     // Welcome Page Language Keys
-    'kuwait_university_food_hub' => 'Kuwait University Food Hub',
+    'kuwait_university_food_hub' => 'Administration of Catering Kuwait University',
     'login' => 'Login',
     'landing_template_for_startups' => 'Landing template for startups',
     'landing_page_description' => 'Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.',

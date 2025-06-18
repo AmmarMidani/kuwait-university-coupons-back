@@ -5,7 +5,7 @@ return [
     'dashboard_title_details' => 'راقب المقاييس الرئيسية وابق مطلعاً مع الرؤى الفورية حول وجبات الطلاب والاستطلاعات ومشاركة التجار.',
 
     // Application Branding
-    'food_hub' => 'مركز الطعام',
+    'food_hub' => 'إدارة التغذية',
     'kuwait_university' => 'جامعة الكويت',
 
     // Navigation Menu Items
@@ -197,7 +197,7 @@ return [
     'weekly_survey_results' => 'نتائج الاستطلاع الأسبوعي',
 
     // Welcome Page Language Keys
-    'kuwait_university_food_hub' => 'مركز طعام جامعة الكويت',
+    'kuwait_university_food_hub' => 'إدارة الغذاء جامعة الكويت',
     'login' => 'تسجيل الدخول',
     'landing_template_for_startups' => 'قالب الصفحة الرئيسية للشركات الناشئة',
     'landing_page_description' => 'قالب صفحتنا الرئيسية يعمل على جميع الأجهزة، لذا عليك إعداده مرة واحدة فقط، والحصول على نتائج جميلة إلى الأبد.',
