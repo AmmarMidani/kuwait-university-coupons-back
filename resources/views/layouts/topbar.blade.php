@@ -9,7 +9,7 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Language -->
-            <li class="nav-item dropdown-language dropdown">
+            <!-- <li class="nav-item dropdown-language dropdown">
                 <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
                     href="javascript:void(0);" data-bs-toggle="dropdown">
                     <i class="ri-translate-2 ri-22px"></i>
@@ -26,7 +26,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
             <!--/ Language -->
 
             <!-- User -->
@@ -57,12 +57,12 @@
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="dropdown-item" href="#">
                             <i class="ri-user-3-line ri-22px me-3"></i>
                             <span class="align-middle">{{ __('website.my_profile') }}</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="dropdown-item" href="#">
                             <i class="ri-settings-4-line ri-22px me-3"></i>
