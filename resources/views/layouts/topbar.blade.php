@@ -62,7 +62,7 @@
                             <i class="ri-user-3-line ri-22px me-3"></i>
                             <span class="align-middle">{{ __('website.my_profile') }}</span>
                         </a>
-                    </li> -->
+                    </li>
                     <li>
                         <a class="dropdown-item" href="#">
                             <i class="ri-settings-4-line ri-22px me-3"></i>
@@ -71,7 +71,7 @@
                     </li>
                     <li>
                         <div class="dropdown-divider"></div>
-                    </li>
+                    </li> -->
                     <li>
                         <div class="d-grid px-4 pt-2 pb-1">
                             <a class="btn btn-sm btn-danger d-flex" href="{{ route('logout') }}"
