@@ -218,13 +218,10 @@ return [
     // Bulk Meals Manual Entry Language Keys
     'bulk_meals_manual_entry' => 'Bulk Meals Manual Entry',
     'add_a_meal_entry_if_the_internet_connection_is_down' => 'Add a meal entry if the internet connection is down',
-    'add_single_row' => 'Add single row',
-    'add_entry_for_single_student' => 'Add entry for single student',
     'bulk_add' => 'Bulk add',
     'add_entry_for_multiple_students' => 'Add entry for multiple students',
     'date' => 'Date',
     'student_numbers' => 'Student Numbers',
-    'student_numbers_help' => 'Student numbers (only single number for each row)',
     'check_and_add_to_list' => 'Check and add to list',
     'waiting_list_inputs' => 'Waiting list inputs',
     'data_will_stored_when_you_click_on_save' => 'Data will stored when you click on save',

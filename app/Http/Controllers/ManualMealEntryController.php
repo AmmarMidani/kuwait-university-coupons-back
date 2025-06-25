@@ -26,7 +26,6 @@ class ManualMealEntryController extends Controller
         $students = Student::all()->mapWithKeys(function ($item) {
             return [$item->student_number => $item->name];
         });
-        $students->prepend('- Select Student -', null);
 
         $meals = Meal::all()->mapWithKeys(function ($item) {
             return [$item->id => $item->name];

@@ -218,13 +218,10 @@ return [
     // Bulk Meals Manual Entry Language Keys
     'bulk_meals_manual_entry' => 'الإدخال اليدوي للوجبات',
     'add_a_meal_entry_if_the_internet_connection_is_down' => 'أضف إدخال وجبة إذا كان الاتصال بالإنترنت معطل',
-    'add_single_row' => 'إضافة صف واحد',
-    'add_entry_for_single_student' => 'إضافة إدخال لطالب واحد',
     'bulk_add' => 'إضافة مجموعة',
     'add_entry_for_multiple_students' => 'إضافة إدخال لعدة طلاب',
     'date' => 'التاريخ',
     'student_numbers' => 'أرقام الطلاب',
-    'student_numbers_help' => 'أرقام الطلاب (رقم واحد فقط لكل صف)',
     'check_and_add_to_list' => 'فحص وإضافة إلى القائمة',
     'waiting_list_inputs' => 'مدخلات قائمة الانتظار',
     'data_will_stored_when_you_click_on_save' => 'سيتم حفظ البيانات عند النقر على حفظ',

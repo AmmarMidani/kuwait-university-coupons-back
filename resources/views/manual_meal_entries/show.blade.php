@@ -23,15 +23,15 @@
 </div>
 
 <div class="row mb-4">
-    <div class="col-6">
+    <div class="col-12">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="card-tile mb-0">{{ __('website.add_single_row') }}</h5>
-                <p class="text-muted">{{ __('website.add_entry_for_single_student') }}</p>
+                <h5 class="card-tile mb-0">{{ __('website.bulk_add') }}</h5>
+                <p class="text-muted">{{ __('website.add_entry_for_multiple_students') }}</p>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12 mb-4">
+                <div class="row mb-3">
+                    <div class="col-4 mb-4">
                         <div class="form-floating form-floating-outline">
                             {{ html()
                             ->select('user_id_single', $users, null)
@@ -40,7 +40,7 @@
                             <label>{{ __('website.merchant') }}</label>
                         </div>
                     </div>
-                    <div class="col-12 mb-4">
+                    <div class="col-4 mb-4">
                         <div class="form-floating form-floating-outline">
                             {{ html()
                             ->select('meal_id_single', $meals, null)
@@ -49,20 +49,11 @@
                             <label>{{ __('website.meal') }}</label>
                         </div>
                     </div>
-                    <div class="col-12 mb-4">
+                    <div class="col-4 mb-4">
                         <div class="form-floating form-floating-outline">
                             <input class="datepicker form-control" name="effective_date_single"
                                 id="effective_date_single" />
                             <label for="effective_date_single">{{ __('website.date') }}</label>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-4">
-                        <div class="form-floating form-floating-outline">
-                            {{ html()
-                            ->select('student_id_single', $students, null)
-                            ->class('form-select select2')
-                            }}
-                            <label>{{ __('website.student') }}</label>
                         </div>
                     </div>
                     <div class="col-12">
@@ -72,58 +63,31 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card h-100">
-            <div class="card-header">
-                <h5 class="card-tile mb-0">{{ __('website.bulk_add') }}</h5>
-                <p class="text-muted">{{ __('website.add_entry_for_multiple_students') }}</p>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="form-floating form-floating-outline">
-                            {{ html()
-                            ->select('user_id_bulk', $users, null)
-                            ->class('form-select select2')
-                            }}
-                            <label>{{ __('website.merchant') }}</label>
+                <div class="row" id="checkboxes-div">
+                    <div class="col-6">
+                        <small class="fw-medium">{{ __('website.students') }}</small>
+                    </div>
+                    <div class="col-6 text-end">
+                        <div class="col-sm-12 mb-3">
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">
+                                {{ __('website.select_all') }}
+                            </a> /
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">
+                                {{ __('website.select_none') }}
+                            </a>
                         </div>
                     </div>
-                    <div class="col-12 mb-4">
-                        <div class="form-floating form-floating-outline">
-                            {{ html()
-                            ->select('meal_id_bulk', $meals, null)
-                            ->class('form-select select2')
-                            }}
-                            <label>{{ __('website.meal') }}</label>
+                    @foreach ($students as $std_number => $std)
+                    <div class="col-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $std_number }}"
+                                id="chk_std_{{ $std_number }}" checked />
+                            <label class="form-check-label" for="chk_std_{{ $std_number }}">
+                                {{ $std }}
+                            </label>
                         </div>
                     </div>
-                    <div class="col-12 mb-4">
-                        <div class="form-floating form-floating-outline">
-                            <input class="datepicker form-control" name="effective_date_bulk"
-                                id="effective_date_bulk" />
-                            <label for="effective_date_bulk">{{ __('website.date') }}</label>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-4">
-                        <div class="form-floating form-floating-outline">
-                            <textarea type="text" name="student_numbers" class="form-control h-px-100"
-                                placeholder="{{ __('website.student_numbers') }}"
-                                aria-describedby="student_numbers_help"></textarea>
-                            <label for="student_numbers">{{ __('website.student_numbers') }}</label>
-                            <div id="student_numbers_help" class="form-text">
-                                {{ __('website.student_numbers_help') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <button id="add-bulk-entry-btn" type="button" class="btn btn-sm btn-outline-info waves-effect">
-                            {{ __('website.check_and_add_to_list') }}
-                        </button>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -181,6 +145,14 @@
     'use strict';
 
 (function () {
+    $('#btn_select_all').click(function (e) {
+        $("#checkboxes-div input:checkbox").prop('checked', true);
+    });
+
+    $('#btn_select_none').click(function (e) {
+        $("#checkboxes-div input:checkbox").prop('checked', false);
+    });
+
     const insertedHashes = new Set();
 
     function handle_error(xhr) {
@@ -236,13 +208,6 @@
         $('#effective_date_single').val('');
     }
 
-    function resetBulkForm() {
-        $('#user_id_bulk').val(null).trigger('change');
-        $('#meal_id_bulk').val(null).trigger('change');
-        $('#effective_date_bulk').val('');
-        $('textarea[name="student_numbers"]').val('');
-    }
-
     $(".datepicker").flatpickr({});
     $(".select2").select2();
 
@@ -252,7 +217,9 @@
             method: 'POST',
             data: {
                 '_token': '{{ csrf_token() }}',
-                student_ids: [$('#student_id_single').val()],
+                student_ids: $("#checkboxes-div input:checkbox:checked").map(function () {
+                    return this.value;
+                }).get(),
                 meal_id: $('#meal_id_single').val(),
                 user_id: $('#user_id_single').val(),
                 effective_date: $('#effective_date_single').val(),
@@ -264,38 +231,6 @@
                 if (response?.data) {
                     response.data.forEach(entry => addEntryRow(entry));
                     resetSingleForm();
-                }
-            },
-            error: handle_error,
-        });
-    });
-
-    $('#add-bulk-entry-btn').on('click', function () {
-        // Get student numbers from textarea
-        let studentNumbers = $('textarea[name="student_numbers"]')
-            .val()
-            .split('\n')
-            .map(num => num.trim()) // Remove whitespace
-            .filter(num => num !== '') // Remove empty lines
-            .filter((value, index, self) => self.indexOf(value) === index); // Get unique values
-
-        $.ajax({
-            url: '{{ route("manual-meal-entry.verify") }}',
-            method: 'POST',
-            data: {
-                '_token': '{{ csrf_token() }}',
-                student_ids: studentNumbers,
-                meal_id: $('#meal_id_bulk').val(),
-                user_id: $('#user_id_bulk').val(),
-                effective_date: $('#effective_date_bulk').val(),
-            },
-            beforeSend: function () {
-                // $('#report-content').html('<div class="text-center p-4">{{ __("website.loading") }}</div>');
-            },
-            success: function (response) {
-                if (response?.data) {
-                    response.data.forEach(entry => addEntryRow(entry));
-                    resetBulkForm();
                 }
             },
             error: handle_error,
