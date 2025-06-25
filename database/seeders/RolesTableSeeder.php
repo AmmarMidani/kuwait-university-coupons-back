@@ -213,6 +213,11 @@ class RolesTableSeeder extends Seeder
                 'group' => 'report',
                 'description' => 'Meal',
             ],
+            [
+                'name' => 'report_meal_per_day',
+                'group' => 'report',
+                'description' => 'Meal Per Day',
+            ],
         ];
 
         foreach ($permissions as $value) {
