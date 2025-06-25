@@ -265,7 +265,14 @@ class ReportController extends Controller
             ->setFillType(Fill::FILL_SOLID)
             ->getStartColor()->setARGB('FFEFEFEF');
 
-        $filePath = 'storage/exports/import_rewards_sample.xlsx';
+
+        // generate dynamic file name
+        $userName = User::find($user_id)?->name ?? '';
+        $sanitizedUserName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $userName);
+        $timestamp = now()->timestamp;
+        $fileName = "meal-report for {$sanitizedUserName} {$date_from} to {$date_to}_{$timestamp}.xlsx";
+
+        $filePath = "storage/exports/{$fileName}";
         $fullPath = public_path($filePath);
 
         // Ensure directory exists
