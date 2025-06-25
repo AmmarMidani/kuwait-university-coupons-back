@@ -19,6 +19,7 @@ return [
     'transactions' => 'المعاملات',
     'survey' => 'الاستطلاع',
     'meals' => 'الوجبات',
+    'meal_per_day' => 'الوجبات الغذائية المنصرفة',
     'manual_meal_entries' => 'الإدخالات اليدوية للوجبات',
     'meal_pricing' => 'تسعير الوجبات',
     'qr_code_scanner' => 'ماسح رمز QR',
@@ -140,6 +141,8 @@ return [
     'do_the_survey' => 'قم بالاستطلاع',
     'loading' => 'جاري التحميل...',
     'failed_to_load_data' => 'فشل تحميل البيانات.',
+    'meal_per_day_report' => 'الوجبات الغذائية المنصرفة',
+    'meal_per_day_report_slug' => 'عرض الوجبات المقدمة يوميًا في نطاق التاريخ',
 
     // Roles & Permissions Language Keys
     'view_and_manage_roles_permissions' => 'عرض وإدارة الأدوار والصلاحيات',

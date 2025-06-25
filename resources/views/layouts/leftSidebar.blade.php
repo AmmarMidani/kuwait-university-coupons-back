@@ -76,7 +76,7 @@
             </a>
         </li>
         @endcan
-        @canany(['report_transaction', 'report_survey', 'report_meal'])
+        @canany(['report_transaction', 'report_meal_per_day', 'report_survey', 'report_meal'])
         <li class="menu-item {{ menuActive('report.*', 'open') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ri-bar-chart-2-line"></i>
@@ -101,6 +101,13 @@
                 <li class="menu-item {{ menuActive('report.meal') }}">
                     <a href="{{ route('report.meal') }}" class="menu-link">
                         <div>{{ __('website.meals') }}</div>
+                    </a>
+                </li>
+                @endcan
+                @can('report_meal_per_day')
+                <li class="menu-item {{ menuActive('report.meal_per_day') }}">
+                    <a href="{{ route('report.meal_per_day') }}" class="menu-link">
+                        <div>{{ __('website.meal_per_day') }}</div>
                     </a>
                 </li>
                 @endcan

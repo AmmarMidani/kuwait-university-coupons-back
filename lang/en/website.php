@@ -17,6 +17,7 @@ return [
     'questions_management' => 'Questions Management',
     'reports' => 'Reports',
     'transactions' => 'Transactions',
+    'meal_per_day' => 'Meal Per Day',
     'survey' => 'Survey',
     'meals' => 'Meals',
     'manual_meal_entries' => 'Manual Meal Entries',
@@ -140,6 +141,8 @@ return [
     'do_the_survey' => 'Do the Survey',
     'loading' => 'Loading...',
     'failed_to_load_data' => 'Failed to load data.',
+    'meal_per_day_report' => 'Meals Per Day Report',
+    'meal_per_day_report_slug' => 'View daily served meals per day in date range',
 
     // Roles & Permissions Language Keys
     'view_and_manage_roles_permissions' => 'View and manage roles & permissions',

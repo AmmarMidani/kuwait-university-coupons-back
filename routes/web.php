@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('report')->controller(ReportController::class)->name('report.')->group(function () {
         Route::get('transaction', 'transaction')->middleware('permission:report_transaction')->name('transaction');
+        Route::get('meal_per_day', 'meal_per_day')->middleware('permission:report_meal_per_day')->name('meal_per_day');
+        Route::post('meal_per_day', 'meal_per_day_generate_excel')->middleware('permission:report_meal_per_day')->name('meal_per_day_generate_excel');
         Route::get('survey', 'survey')->middleware('permission:report_survey')->name('survey');
         Route::get('meal', 'meal')->middleware('permission:report_meal')->name('meal');
     });

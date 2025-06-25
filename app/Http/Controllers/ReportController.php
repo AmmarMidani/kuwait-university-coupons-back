@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meal;
+use App\Models\MealPrice;
 use App\Models\Question;
 use App\Models\Student;
 use App\Models\Survey;
@@ -10,6 +11,12 @@ use App\Models\SurveyAnswer;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 class ReportController extends Controller
 {
@@ -28,7 +35,7 @@ class ReportController extends Controller
         });
         $students->prepend('- All Students -', null);
 
-        $users = User::all()->mapWithKeys(function ($item) {
+        $users = User::merchants()->get()->mapWithKeys(function ($item) {
             return [$item->id => $item->name];
         });
         $users->prepend('- All Users -', null);
@@ -104,6 +111,176 @@ class ReportController extends Controller
             ];
         }
         return view('reports.transaction', compact('meals', 'students', 'users', 'date_from', 'date_to'));
+    }
+
+    public function meal_per_day(Request $request)
+    {
+        $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
+        $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
+
+        $users = User::merchants()->get()->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        });
+
+        return view('reports.meal_per_day', compact('users', 'date_from', 'date_to'));
+    }
+
+    public function meal_per_day_generate_excel(Request $request)
+    {
+        $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
+        $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
+        $user_id = data_get($request, 'user_id', 0);
+
+        $meals = Meal::all()->keyBy('id'); // meals indexed by ID
+        $mealIds = $meals->keys()->all();
+
+        // Prices: grouped by meal_id
+        $prices = MealPrice::where('user_id', $user_id)
+            ->whereIn('meal_id', $mealIds)
+            ->where('effective_date', '<=', $date_to)
+            ->orderBy('effective_date')
+            ->get()
+            ->groupBy('meal_id');
+
+        // Helper to get price for meal at specific date
+        $getPrice = function ($meal_id, $date) use ($prices) {
+            if (!isset($prices[$meal_id])) return 0;
+            return collect($prices[$meal_id])
+                ->where('effective_date', '<=', $date)
+                ->sortByDesc('effective_date')
+                ->first()?->price ?? 0;
+        };
+
+        // Survey data
+        $rawData = Survey::selectRaw('DATE(created_at) as day, meal_id, COUNT(*) as total')
+            ->whereBetween('created_at', [$date_from, $date_to])
+            ->when($user_id, fn($q) => $q->where('user_id', $user_id))
+            ->groupBy('day', 'meal_id')
+            ->orderBy('day')
+            ->get();
+
+        // Organize data
+        $grouped = [];
+        foreach ($rawData as $entry) {
+            $day = $entry->day;
+            $meal_id = $entry->meal_id;
+            $total = $entry->total;
+
+            if (!isset($grouped[$day])) {
+                $grouped[$day] = array_fill_keys($mealIds, 0);
+            }
+            $grouped[$day][$meal_id] = $total;
+        }
+
+        // Spreadsheet
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Headers
+        $sheet->setCellValue('A1', '#');
+        $sheet->setCellValue('B1', 'Date');
+        $sheet->setCellValue('C1', 'Day');
+
+        $colIndex = 4;
+        foreach ($meals as $meal) {
+            $countCol = Coordinate::stringFromColumnIndex($colIndex++);
+            $sheet->setCellValue($countCol . '1', $meal->name);
+
+            $priceCol = Coordinate::stringFromColumnIndex($colIndex++);
+            $sheet->setCellValue($priceCol . '1', 'Unit Price');
+        }
+
+        // Fill Rows
+        $rowIndex = 2;
+        $rowNum = 1;
+        $mealTotals = array_fill_keys($mealIds, ['count' => 0, 'price' => 0]);
+        $grandTotal = 0;
+
+        foreach ($grouped as $date => $mealCounts) {
+            $sheet->setCellValue("A$rowIndex", $rowNum++);
+            $sheet->setCellValue("B$rowIndex", $date);
+            $sheet->setCellValue("C$rowIndex", Carbon::parse($date)->format('l'));
+
+            $colIndex = 4;
+            foreach ($mealIds as $meal_id) {
+                $count = $mealCounts[$meal_id] ?? 0;
+                $price = $getPrice($meal_id, $date);
+                $totalPrice = $count * $price;
+
+                $countCol = Coordinate::stringFromColumnIndex($colIndex++);
+                $priceCol = Coordinate::stringFromColumnIndex($colIndex++);
+
+                $sheet->setCellValue($countCol . $rowIndex, $count);
+                $sheet->setCellValue($priceCol . $rowIndex, number_format($price, 2));
+
+                $mealTotals[$meal_id]['count'] += $count;
+                $mealTotals[$meal_id]['price'] += $totalPrice;
+                $grandTotal += $totalPrice;
+            }
+
+            $rowIndex++;
+        }
+
+        // Totals Row
+        $sheet->setCellValue("B$rowIndex", 'Sub Total');
+        $sheet->getStyle("B$rowIndex")->getFont()->setBold(true);
+
+        $colIndex = 4;
+        foreach ($mealIds as $meal_id) {
+            $countCol = Coordinate::stringFromColumnIndex($colIndex++);
+            $priceCol = Coordinate::stringFromColumnIndex($colIndex++);
+
+            $sheet->setCellValue($countCol . $rowIndex, $mealTotals[$meal_id]['count']);
+            $sheet->setCellValue($priceCol . $rowIndex, number_format($mealTotals[$meal_id]['price'], 2));
+            $sheet->getStyle($countCol . $rowIndex)->getFont()->setBold(true);
+            $sheet->getStyle($priceCol . $rowIndex)->getFont()->setBold(true);
+        }
+
+        $rowIndex += 2;
+
+        // Grand Total
+        $sheet->setCellValue("B$rowIndex", 'Grand Total');
+        $sheet->setCellValue("C$rowIndex", number_format($grandTotal, 2));
+        $sheet->getStyle("B$rowIndex:C$rowIndex")->getFont()->setBold(true);
+
+        // Auto-size all columns based on used range
+        $highestColIndex = $sheet->getHighestColumn();
+        foreach (range('A', $highestColIndex) as $colLetter) {
+            $sheet->getColumnDimension($colLetter)->setAutoSize(true);
+        }
+
+        // Add Center Alignment to the Whole Sheet
+        $sheet->getStyle('A1:' . $sheet->getHighestColumn() . $sheet->getHighestRow())
+            ->getAlignment()
+            ->setHorizontal(Alignment::HORIZONTAL_CENTER)
+            ->setVertical(Alignment::VERTICAL_CENTER);
+
+        // Improve Visuals
+        $sheet->getDefaultRowDimension()->setRowHeight(20); // optional better spacing
+        $sheet->getStyle('A1:' . $sheet->getHighestColumn() . '1')->getFont()->setBold(true); // bold header
+
+        // Color the total rows
+        $sheet->getStyle("A{$rowIndex}:{$sheet->getHighestColumn()}{$rowIndex}")
+            ->getFill()
+            ->setFillType(Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFEFEFEF');
+
+        $filePath = 'storage/exports/import_rewards_sample.xlsx';
+        $fullPath = public_path($filePath);
+
+        // Ensure directory exists
+        if (!file_exists(dirname($fullPath))) {
+            mkdir(dirname($fullPath), 0755, true);
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($fullPath);
+
+        // Return public download URL
+        return response()->json([
+            'success' => true,
+            'download_url' => asset($filePath)
+        ]);
     }
 
     public function survey(Request $request)
