@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('welcome');
+        $this->middleware('auth')->except(['welcome', 'privacy']);
     }
 
     /**
@@ -130,5 +130,15 @@ class HomeController extends Controller
             ['title' => '📊 Real-Time Reporting & Analytics', 'content' => 'Admins can monitor meal activity, survey completion rates, and merchant participation in real-time, helping them make data-informed decisions efficiently.'],
         ];
         return view('welcome', compact('section_titles'));
+    }
+
+    public function privacy()
+    {
+        $effective_date = 'July 04, 2025';
+        $last_updated = 'July 04, 2025';
+        $email = 'admission@ku.edu.kw';
+        $website = 'https://nxg-tech.com/';
+
+        return view('privacy', compact('effective_date', 'last_updated', 'email', 'website'));
     }
 }

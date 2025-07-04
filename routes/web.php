@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 Route::get('/lang/{locale}', [LanguageController::class, 'index'])->name('lang.switch');
 
 Route::middleware(['auth'])->group(function () {
