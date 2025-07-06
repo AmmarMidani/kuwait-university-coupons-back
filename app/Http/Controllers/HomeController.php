@@ -121,6 +121,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
+        return redirect()->route('login');
         $section_titles = [
             ['title' => '🛡️ Secure & Role-Based Access', 'content' => 'Built with robust authentication and role management, the system ensures that students, merchants, and administrators can only access what’s relevant to them — powered by Laravel Sanctum and Spatie Permissions.'],
             ['title' => '🍽️ Smart Meal Scheduling', 'content' => 'Meals are organized by specific time windows and dynamically presented based on the current time. Students can easily view what\'s upcoming or ongoing today.'],
