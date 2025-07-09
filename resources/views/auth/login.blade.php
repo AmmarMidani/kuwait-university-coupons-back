@@ -19,8 +19,8 @@
     </div>
     <!-- /Logo -->
 
-    <div class="card-body mt-1">
-        <h4 class="mb-1">{{ __('website.welcome_to') }} {{ __('website.kuwait_university_food_hub')}}! 👋</h4>
+    <div class="card-body mt-1 text-center">
+        <h4 class="mb-1" dir="rtl">{{ __('website.welcome_to') }} {{ __('website.kuwait_university_food_hub')}}! 👋</h4>
         <p class="mb-5">{{ __('website.please_sign_in_to_your_account') }}</p>
 
         <form id="formAuthentication" class="mb-5" action="{{ route('login') }}" method="POST">

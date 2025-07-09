@@ -200,7 +200,7 @@ return [
     'weekly_survey_results' => 'نتائج الاستطلاع الأسبوعي',
 
     // Welcome Page Language Keys
-    'kuwait_university_food_hub' => 'إدارة الغذاء جامعة الكويت',
+    'kuwait_university_food_hub' => 'إدارة التغذية جامعة الكويت',
     'login' => 'تسجيل الدخول',
     'landing_template_for_startups' => 'قالب الصفحة الرئيسية للشركات الناشئة',
     'landing_page_description' => 'قالب صفحتنا الرئيسية يعمل على جميع الأجهزة، لذا عليك إعداده مرة واحدة فقط، والحصول على نتائج جميلة إلى الأبد.',
