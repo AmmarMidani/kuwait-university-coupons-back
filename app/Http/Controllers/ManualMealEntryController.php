@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderLookupType;
+use App\Enums\GenderType;
 use App\Http\Requests\StoreManualMealEntryRequest;
 use App\Http\Requests\VerifyManualMealEntryRequest;
 use App\Models\Meal;
@@ -23,16 +25,12 @@ class ManualMealEntryController extends Controller
         });
         $users->prepend('- Select Merchant -', null);
 
-        $students = Student::all()->mapWithKeys(function ($item) {
-            return [$item->student_number => $item->name];
-        });
-
         $meals = Meal::all()->mapWithKeys(function ($item) {
             return [$item->id => $item->name];
         });
         $meals->prepend('- Select Meal -', null);
 
-        return view('manual_meal_entries.show', compact('meals', 'students', 'users'));
+        return view('manual_meal_entries.show', compact('meals', 'users'));
     }
 
     /**
@@ -98,5 +96,43 @@ class ManualMealEntryController extends Controller
                 ];
             }),
         ];
+    }
+
+    public function users(Request $request)
+    {
+        $user_id = $request->get('user_id');
+
+        if (!$user_id) {
+            return response()->json([
+                'success' => true,
+                'data' => collect() // empty collection
+            ]);
+        }
+
+        $gender_lookup_user = User::find($user_id)->gender_lookup;
+
+        switch ($gender_lookup_user) {
+            case GenderLookupType::Male:
+                $students = Student::where('gender', GenderType::Male)->get();
+                break;
+            case GenderLookupType::Female:
+                $students = Student::where('gender', GenderType::Female)->get();
+                break;
+            case GenderLookupType::Both:
+                $students = Student::all();
+                break;
+            default:
+                $students = collect(); // empty collection
+                break;
+        }
+
+        $mappedStudents = $students->mapWithKeys(function ($item) {
+            return [$item->student_number => $item->name];
+        });
+
+        return response()->json([
+            'success' => true,
+            'data' => $mappedStudents
+        ]);
     }
 }

@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('manual-meal-entry', [ManualMealEntryController::class, 'index'])->middleware('permission:manual_meal_entry_browse')->name('manual-meal-entry.index');
     Route::post('manual-meal-entry', [ManualMealEntryController::class, 'store'])->middleware('permission:manual_meal_entry_add')->name('manual-meal-entry.store');
     Route::post('manual-meal-entry/verify', [ManualMealEntryController::class, 'verify'])->middleware('permission:manual_meal_entry_browse')->name('manual-meal-entry.verify');
+    Route::post('manual-meal-entry/users', [ManualMealEntryController::class, 'users'])->middleware('permission:manual_meal_entry_browse')->name('manual-meal-entry.users');
 
     Route::get('qr-code-scanner', [QrCodeScannerController::class, 'index'])->middleware('permission:qr_code_scanner_browse')->name('qr-code-scanner.index');
     Route::post('qr-code-scanner', [QrCodeScannerController::class, 'store'])->middleware('permission:qr_code_scanner_add')->name('qr-code-scanner.store');

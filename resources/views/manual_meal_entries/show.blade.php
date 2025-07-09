@@ -77,7 +77,7 @@
                             </a>
                         </div>
                     </div>
-                    @foreach ($students as $std_number => $std)
+                    {{-- @foreach ($students as $std_number => $std)
                     <div class="col-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="{{ $std_number }}"
@@ -87,7 +87,7 @@
                             </label>
                         </div>
                     </div>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
         </div>
@@ -285,6 +285,70 @@
                 insertedHashes.clear();
             },
             error: handle_error
+        });
+    });
+
+    $('#user_id_single').on('change', function () {
+        const userId = $(this).val();
+
+        $.ajax({
+            url: '{{ route("manual-meal-entry.users") }}',
+            method: 'POST',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                user_id: $('#user_id_single').val(),
+            },
+            success: function (response) {
+                const students = response.data || {};
+
+                // Clear current students list
+                const $container = $('#checkboxes-div');
+                $container.empty();
+
+                // Header
+                $container.append(`
+                    <div class="col-6">
+                        <small class="fw-medium">{{ __('website.students') }}</small>
+                    </div>
+                    <div class="col-6 text-end">
+                        <div class="col-sm-12 mb-3">
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_all">
+                                {{ __('website.select_all') }}
+                            </a> /
+                            <a href="javascript:void(0);" class="fw-medium" id="btn_select_none">
+                                {{ __('website.select_none') }}
+                            </a>
+                        </div>
+                    </div>
+                `);
+
+                // Student checkboxes
+                Object.entries(students).forEach(([std_number, std_name]) => {
+                    $container.append(`
+                        <div class="col-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="${std_number}"
+                                    id="chk_std_${std_number}" checked />
+                                <label class="form-check-label" for="chk_std_${std_number}">
+                                    ${std_name}
+                                </label>
+                            </div>
+                        </div>
+                    `);
+                });
+
+                // Re-bind select all/none
+                $('#btn_select_all').click(function () {
+                    $("#checkboxes-div input:checkbox").prop('checked', true);
+                });
+
+                $('#btn_select_none').click(function () {
+                    $("#checkboxes-div input:checkbox").prop('checked', false);
+                });
+            },
+            error: function (xhr) {
+                handle_error(xhr);
+            }
         });
     });
 
