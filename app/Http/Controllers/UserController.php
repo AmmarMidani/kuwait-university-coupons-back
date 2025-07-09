@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderLookupType;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -78,7 +79,10 @@ class UserController extends Controller
             return [$item->name => $item->name];
         });
 
-        return view('users.create', compact('roles'));
+        $gender_lookups = collect(GenderLookupType::asSelectArray());
+        $gender_lookups->prepend('- Select Gender Lookup Type -', null);
+
+        return view('users.create', compact('roles', 'gender_lookups'));
     }
 
     /**
@@ -109,6 +113,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->gender_lookup_text = GenderLookupType::fromValue($user->gender_lookup)->description;
         return view('users.show', compact('user'));
     }
 
@@ -120,7 +125,10 @@ class UserController extends Controller
         $roles = Role::all()->mapWithKeys(function ($item) {
             return [$item->name => $item->name];
         });
-        return view('users.edit', compact('user', 'roles'));
+
+        $gender_lookups = collect(GenderLookupType::asSelectArray());
+        $gender_lookups->prepend('- Select Gender Lookup Type -', null);
+        return view('users.edit', compact('user', 'roles', 'gender_lookups'));
     }
 
     /**

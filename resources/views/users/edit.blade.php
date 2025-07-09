@@ -37,15 +37,15 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" name="name" class="form-control" placeholder="{{ __('website.enter_name') }}"
-                                    value="{{ $user->name }}">
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="{{ __('website.enter_name') }}" value="{{ $user->name }}">
                                 <label for="name">{{ __('website.name') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
-                                <input type="email" name="email" class="form-control" placeholder="{{ __('website.enter_email') }}"
-                                    value="{{ $user->email }}">
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="{{ __('website.enter_email') }}" value="{{ $user->email }}">
                                 <label for="email">{{ __('website.email') }}</label>
                             </div>
                         </div>
@@ -61,6 +61,15 @@
                                 <input type="password" name="password_confirmation" class="form-control"
                                     placeholder="{{ __('website.enter_password_confirmation') }}">
                                 <label for="password_confirmation">{{ __('website.password_confirmation') }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                {{ html()
+                                ->select('gender_lookup', $gender_lookups, $user->gender_lookup)
+                                ->class('form-select select2')
+                                }}
+                                <label>{{ __('website.gender_lookup') }}</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
@@ -130,6 +139,9 @@
                 equalTo: $('input[name="password"]'),
             },
             "roles[]": {
+                required: true
+            },
+            gender_lookup: {
                 required: true
             }
 		},

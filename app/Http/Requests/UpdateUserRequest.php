@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\GenderLookupType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -26,6 +28,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|min:3',
             'password' => 'nullable|confirmed|min:8',
             'roles' => 'required|array|min:1',
+            'gender_lookup' => ['required', Rule::in(GenderLookupType::getValues())],
             'is_active' => 'required|boolean',
         ];
     }

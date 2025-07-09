@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\GenderLookupType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
@@ -25,6 +27,7 @@ class StoreUserRequest extends FormRequest
             'email' => 'required|email|unique:users,email',
             'name' => 'required|min:3',
             'password' => 'required|confirmed|min:8',
+            'gender_lookup' => ['required', Rule::in(GenderLookupType::getValues())],
             'roles' => 'required|array|min:1',
             'is_active' => 'required|boolean',
         ];

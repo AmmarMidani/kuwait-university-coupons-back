@@ -184,6 +184,7 @@ return [
     'user_information' => 'User information',
     'email' => 'Email',
     'enter_email' => 'Enter Email',
+    'gender_lookup' => 'Gender Lookup',
     'role' => 'Role',
     'roles' => 'Roles',
     'select_roles' => 'Select Roles',

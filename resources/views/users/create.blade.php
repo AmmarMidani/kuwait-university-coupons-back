@@ -63,6 +63,15 @@
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-floating form-floating-outline">
+                                {{ html()
+                                ->select('gender_lookup', $gender_lookups, old('gender_lookup'))
+                                ->class('form-select select2')
+                                }}
+                                <label>{{ __('website.gender_lookup') }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-floating form-floating-outline">
                                 {{ html()->multiselect('roles[]', $roles, old('roles'))
                                 ->class('form-select select2')
                                 ->attribute('data-placeholder', __('website.select_roles'))
@@ -128,6 +137,9 @@
                 equalTo: $('input[name="password"]'),
             },
             "roles[]": {
+                required: true
+            },
+            gender_lookup: {
                 required: true
             }
 		},

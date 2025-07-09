@@ -55,6 +55,10 @@
                     <span>{{ $user->email }}</span>
                 </li>
                 <li class="mb-2">
+                    <span class="h6 me-1">{{ __('website.gender_lookup') }}:</span>
+                    <span>{{ $user->gender_lookup_text }}</span>
+                </li>
+                <li class="mb-2">
                     <span class="h6 me-1">{{ __('website.status') }}:</span>
                     @if ($user->is_active)
                     <span class="badge bg-label-success rounded-pill">{{ __('website.active') }}</span>
