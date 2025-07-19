@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['welcome', 'privacy']);
+        $this->middleware('auth')->except(['welcome', 'privacy', 'support']);
     }
 
     /**
@@ -141,5 +141,11 @@ class HomeController extends Controller
         $website = 'https://nxg-tech.com/';
 
         return view('privacy', compact('effective_date', 'last_updated', 'email', 'website'));
+    }
+
+    public function support()
+    {
+        $email = 'support@nxg-tech.com';
+        return view('support', compact('email'));
     }
 }
