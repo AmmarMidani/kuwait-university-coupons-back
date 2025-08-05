@@ -115,7 +115,7 @@ class ReportController extends Controller
 
     public function meal_per_day(Request $request)
     {
-        $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
+        $date_from = data_get($request, 'date_from', now()->startOfMonth()->format('Y-m-d'));
         $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
 
         $genders = collect(GenderType::asSelectArray());
@@ -136,7 +136,7 @@ class ReportController extends Controller
             ]);
         }
 
-        $meals = Meal::all()->keyBy('id'); // meals indexed by ID
+        $meals = Meal::where('is_active', true)->get()->keyBy('id'); // meals indexed by ID
         $mealIds = $meals->keys()->all();
 
         // Prices: grouped by meal_id
@@ -148,33 +148,37 @@ class ReportController extends Controller
 
         // Helper to get price for meal at specific date
         $getPrice = function ($meal_id, $date) use ($prices) {
-            if (!isset($prices[$meal_id])) return 0;
-            return collect($prices[$meal_id])
-                ->where('effective_date', '<=', $date)
-                ->sortByDesc('effective_date')
-                ->first()?->price ?? 0;
+            return collect($prices[$meal_id] ?? [])->where('effective_date', '<=', $date)->sortByDesc('effective_date')->first()?->price ?? 0;
         };
 
         // Survey data
         $rawData = Survey::selectRaw('DATE(surveys.created_at) as day, surveys.meal_id, COUNT(*) as total')
             ->join('students', 'students.id', '=', 'surveys.student_id')
             ->whereBetween('surveys.created_at', [$date_from, $date_to])
-            ->when(!empty($genders), fn($q) => $q->whereIn('students.gender', $genders))
+            ->when($genders, fn($q) => $q->whereIn('students.gender', $genders))
             ->groupBy('day', 'surveys.meal_id')
             ->orderBy('day')
             ->get();
 
         // Organize data
-        $grouped = [];
-        foreach ($rawData as $entry) {
-            $day = $entry->day;
-            $meal_id = $entry->meal_id;
-            $total = $entry->total;
+        // Step 1: Generate all dates in the range
+        $allDates = [];
+        $current = Carbon::parse($date_from);
+        $end = Carbon::parse($date_to);
+        while ($current->lte($end)) {
+            $allDates[] = $current->format('Y-m-d');
+            $current->addDay();
+        }
 
-            if (!isset($grouped[$day])) {
-                $grouped[$day] = array_fill_keys($mealIds, 0);
-            }
-            $grouped[$day][$meal_id] = $total;
+        // Step 2: Initialize all meals to 0 for all days
+        $grouped = [];
+        foreach ($allDates as $date) {
+            $grouped[$date] = array_fill_keys($mealIds, 0);
+        }
+
+        // Step 3: Fill actual counts from DB data
+        foreach ($rawData as $entry) {
+            $grouped[$entry->day][$entry->meal_id] = $entry->total;
         }
 
         // Spreadsheet
@@ -188,84 +192,86 @@ class ReportController extends Controller
 
         $colIndex = 4;
         foreach ($meals as $meal) {
-            $countCol = Coordinate::stringFromColumnIndex($colIndex++);
-            $sheet->setCellValue($countCol . '1', $meal->name);
-
-            $priceCol = Coordinate::stringFromColumnIndex($colIndex++);
-            $sheet->setCellValue($priceCol . '1', 'Unit Price');
+            $sheet->setCellValue(Coordinate::stringFromColumnIndex($colIndex++) . '1', $meal->name);
         }
 
-        // Fill Rows
         $rowIndex = 2;
         $rowNum = 1;
-        $mealTotals = array_fill_keys($mealIds, ['count' => 0, 'price' => 0]);
-        $grandTotal = 0;
+        $mealTotals = array_fill_keys($mealIds, 0);
+        $mealPrices = [];
+        $mealPriceTotals = [];
 
         foreach ($grouped as $date => $mealCounts) {
             $sheet->setCellValue("A$rowIndex", $rowNum++);
-            $sheet->setCellValue("B$rowIndex", $date);
+            $sheet->setCellValue("B$rowIndex", Carbon::parse($date)->format('d-m-Y'));
             $sheet->setCellValue("C$rowIndex", Carbon::parse($date)->format('l'));
 
             $colIndex = 4;
             foreach ($mealIds as $meal_id) {
                 $count = $mealCounts[$meal_id] ?? 0;
                 $price = $getPrice($meal_id, $date);
-                $totalPrice = $count * $price;
 
-                $countCol = Coordinate::stringFromColumnIndex($colIndex++);
-                $priceCol = Coordinate::stringFromColumnIndex($colIndex++);
+                $mealTotals[$meal_id] += $count;
+                $mealPrices[$meal_id] = $price; // latest known price
 
-                $sheet->setCellValue($countCol . $rowIndex, $count);
-                $sheet->setCellValue($priceCol . $rowIndex, number_format($price, 2));
-
-                $mealTotals[$meal_id]['count'] += $count;
-                $mealTotals[$meal_id]['price'] += $totalPrice;
-                $grandTotal += $totalPrice;
+                $sheet->setCellValue(Coordinate::stringFromColumnIndex($colIndex++) . $rowIndex, $count);
             }
 
             $rowIndex++;
         }
 
-        // Totals Row
+        // Sub Total Row
         $sheet->setCellValue("B$rowIndex", 'Sub Total');
-        $sheet->getStyle("B$rowIndex")->getFont()->setBold(true);
-
         $colIndex = 4;
         foreach ($mealIds as $meal_id) {
-            $countCol = Coordinate::stringFromColumnIndex($colIndex++);
-            $priceCol = Coordinate::stringFromColumnIndex($colIndex++);
-
-            $sheet->setCellValue($countCol . $rowIndex, $mealTotals[$meal_id]['count']);
-            $sheet->setCellValue($priceCol . $rowIndex, number_format($mealTotals[$meal_id]['price'], 2));
-            $sheet->getStyle($countCol . $rowIndex)->getFont()->setBold(true);
-            $sheet->getStyle($priceCol . $rowIndex)->getFont()->setBold(true);
+            $sheet->setCellValue(Coordinate::stringFromColumnIndex($colIndex++) . $rowIndex, $mealTotals[$meal_id]);
         }
+        $sheet->getStyle("B$rowIndex")->getFont()->setBold(true);
+        $rowIndex++;
 
-        $rowIndex += 2;
+        // Unit Price Row
+        $sheet->setCellValue("B$rowIndex", 'Unit Price');
+        $colIndex = 4;
+        foreach ($mealIds as $meal_id) {
+            $sheet->setCellValue(Coordinate::stringFromColumnIndex($colIndex++) . $rowIndex, number_format($mealPrices[$meal_id] ?? 0, 2));
+        }
+        $sheet->getStyle("B$rowIndex")->getFont()->setBold(true);
+        $rowIndex++;
 
-        // Grand Total
+        // Total Row
+        $sheet->setCellValue("B$rowIndex", 'Total');
+        $colIndex = 4;
+        $grandTotal = 0;
+        foreach ($mealIds as $meal_id) {
+            $total = $mealTotals[$meal_id] * ($mealPrices[$meal_id] ?? 0);
+            $mealPriceTotals[$meal_id] = $total;
+            $grandTotal += $total;
+
+            $sheet->setCellValue(Coordinate::stringFromColumnIndex($colIndex++) . $rowIndex, number_format($total, 2));
+        }
+        $sheet->getStyle("B$rowIndex")->getFont()->setBold(true);
+        $rowIndex++;
+
+        // Grand Total Row
         $sheet->setCellValue("B$rowIndex", 'Grand Total');
         $sheet->setCellValue("C$rowIndex", number_format($grandTotal, 2));
         $sheet->getStyle("B$rowIndex:C$rowIndex")->getFont()->setBold(true);
 
-        // Auto-size all columns based on used range
-        $highestColIndex = $sheet->getHighestColumn();
-        foreach (range('A', $highestColIndex) as $colLetter) {
+        // Styling
+        $highestCol = $sheet->getHighestColumn();
+        foreach (range('A', $highestCol) as $colLetter) {
             $sheet->getColumnDimension($colLetter)->setAutoSize(true);
         }
 
-        // Add Center Alignment to the Whole Sheet
-        $sheet->getStyle('A1:' . $sheet->getHighestColumn() . $sheet->getHighestRow())
+        $sheet->getStyle('A1:' . $highestCol . $sheet->getHighestRow())
             ->getAlignment()
             ->setHorizontal(Alignment::HORIZONTAL_CENTER)
             ->setVertical(Alignment::VERTICAL_CENTER);
 
-        // Improve Visuals
-        $sheet->getDefaultRowDimension()->setRowHeight(20); // optional better spacing
-        $sheet->getStyle('A1:' . $sheet->getHighestColumn() . '1')->getFont()->setBold(true); // bold header
+        $sheet->getDefaultRowDimension()->setRowHeight(20);
+        $sheet->getStyle('A1:' . $highestCol . '1')->getFont()->setBold(true);
 
-        // Color the total rows
-        $sheet->getStyle("A{$rowIndex}:{$sheet->getHighestColumn()}{$rowIndex}")
+        $sheet->getStyle("A{$rowIndex}:{$highestCol}{$rowIndex}")
             ->getFill()
             ->setFillType(Fill::FILL_SOLID)
             ->getStartColor()->setARGB('FFEFEFEF');
