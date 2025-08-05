@@ -44,11 +44,13 @@
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-floating form-floating-outline">
-                    {{ html()
-                    ->select('user_id', $users, null)
+                    {{ html()->multiselect('genders[]', $genders, [1, 2])
                     ->class('form-select select2')
+                    ->id('genders')
+                    ->attribute('data-placeholder', __('website.gender'))
+                    ->attribute('multiple')
                     }}
-                    <label>{{ __('website.users') }}</label>
+                    <label>{{ __('website.gender') }}</label>
                 </div>
             </div>
         </div>
@@ -92,11 +94,15 @@
                 '_token': '{{ csrf_token() }}',
                 date_from: date_from,
                 date_to: date_to,
-                user_id: $('#user_id').val(),
+                genders: $('#genders').val(),
                 meal_id: $('#meal_id').val(),
             },
             success: function (response) {
-                window.location.href = response.download_url;
+                if (response.success) {
+                    window.location.href = response.download_url;
+                } else {
+                    alert(response.message);
+                }
             },
             error: function () {
                 // $('#report-content').html('<div class="text-danger p-4">{{ __("website.failed_to_load_data") }}</div>');

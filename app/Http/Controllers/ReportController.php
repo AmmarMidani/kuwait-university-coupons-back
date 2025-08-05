@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderType;
 use App\Models\Meal;
 use App\Models\MealPrice;
 use App\Models\Question;
@@ -11,7 +12,6 @@ use App\Models\SurveyAnswer;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
@@ -118,26 +118,30 @@ class ReportController extends Controller
         $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
         $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
 
-        $users = User::merchants()->get()->mapWithKeys(function ($item) {
-            return [$item->id => $item->name];
-        });
+        $genders = collect(GenderType::asSelectArray());
+        $genders->prepend('- Select Gender -', null);
 
-        return view('reports.meal_per_day', compact('users', 'date_from', 'date_to'));
+        return view('reports.meal_per_day', compact('date_from', 'date_to', 'genders'));
     }
 
     public function meal_per_day_generate_excel(Request $request)
     {
         $date_from = data_get($request, 'date_from', now()->subMonths(5)->startOfMonth()->format('Y-m-d'));
         $date_to = data_get($request, 'date_to', now()->endOfMonth()->format('Y-m-d'));
-        $user_id = data_get($request, 'user_id', 0);
+        $genders = data_get($request, 'genders', []);
+        if (count($genders) == 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please select genders'
+            ]);
+        }
 
         $meals = Meal::all()->keyBy('id'); // meals indexed by ID
         $mealIds = $meals->keys()->all();
 
         // Prices: grouped by meal_id
-        $prices = MealPrice::where('user_id', $user_id)
+        $prices = MealPrice::where('effective_date', '<=', $date_to)
             ->whereIn('meal_id', $mealIds)
-            ->where('effective_date', '<=', $date_to)
             ->orderBy('effective_date')
             ->get()
             ->groupBy('meal_id');
@@ -152,10 +156,11 @@ class ReportController extends Controller
         };
 
         // Survey data
-        $rawData = Survey::selectRaw('DATE(created_at) as day, meal_id, COUNT(*) as total')
-            ->whereBetween('created_at', [$date_from, $date_to])
-            ->when($user_id, fn($q) => $q->where('user_id', $user_id))
-            ->groupBy('day', 'meal_id')
+        $rawData = Survey::selectRaw('DATE(surveys.created_at) as day, surveys.meal_id, COUNT(*) as total')
+            ->join('students', 'students.id', '=', 'surveys.student_id')
+            ->whereBetween('surveys.created_at', [$date_from, $date_to])
+            ->when(!empty($genders), fn($q) => $q->whereIn('students.gender', $genders))
+            ->groupBy('day', 'surveys.meal_id')
             ->orderBy('day')
             ->get();
 
@@ -267,10 +272,20 @@ class ReportController extends Controller
 
 
         // generate dynamic file name
-        $userName = User::find($user_id)?->name ?? '';
-        $sanitizedUserName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $userName);
+
+        // force English temporarily
+        $currentLocale = app()->getLocale();
+        app()->setLocale('en');
+
+        $gender_names = [];
+        foreach ($genders as $gender) {
+            $gender_names[] = GenderType::fromValue((int) $gender)->description;
+        }
+        $gender_names = implode('-', $gender_names);
+        app()->setLocale($currentLocale); // restore original locale
+
         $timestamp = now()->timestamp;
-        $fileName = "meal-report for {$sanitizedUserName} {$date_from} to {$date_to}_{$timestamp}.xlsx";
+        $fileName = "meal-report for ({$gender_names}) - {$date_from} to {$date_to}_{$timestamp}.xlsx";
 
         $filePath = "storage/exports/{$fileName}";
         $fullPath = public_path($filePath);
