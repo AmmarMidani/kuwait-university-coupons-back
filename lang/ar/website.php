@@ -2,7 +2,7 @@
 
 return [
     'dashboard' => 'لوحة التحكم',
-    'dashboard_title_details' => 'راقب المقاييس الرئيسية وابق مطلعاً مع الرؤى الفورية حول وجبات الطلاب والاستطلاعات ومشاركة التجار.',
+    'dashboard_title_details' => 'راقب المقاييس الرئيسية وابق مطلعاً مع الرؤى الفورية حول وجبات الطلاب والاستطلاعات ومشاركة الكافتريات.',
 
     // Application Branding
     'food_hub' => 'إدارة التغذية',
@@ -190,7 +190,7 @@ return [
     'select_roles' => 'اختر الأدوار',
 
     // Dashboard Language Keys
-    'merchants' => 'التجار',
+    'merchants' => 'الكافتريات',
     'total_in_system' => 'الإجمالي في النظام',
     'meals_provided' => 'الوجبات المقدمة',
     'meal_than_last_week' => 'وجبة أكثر من الأسبوع الماضي',
