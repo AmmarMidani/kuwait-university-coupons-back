@@ -76,7 +76,10 @@ class QrCodeScannerController extends Controller
         $message = 'Meal has been successfully recorded.';
 
         $html = view('partials.qr-student-card-init', compact('message'))->render();
-        return response()->json(['html' => $html]);
+        return response()->json([
+            'html' => $html,
+            'survey_id' => $survey->id,
+        ]);
     }
 
     /**
@@ -90,14 +93,20 @@ class QrCodeScannerController extends Controller
         if (!$student) {
             $error_message = 'QR code not found.';
             $html = view('partials.qr-student-card-danger', compact('error_message'))->render();
-            return response()->json(['html' => $html]);
+            return response()->json([
+                'status' => false,
+                'html' => $html
+            ]);
         }
 
         // Step 2: Check student account is active
         if (!$student->is_active) {
             $error_message = 'Your account is deactivated. Please contact administration.';
             $html = view('partials.qr-student-card-danger', compact('error_message'))->render();
-            return response()->json(['html' => $html]);
+            return response()->json([
+                'status' => false,
+                'html' => $html
+            ]);
         }
 
         // Step 3: Find current active meal
@@ -109,7 +118,10 @@ class QrCodeScannerController extends Controller
         if (!$meal) {
             $error_message = 'No active meal available at this time.';
             $html = view('partials.qr-student-card-danger', compact('error_message'))->render();
-            return response()->json(['html' => $html]);
+            return response()->json([
+                'status' => false,
+                'html' => $html
+            ]);
         }
 
         // Step 4: Check if student already received this meal today
@@ -121,14 +133,26 @@ class QrCodeScannerController extends Controller
         if ($alreadyTaken) {
             $error_message = 'Student has already received this meal today.';
             $html = view('partials.qr-student-card-danger', compact('error_message'))->render();
-            return response()->json(['html' => $html]);
+            return response()->json([
+                'status' => false,
+                'html' => $html
+            ]);
         }
 
         $student->gender_text = GenderType::fromValue($student->gender)->description;
         $html = view('partials.qr-student-card-success', compact('student'))->render();
 
+        $store_resp = $this->store(new StoreQrCodeScannerRequest($request->all()));
+        $survey_id = $store_resp->getData()->survey_id;
         return response()->json([
+            'status' => true,
+            'print_receipt_url' => route('qr-code-scanner.print.receipt', $survey_id),
             'html' => $html,
         ]);
+    }
+
+    public function print_receipt(Survey $survey)
+    {
+        return view('qr_code_scanner.print_receipt', compact('survey'));
     }
 }

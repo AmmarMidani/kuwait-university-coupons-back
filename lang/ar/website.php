@@ -256,4 +256,5 @@ return [
     'send_password_reset_link' => 'إرسال رابط إعادة تعيين كلمة المرور',
     'please_confirm_your_password_before_continuing' => 'يرجى تأكيد كلمة المرور قبل المتابعة.',
     'forgot_your_password' => 'نسيت كلمة المرور؟',
+    'thank_you' => 'شكراً لتعاونكم',
 ];

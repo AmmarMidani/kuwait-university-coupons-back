@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('qr-code-scanner', [QrCodeScannerController::class, 'index'])->middleware('permission:qr_code_scanner_browse')->name('qr-code-scanner.index');
     Route::post('qr-code-scanner', [QrCodeScannerController::class, 'store'])->middleware('permission:qr_code_scanner_add')->name('qr-code-scanner.store');
     Route::post('qr-code-scanner/verify', [QrCodeScannerController::class, 'verify'])->middleware('permission:qr_code_scanner_browse')->name('qr-code-scanner.verify');
+    Route::get('qr-code-scanner/{survey}/receipt', [QrCodeScannerController::class, 'print_receipt'])->middleware('permission:qr_code_scanner_browse')->name('qr-code-scanner.print.receipt');
 
     // ROLES
     Route::resource('role', AdminRoleController::class)->middleware('permission:role_browse')->name('*', 'role');

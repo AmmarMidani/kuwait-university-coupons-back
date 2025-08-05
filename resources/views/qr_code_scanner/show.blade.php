@@ -89,6 +89,9 @@
             },
             success: function (response) {
                 $('#student-details').html(response.html);
+                if (response.status) {
+                    window.open(response.print_receipt_url, '_blank');
+                }
             },
             error: function () {
                 $('#student-details').html('<p class="text-danger">{{ __("website.something_went_wrong_try_again_later") }}</p>');

@@ -256,4 +256,5 @@ return [
     'send_password_reset_link' => 'Send Password Reset Link',
     'please_confirm_your_password_before_continuing' => 'Please confirm your password before continuing.',
     'forgot_your_password' => 'Forgot Your Password?',
+    'thank_you' => 'Thank You',
 ];
