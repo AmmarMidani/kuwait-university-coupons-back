@@ -51,7 +51,7 @@ return [
     'meal_price_information' => 'معلومات سعر الوجبة',
     'meal' => 'الوجبة',
     'user' => 'المستخدم',
-    'merchant' => 'التاجر',
+    'merchant' => 'الكافتيريا',
     'effective_date' => 'تاريخ السريان',
     'price' => 'السعر',
     'enter_price' => 'أدخل السعر',
