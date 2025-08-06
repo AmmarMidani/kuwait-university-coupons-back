@@ -76,7 +76,8 @@
             { name: "name", targets: 0 },
             { name: "status", targets: 1 },
             { name: "created_at", targets: 2 },
-            { name: "action", targets: 3 },
+            { name: "update_at", targets: 3 },
+            { name: "action", targets: 4 },
         ],
         columns: [
             {
@@ -99,6 +100,12 @@
                 title: "{{ __('website.created_at') }}",
                 render: function (data, type, row) {
                     return `${row.created_at}`;
+                },
+            },
+            {
+                title: "{{ __('website.updated_at') }}",
+                render: function (data, type, row) {
+                    return `${row.updated_at}`;
                 },
             },
             {

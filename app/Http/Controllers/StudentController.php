@@ -47,6 +47,7 @@ class StudentController extends Controller
                     'status' => $value->is_active,
                     'status_text' => ($value->is_active) ? 'Active' : 'Inactive',
                     'created_at' => $value->created_at->diffForHumans(),
+                    'updated_at' => $value->updated_at->diffForHumans(),
                 ];
             }
 
