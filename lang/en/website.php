@@ -59,6 +59,7 @@ return [
     'add_new_item' => 'Add New Item',
     'actions' => 'Actions',
     'created_at' => 'Created at',
+    'updated_at' => 'Updated at',
     'id' => 'ID',
     'search' => 'Search',
 
